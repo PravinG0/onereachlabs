@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneReach Labs &mdash; Triple Your Pipeline. From Both Directions.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sections-a.css">
+  <link rel="stylesheet" href="sections-b.css">
+</head>
+<body>
+  <a href="#top" class="skip-link visually-hidden">Skip to main content</a>
+
+  <!-- Fixed Right Circular Scroll Progress Indicator -->
+  <aside class="scroll-orb" aria-hidden="true">
+    <svg class="scroll-orb__svg" viewBox="0 0 88 88" width="88" height="88">
+      <circle
+        cx="44"
+        cy="44"
+        r="41"
+        fill="rgba(12, 13, 17, 0.72)"
+      />
+      <circle
+        class="scroll-orb__dots"
+        cx="44"
+        cy="44"
+        r="38"
+        fill="none"
+        stroke="rgba(255, 255, 255, 0.34)"
+        stroke-width="1.75"
+        stroke-dasharray="1.5 4.2"
+        stroke-linecap="round"
+      />
+      <circle
+        cx="44"
+        cy="44"
+        r="30"
+        fill="rgba(12, 13, 17, 0.94)"
+        stroke="rgba(255, 255, 255, 0.14)"
+        stroke-width="1"
+      />
+      <circle
+        id="orb-progress-arc"
+        class="scroll-orb__arc"
+        cx="44"
+        cy="44"
+        r="38"
+        fill="none"
+        stroke="#e11d48"
+        stroke-width="2"
+        stroke-linecap="round"
+        transform="rotate(-90 44 44)"
+      />
+      <path
+        d="M 28 28 A 22 22 0 0 1 63 36"
+        fill="none"
+        stroke="#e11d48"
+        stroke-width="2.1"
+        stroke-linecap="round"
+      />
+      <g id="orb-dot-group">
+        <circle cx="44" cy="6" r="3.2" fill="#e11d48" />
+        <circle cx="44" cy="6" r="6" fill="rgba(225, 29, 72, 0.28)" />
+      </g>
+    </svg>
+    <span class="scroll-orb__label">ORL</span>
+  </aside>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner" id="header-inner">
+      <a class="site-logo" href="#top">
+        <span class="site-logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <rect x="3" y="3" width="8" height="8" rx="2" fill="#0b93f6" />
+            <rect x="13" y="3" width="8" height="8" rx="4" fill="#0f172a" />
+            <rect x="3" y="13" width="8" height="8" rx="4" fill="#0f172a" />
+            <rect x="13" y="13" width="8" height="8" rx="2" fill="#60bdfc" />
+          </svg>
+        </span>
+        <span>OneReach Labs</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button
+          class="menu-button"
+          type="button"
+          popovertarget="site-menu"
+          popovertargetaction="toggle"
+          aria-controls="site-menu"
+        >
+          <svg aria-hidden="true" viewBox="0 0 20 14" width="18" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M2 2h16M2 7h16M2 12h16" />
+          </svg>
+          <span>Menu</span>
+        </button>
+
+        <ul id="site-menu" class="site-menu" popover="auto">
+          <li><a href="#top" aria-current="page">Overview</a></li>
+          <li class="nav-dropdown">
+            <button
+              class="dropdown-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="platform-menu"
+              popovertarget="platform-menu"
+            >
+              <span>Engines</span>
+              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 1.5L6 6l4.5-4.5" />
+              </svg>
+            </button>
+            <ul id="platform-menu" class="dropdown-list">
+              <li><a href="#dual-engines">Inbound &amp; Outbound</a></li>
+              <li><a href="#vortex-top">Sophia Agentic Core</a></li>
+              <li><a href="#engines">Autonomous Engines</a></li>
+              <li><a href="#inbound-outbound">Operating Model</a></li>
+              <li><a href="hero.html">3D Interactive Stage</a></li>
+            </ul>
+          </li>
+          <li><a href="#sophia">Sophia</a></li>
+          <li><a href="#data">Data</a></li>
+          <li><a href="#engage">How we work</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <a href="#campaign-form-wrap" class="header-cta" data-jump-portal="true">
+        <span>Book a strategy call</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- =========================================================
+         SECTION 0: LIGHT EDITORIAL EXPANDABLE VIDEO HERO
+         ========================================================= -->
+    <section class="hero-runway" id="top" aria-labelledby="hero-heading">
+      <div class="hero-stage" id="hero-stage">
+        <div class="hero-crosshairs" aria-hidden="true">
+          <span class="hero-crosshair hero-crosshair--left">+</span>
+          <span class="hero-crosshair hero-crosshair--right">+</span>
+        </div>
+
+        <!-- Expanding Full-Bleed Media Stage (Video slot + Animated Placeholder Reel) -->
+        <div class="hero-media-layer" id="hero-media-layer">
+          <div class="hero-media-clip" id="hero-media-clip">
+            <div class="hero-media-inner" id="hero-media-inner">
+              <video
+                id="hero-reel-video"
+                class="hero-media-video"
+                src="assets/videos/hero-montage.mp4"
+                poster="assets/videos/hero-poster.jpg"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                aria-label="OneReach Labs campaign showcase reel"
+              ></video>
+              <canvas
+                id="hero-placeholder-canvas"
+                class="hero-media-canvas"
+                aria-hidden="true"
+                hidden
+              ></canvas>
+              <div class="hero-placeholder-badge" id="hero-placeholder-badge" aria-hidden="true" hidden>
+                <span class="hero-placeholder-badge__dot"></span>
+                <span>PREVIEW REEL &bull; VIDEO SLOT READY</span>
+              </div>
+              <div class="hero-media-scrim" id="hero-media-scrim" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editorial Headline, Metrics & CTA HUD -->
+        <div class="hero-hud" id="hero-hud">
+          <header class="hero-head">
+            <h1 id="hero-heading" class="hero-headline">
+              <span>Triple Your <strong class="hero-headline__accent">Pipeline.</strong></span>
+              <span>From Both Directions.</span>
+            </h1>
+          </header>
+
+          <div class="hero-bottom-grid">
+            <div class="hero-stat">
+              <svg class="hero-stat__icon" viewBox="0 0 28 20" width="26" height="18" fill="none" stroke="#1e3db4" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 15l7-6 5 4 11-10" />
+                <path d="M19 3h6v6" />
+              </svg>
+              <p class="hero-stat__value">3&times;</p>
+              <p class="hero-stat__label">Qualified Meetings in 90 Days</p>
+              <span class="hero-stat__rule" aria-hidden="true"></span>
+              <p class="hero-stat__meta">Across 300M+ B2B Signals</p>
+            </div>
+
+            <!-- Geometric layout slot synchronizing the initial rounded card bounds -->
+            <div class="hero-card-slot" id="hero-card-slot">
+              <div class="hero-card-controls">
+                <button
+                  type="button"
+                  id="hero-reel-toggle"
+                  class="hero-reel-toggle"
+                  aria-label="Pause hero video"
+                >
+                  Pause reel
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-action">
+              <p class="hero-action__copy">
+                OneReach Human Experts run inbound, outbound, and the data underneath both &mdash; with Sophia&rsquo;s AI agents doing the heavy lifting.
+              </p>
+              <a href="#campaign-form-wrap" class="hero-cta-pill" data-jump-portal="true">
+                <span>Book a strategy call</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 1: SWIRLING TEAL AGENTIC CORE & 4-BEAT SCROLL STAGE
+         ========================================================= -->
+    <section class="vortex-runway" id="vortex-top" aria-label="OneReach Agentic Architecture">
+      <div class="vortex-stage" id="vortex-stage">
+        <!-- Layer 1: Custom WebGL GLSL Fluid Swirl Shader (+2D fallback) -->
+        <canvas id="vortex-bg-canvas" class="vortex-bg-canvas" aria-hidden="true"></canvas>
+        <!-- Layer 2: 3D Procedural 5-Petal Particle Core, Orbital Ring & Star Dust -->
+        <canvas id="iris-core-canvas" class="iris-core-canvas" aria-hidden="true"></canvas>
+
+        <!-- Layer 3: Dynamic SVG Bezier Connector Curves (Beat 3 Pipeline -> Core) -->
+        <svg class="vortex-connectors" id="vortex-connectors" aria-hidden="true"></svg>
+
+        <!-- Center Stage Content Overlays -->
+        <div class="vortex-hud">
+          <!-- BEAT 1: Opening Thesis -->
+          <div class="vortex-beat vortex-beat--1" id="vortex-beat-1">
+            <h2 class="vortex-display vortex-display--intro">
+              <span>Are we agentic? Yes.</span>
+              <span>Every agent is tuned</span>
+              <span>to new customers.</span>
+            </h2>
+            <p class="vortex-micro vortex-micro--intro">
+              NO GIMMICKS. NO WRAPPERS. NO SHORTCUTS.<br>
+              WE CREATE CUSTOMERS.
+            </p>
+          </div>
+
+          <!-- BEAT 2: 5-Node Radial Ring Caption -->
+          <div class="vortex-beat vortex-beat--2" id="vortex-beat-2">
+            <p class="vortex-subdisplay">
+              Built to find the customers<br>your stack can&rsquo;t.
+            </p>
+          </div>
+
+          <!-- BEAT 3: Top Headline + Pipeline Subtitle + Micro Sign-off Note -->
+          <div class="vortex-beat vortex-beat--3" id="vortex-beat-3">
+            <header class="vortex-beat3-head">
+              <h2 class="vortex-display vortex-display--pipeline">Sophia creates customers.</h2>
+              <p class="vortex-lead">
+                Anyone can buy reach. We&rsquo;re measured on the customers it creates. High lifetime value, at a cost per customer you set.
+              </p>
+            </header>
+            <p class="vortex-micro vortex-micro--pipeline">
+              SOPHIA ACTS. OUR PEOPLE APPROVE. NOTHING REACHES A CUSTOMER THAT A PERSON DIDN&rsquo;T SIGN OFF ON.
+            </p>
+          </div>
+
+          <!-- BEAT 2 -> 3 Morphing Agentic Pipeline Nodes -->
+          <div class="vortex-nodes" id="vortex-nodes" aria-label="Sophia agentic operating loop">
+            <button type="button" class="vortex-pill" data-node="sense" data-focus-track="signals">SENSE</button>
+            <button type="button" class="vortex-pill" data-node="perceive" data-focus-track="intel">PERCEIVE</button>
+            <button type="button" class="vortex-pill is-highlighted" data-node="decide" data-focus-track="discovery">DECIDE</button>
+            <span class="vortex-approval" id="vortex-approval">APPROVAL</span>
+            <button type="button" class="vortex-pill" data-node="deliver" data-focus-track="sequences">DELIVER</button>
+            <button type="button" class="vortex-pill" data-node="learn" data-focus-track="followup">LEARN</button>
+          </div>
+
+          <!-- BEAT 4: Right-Shifted Core + Left 4-Step Narrative + Final 3-Pill Finale -->
+          <div class="vortex-beat vortex-beat--4" id="vortex-beat-4">
+            <h2 class="vortex-display vortex-display--operate">
+              <span>You don&rsquo;t run Sophia.</span>
+              <span>We do.</span>
+            </h2>
+
+            <div class="vortex-steps" id="vortex-steps">
+              <article class="vortex-step is-active" data-step="0">
+                <p class="vortex-step__label">WE OPERATE SOPHIA</p>
+                <p class="vortex-step__copy">
+                  OneReach runs Sophia. Our operators, our accountability. Your data stays where it already lives. The customers arrive in your channels, confirmed in your CRM.
+                </p>
+              </article>
+
+              <article class="vortex-step" data-step="1">
+                <p class="vortex-step__label">THE WORK COMPOUNDS</p>
+                <p class="vortex-step__copy">
+                  What a campaign proves, Sophia keeps. Decisions build on it instead of resetting with every campaign.
+                </p>
+              </article>
+
+              <article class="vortex-step" data-step="2">
+                <p class="vortex-step__label">WE FIND THE OPENING</p>
+                <p class="vortex-step__copy">
+                  Sophia reads the signals across 300M+ contacts and picks who&rsquo;s worth going after, and when.
+                </p>
+              </article>
+
+              <article class="vortex-step" data-step="3">
+                <p class="vortex-step__label">WE DELIVER THE CUSTOMER</p>
+                <p class="vortex-step__copy">
+                  The customer shows up in the channels you already run, 3&times; baseline guaranteed in 90 days.
+                </p>
+              </article>
+            </div>
+
+            <a href="#engines" class="vortex-operate-cue" id="vortex-operate-cue">
+              <span>SEE HOW WE OPERATE</span>
+            </a>
+
+            <!-- End-of-Beat-4 Scale Finale -->
+            <div class="vortex-finale" id="vortex-finale">
+              <h2 class="vortex-display vortex-display--finale">
+                <span>We&rsquo;ve built this at scale before.</span>
+                <span>This time we built it to do one thing.</span>
+              </h2>
+              <div class="vortex-finale__pills">
+                <a href="#engines" class="vortex-pill-link">THE BRAIN</a>
+                <a href="#choreo-runway" class="vortex-pill-link">THE METHOD</a>
+                <a href="#choreo-runway" class="vortex-pill-link" data-jump-portal="true">THE CUSTOMERS</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Floating Frosted-Glass Pill Dock -->
+        <div class="vortex-dock is-hidden" id="vortex-dock" role="region" aria-label="Quick navigation dock">
+          <a href="#engines" class="vortex-dock__icon" aria-label="Jump to interactive engine network" title="Explore Agent Network">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="10" cy="10" r="7" />
+              <circle cx="7.6" cy="8.5" r="0.9" fill="currentColor" stroke="none" />
+              <circle cx="12.4" cy="8.5" r="0.9" fill="currentColor" stroke="none" />
+              <path d="M7.5 12.2c.7.9 1.6 1.3 2.5 1.3s1.8-.4 2.5-1.3" />
+            </svg>
+          </a>
+          <a href="hero.html" class="vortex-dock__menu" aria-label="Open 3D Hero Page" title="Open 3D Hero Page">
+            <svg viewBox="0 0 18 14" width="16" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M2 2h14M2 7h14M2 12h14" />
+            </svg>
+          </a>
+          <a href="#choreo-runway" class="vortex-dock__cta" data-jump-portal="true">
+            CREATE CUSTOMERS
+          </a>
+        </div>
+
+        <!-- Motion Pause Control (WCAG 2.2.2) -->
+        <button
+          type="button"
+          id="vortex-motion-toggle"
+          class="vortex-motion-toggle"
+          aria-label="Pause background swirl animation"
+        >
+          Pause motion
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2: SOPHIA + SPECIALIST NETWORK (RADIAL BURST)
+         ========================================================= -->
+    <section class="serve-section" id="engines" aria-labelledby="serve-heading">
+      <div class="serve-section__ambient" aria-hidden="true"></div>
+
+      <div class="serve-section__grid">
+        <!-- Left Color-Coded Capability Legend -->
+        <div class="serve-legend">
+          <ul class="industry-list" id="industry-list" aria-label="OneReach specialist capabilities">
+            <li><button type="button" class="industry-item" data-industry="intel" aria-pressed="false"><span class="dot" style="--dot-color:#f59e0b"></span>COMPANY INTEL</button></li>
+            <li><button type="button" class="industry-item" data-industry="discovery" aria-pressed="false"><span class="dot" style="--dot-color:#34d399"></span>CONTACT DISCOVERY (300M+)</button></li>
+            <li><button type="button" class="industry-item" data-industry="signals" aria-pressed="false"><span class="dot" style="--dot-color:#60a5fa"></span>SIGNAL DETECTION</button></li>
+            <li><button type="button" class="industry-item" data-industry="enrichment" aria-pressed="false"><span class="dot" style="--dot-color:#fb7185"></span>DATA ENRICHMENT (99%)</button></li>
+            <li><button type="button" class="industry-item" data-industry="drafter" aria-pressed="false"><span class="dot" style="--dot-color:#facc15"></span>MESSAGE DRAFTER</button></li>
+            <li><button type="button" class="industry-item" data-industry="sequences" aria-pressed="false"><span class="dot" style="--dot-color:#e879f9"></span>SEQUENCE BUILDER</button></li>
+            <li><button type="button" class="industry-item" data-industry="followup" aria-pressed="false"><span class="dot" style="--dot-color:#22d3ee"></span>4-CHANNEL FOLLOW-UP</button></li>
+            <li><button type="button" class="industry-item" data-industry="pipeline" aria-pressed="false"><span class="dot" style="--dot-color:#f3f4f6"></span>PIPELINE &amp; BOOKING</button></li>
+          </ul>
+        </div>
+
+        <!-- Center Interactive Radial Fiber Canvas -->
+        <div class="radial-stage" id="radial-stage">
+          <canvas id="radial-canvas" aria-label="Interactive network of Sophia's 10 AI agents and live buying signals"></canvas>
+          <div id="radial-crosshair" class="radial-crosshair" aria-hidden="true"></div>
+          <div id="radial-tooltip" class="radial-tooltip" role="status" aria-live="polite" hidden></div>
+        </div>
+
+        <!-- Right Section Title -->
+        <header class="serve-header">
+          <p class="serve-eyebrow">SOPHIA + HUMAN EXPERTS</p>
+          <h2 id="serve-heading" class="serve-title">Triple your<br>pipeline.</h2>
+        </header>
+      </div>
+
+      <!-- Bottom Bridge Row -->
+      <div class="serve-footer">
+        <div class="serve-footer__left">One team.</div>
+        <div class="serve-footer__right">From both directions.</div>
+      </div>
+    </section>
+
+
+<!-- =========================================================================
+     PART A LANDING SECTIONS: #dual-engines -> #guarantee -> #team-pod
+                              -> #inbound-outbound -> #operating-split
+     ========================================================================= -->
+
+<!-- 1. DUAL-ENGINE PIPELINE SHOWCASE -->
+<section class="orl-section orl-dual" id="dual-engines">
+  <div class="orl-dual__ambient" aria-hidden="true"></div>
+
+  <div class="orl-container">
+    <header class="orl-section-head orl-section-head--center orl-section-head--dark">
+      <p class="orl-micro orl-micro--dark">
+        <span class="orl-micro__dots" aria-hidden="true">
+          <span class="orl-dot orl-dot--inbound"></span>
+          <span class="orl-dot orl-dot--outbound"></span>
+        </span>
+        <span>DUAL-ENGINE ARCHITECTURE</span>
+      </p>
+      <h2 class="orl-heading orl-heading--dark">
+        Both engines. <span class="orl-heading__accent orl-heading__accent--cobalt">One strategy.</span>
+      </h2>
+      <p class="orl-lead orl-lead--dark">
+        Inbound captures active demand while outbound opens conversations with priority accounts—connected by Sophia and your dedicated human pod.
+      </p>
+    </header>
+
+    <div class="orl-dual__grid">
+      <!-- Left Dark Glass Card: Inbound Engine -->
+      <article class="orl-dual-card orl-dual-card--glass orl-dual-card--inbound">
+        <div class="orl-dual-card__top">
+          <span class="orl-dash orl-dash--inbound" aria-hidden="true"></span>
+          <div class="orl-dual-card__kicker-row">
+            <span class="orl-dot orl-dot--inbound" aria-hidden="true"></span>
+            <span class="orl-micro-label orl-micro-label--inbound">PULL DEMAND</span>
+          </div>
+          <h3 class="orl-dual-card__title">Inbound engine</h3>
+          <p class="orl-dual-card__copy">
+            Buyers find you, and every lead gets a qualified response in minutes.
+          </p>
+        </div>
+
+        <ul class="orl-hairline-list" role="list">
+          <li class="orl-hairline-list__item">
+            <span class="orl-hairline-list__idx orl-hairline-list__idx--inbound" aria-hidden="true">01</span>
+            <span>Content &amp; SEO</span>
+          </li>
+          <li class="orl-hairline-list__item">
+            <span class="orl-hairline-list__idx orl-hairline-list__idx--inbound" aria-hidden="true">02</span>
+            <span>Paid ads</span>
+          </li>
+          <li class="orl-hairline-list__item">
+            <span class="orl-hairline-list__idx orl-hairline-list__idx--inbound" aria-hidden="true">03</span>
+            <span>Social &amp; LinkedIn</span>
+          </li>
+          <li class="orl-hairline-list__item">
+            <span class="orl-hairline-list__idx orl-hairline-list__idx--inbound" aria-hidden="true">04</span>
+            <span>Landing pages</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Center Featured White Monolith Card: The Core -->
+      <article class="orl-dual-card orl-dual-card--core">
+        <div class="orl-dual-card__top">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <p class="orl-core-eyebrow">THE CORE</p>
+          <h3 class="orl-core-title">Sophia + OneReach Human Experts</h3>
+          <div class="orl-rule" aria-hidden="true"></div>
+          <p class="orl-core-copy">
+            10 specialist AI agents research, draft, sequence, and follow up 24/7 while dedicated human operators own strategy and review every touch.
+          </p>
+        </div>
+
+        <div class="orl-core-split">
+          <div class="orl-core-split__labels">
+            <span class="orl-core-split__label">
+              <span class="orl-swatch orl-swatch--ai" aria-hidden="true"></span>
+              <span><strong>70%</strong> AI Agents</span>
+            </span>
+            <span class="orl-core-split__label">
+              <span class="orl-swatch orl-swatch--human" aria-hidden="true"></span>
+              <span><strong>30%</strong> Human Experts</span>
+            </span>
+          </div>
+          <div class="orl-split-bar" aria-hidden="true">
+            <span class="orl-split-bar__ai"></span>
+            <span class="orl-split-bar__human"></span>
+          </div>
+        </div>
+
+        <div class="orl-outcome-pill">
+          <span class="orl-outcome-pill__badge" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              <path d="M3.5 8.5L6.5 11.5L12.5 4.5" />
+            </svg>
+          </span>
+          <span>Booked meetings on your calendar</span>
+        </div>
+      </article>
+
+      <!-- Right Dark Glass Card: Outbound Engine -->
+      <article class="orl-dual-card orl-dual-card--glass orl-dual-card--outbound">
+        <div class="orl-dual-card__top">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <div class="orl-dual-card__kicker-row">
+            <span class="orl-dot orl-dot--outbound" aria-hidden="true"></span>
+            <span class="orl-micro-label orl-micro-label--outbound">CREATE DEMAND</span>
+          </div>
+          <h3 class="orl-dual-card__title">Outbound engine</h3>
+          <p class="orl-dual-card__copy">
+            We identify in-market buyers and start relevant conversations first.
+          </p>
+
+          <ul class="orl-channel-pills" role="list">
+            <li class="orl-channel-pill">LinkedIn</li>
+            <li class="orl-channel-pill">Email</li>
+            <li class="orl-channel-pill">SMS</li>
+            <li class="orl-channel-pill">WhatsApp</li>
+          </ul>
+        </div>
+
+        <ul class="orl-metrics-grid" role="list">
+          <li class="orl-metric-tile">
+            <span class="orl-metric-tile__value">3&times;</span>
+            <span class="orl-metric-tile__label">more replies vs manual</span>
+          </li>
+          <li class="orl-metric-tile">
+            <span class="orl-metric-tile__value">18</span>
+            <span class="orl-metric-tile__label">avg meetings/mo</span>
+          </li>
+          <li class="orl-metric-tile">
+            <span class="orl-metric-tile__value">300M+</span>
+            <span class="orl-metric-tile__label">searchable contacts</span>
+          </li>
+          <li class="orl-metric-tile">
+            <span class="orl-metric-tile__value">24/7</span>
+            <span class="orl-metric-tile__label">autonomous execution</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WRITTEN 90-DAY GUARANTEE -->
+<section class="orl-section orl-guarantee" id="guarantee">
+  <div class="orl-container">
+    <div class="orl-guarantee__frame">
+      <header class="orl-section-head orl-section-head--center">
+        <p class="orl-micro orl-micro--light">
+          <svg class="orl-micro__icon" viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M9 2l5.5 2.3v4.5c0 3.7-2.4 6.2-5.5 7.2-3.1-1-5.5-3.5-5.5-7.2V4.3L9 2z" />
+            <path d="M6.8 9.2l1.6 1.6 3-3.4" />
+          </svg>
+          <span>WRITTEN 90-DAY GUARANTEE</span>
+        </p>
+        <h2 class="orl-heading">
+          <span class="orl-heading__accent orl-heading__accent--outbound">3&times; outcome</span> guaranteed. Put in writing.
+        </h2>
+        <p class="orl-lead">
+          We benchmark your qualified meetings per month in week one. If we don&rsquo;t triple that monthly volume within 90 days, OneReach Human Experts keep working at zero fee until you hit the target.
+        </p>
+      </header>
+
+      <ol class="orl-milestone-ledger" role="list">
+        <li class="orl-milestone-col">
+          <span class="orl-dash orl-dash--muted" aria-hidden="true"></span>
+          <div class="orl-milestone-col__meta">
+            <span class="orl-milestone-num">01</span>
+            <span class="orl-micro-label orl-micro-label--muted">AUDIT &amp; LOCK</span>
+          </div>
+          <h3 class="orl-milestone-col__title">Week 1 Baseline</h3>
+          <p class="orl-milestone-col__copy">
+            We benchmark your current monthly qualified meetings and lock your ICP qualification standard in writing.
+          </p>
+        </li>
+
+        <li class="orl-milestone-col orl-milestone-col--active">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <div class="orl-milestone-col__meta">
+            <span class="orl-milestone-num orl-milestone-num--outbound">02</span>
+            <span class="orl-micro-label orl-micro-label--outbound-dark">90-DAY MILESTONE</span>
+          </div>
+          <h3 class="orl-milestone-col__title">90-Day 3&times; Target</h3>
+          <p class="orl-milestone-col__copy">
+            Your dedicated pod and Sophia deploy inbound and outbound together to triple monthly qualified calendar volume.
+          </p>
+        </li>
+
+        <li class="orl-milestone-col">
+          <span class="orl-dash orl-dash--verified" aria-hidden="true"></span>
+          <div class="orl-milestone-col__meta">
+            <span class="orl-milestone-num">03</span>
+            <span class="orl-micro-label orl-micro-label--muted">DOWNSIDE PROTECTION</span>
+          </div>
+          <h3 class="orl-milestone-col__title">Zero-Cost Extension if Missed</h3>
+          <p class="orl-milestone-col__copy">
+            Miss the 3&times; threshold at day 90 and OneReach Human Experts keep executing at $0 fee until you hit target.
+          </p>
+        </li>
+      </ol>
+
+      <div class="orl-guarantee__footer">
+        <button
+          type="button"
+          class="orl-link-btn"
+          command="show-modal"
+          commandfor="guarantee-dialog"
+          data-open-dialog="guarantee-dialog"
+        >
+          Read guarantee terms <span class="orl-link-btn__arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <p class="orl-guarantee__note">
+          Contractual SLA &middot; Measured on qualified meetings booked &amp; held.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. DEDICATED REVENUE POD -->
+<section class="orl-section orl-pod" id="team-pod">
+  <div class="orl-container orl-container--wide">
+    <header class="orl-section-head orl-section-head--center">
+      <p class="orl-micro orl-micro--light">
+        <span>DEDICATED REVENUE POD</span>
+      </p>
+      <h2 class="orl-heading">
+        A dedicated revenue pod, <span class="orl-heading__accent orl-heading__accent--outbound">not just another login.</span>
+      </h2>
+      <p class="orl-lead">
+        Every client gets dedicated specialists who own strategy, messaging, data, and calendar outcomes—amplified 24/7 by Sophia&rsquo;s 10 autonomous AI agents.
+      </p>
+    </header>
+
+    <ul class="orl-pod-grid" role="list">
+      <li class="orl-pod-card">
+        <div class="orl-pod-card__top">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <span class="orl-pod-code">POD &middot; 01</span>
+        </div>
+        <h3 class="orl-pod-card__title">Growth Strategist</h3>
+        <p class="orl-pod-card__focus">GTM plan &amp; 3&times; target</p>
+        <p class="orl-pod-card__copy">
+          Owns account positioning, offer design, channel mix, and weekly KPI reviews against your 3&times; target.
+        </p>
+      </li>
+
+      <li class="orl-pod-card">
+        <div class="orl-pod-card__top">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <span class="orl-pod-code">POD &middot; 02</span>
+        </div>
+        <h3 class="orl-pod-card__title">Outbound Specialist</h3>
+        <p class="orl-pod-card__focus">Sequences, replies &amp; booking</p>
+        <p class="orl-pod-card__copy">
+          Tunes multi-channel outreach, reviews sensitive replies, and guides interested buyers onto your calendar.
+        </p>
+      </li>
+
+      <li class="orl-pod-card">
+        <div class="orl-pod-card__top">
+          <span class="orl-dash orl-dash--inbound" aria-hidden="true"></span>
+          <span class="orl-pod-code">POD &middot; 03</span>
+        </div>
+        <h3 class="orl-pod-card__title">Demand Gen Marketer</h3>
+        <p class="orl-pod-card__focus">Content, ads &amp; landing pages</p>
+        <p class="orl-pod-card__copy">
+          Turns buyer insights into search content, paid ads, and conversion landing pages that attract active demand.
+        </p>
+      </li>
+
+      <li class="orl-pod-card">
+        <div class="orl-pod-card__top">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <span class="orl-pod-code">POD &middot; 04</span>
+        </div>
+        <h3 class="orl-pod-card__title">Data Engineer</h3>
+        <p class="orl-pod-card__focus">Lists, scraping, enrichment &amp; signals</p>
+        <p class="orl-pod-card__copy">
+          Builds custom-scraped niche lists, runs waterfall enrichment, and wires real-time buying triggers.
+        </p>
+      </li>
+
+      <li class="orl-pod-card orl-pod-card--accent">
+        <div class="orl-pod-card__top">
+          <span class="orl-dash orl-dash--inbound" aria-hidden="true"></span>
+          <span class="orl-pod-code orl-pod-code--accent">AI CORE &middot; 24/7</span>
+        </div>
+        <h3 class="orl-pod-card__title">Sophia + 10 Agents</h3>
+        <p class="orl-pod-card__focus">24/7 research, drafting &amp; follow-up</p>
+        <p class="orl-pod-card__copy">
+          Executes deep account research, personalized drafts, multi-channel timing, and relentless follow-up around the clock.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. INBOUND + OUTBOUND SIDE-BY-SIDE COMPARISON -->
+<section class="orl-section orl-engines" id="inbound-outbound">
+  <div class="orl-container">
+    <header class="orl-section-head orl-section-head--center">
+      <p class="orl-micro orl-micro--light">
+        <span>UNIFIED PIPELINE MODEL</span>
+      </p>
+      <h2 class="orl-heading">
+        One team. Two engines. <span class="orl-heading__accent orl-heading__accent--outbound">Same pipeline.</span>
+      </h2>
+      <p class="orl-lead">
+        Buying inbound from an agency and outbound from a separate tool disconnects your message, duplicates prospect research, and strands warm leads. OneReach runs both engines off shared research, unified messaging, and one pipeline.
+      </p>
+    </header>
+
+    <div class="orl-engines__grid">
+      <!-- Inbound Engine Panel -->
+      <article class="orl-engine-panel orl-engine-panel--inbound">
+        <header class="orl-engine-panel__head">
+          <div class="orl-engine-panel__top">
+            <span class="orl-dash orl-dash--inbound" aria-hidden="true"></span>
+            <span class="orl-engine-tag orl-engine-tag--inbound">Make buyers come to you</span>
+          </div>
+          <h3 class="orl-engine-panel__title">Inbound Engine</h3>
+        </header>
+
+        <ol class="orl-engine-list" role="list">
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num" aria-hidden="true">01</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Content generation</p>
+              <p class="orl-engine-list__desc">Authority articles, comparison guides, and social assets anchored to real buyer objections.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num" aria-hidden="true">02</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Paid marketing</p>
+              <p class="orl-engine-list__desc">Precision LinkedIn and search campaigns targeted directly at your priority ICP accounts.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num" aria-hidden="true">03</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Landing pages &amp; SEO</p>
+              <p class="orl-engine-list__desc">High-converting pages and technical search coverage built to capture high-intent visitors.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num" aria-hidden="true">04</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Instant lead response</p>
+              <p class="orl-engine-list__desc">Every form fill and inbound reply gets a tailored, qualified response within minutes.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num" aria-hidden="true">05</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Marketing insight</p>
+              <p class="orl-engine-list__desc">Shared reporting that feeds winning inbound messaging directly back into outbound hooks.</p>
+            </div>
+          </li>
+        </ol>
+      </article>
+
+      <!-- Outbound Engine Panel -->
+      <article class="orl-engine-panel orl-engine-panel--outbound">
+        <header class="orl-engine-panel__head">
+          <div class="orl-engine-panel__top">
+            <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+            <span class="orl-engine-tag orl-engine-tag--outbound">Go reach the buyers you want</span>
+          </div>
+          <h3 class="orl-engine-panel__title">Outbound Engine</h3>
+        </header>
+
+        <ol class="orl-engine-list" role="list">
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num orl-engine-list__num--outbound" aria-hidden="true">01</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">ICP &amp; list building</p>
+              <p class="orl-engine-list__desc">Verified targeting across 300M+ B2B contacts plus custom scraped niche account lists.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num orl-engine-list__num--outbound" aria-hidden="true">02</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Deep prospect research</p>
+              <p class="orl-engine-list__desc">Account briefs, hiring triggers, tech stack signals, and buyer context before outreach.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num orl-engine-list__num--outbound" aria-hidden="true">03</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Four-channel outreach</p>
+              <p class="orl-engine-list__desc">Coordinated multi-touch conversations across LinkedIn, Email, SMS, and WhatsApp.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num orl-engine-list__num--outbound" aria-hidden="true">04</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Nurture &amp; objection handling</p>
+              <p class="orl-engine-list__desc">Consistent follow-up that addresses questions and re-engages stalled prospects cleanly.</p>
+            </div>
+          </li>
+          <li class="orl-engine-list__item">
+            <span class="orl-engine-list__num orl-engine-list__num--outbound" aria-hidden="true">05</span>
+            <div class="orl-engine-list__body">
+              <p class="orl-engine-list__name">Autonomous appointment setting</p>
+              <p class="orl-engine-list__desc">Automated qualification and direct scheduling onto your team&rsquo;s synced calendars.</p>
+            </div>
+          </li>
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 70 / 30 OPERATING SPLIT -->
+<section class="orl-section orl-split" id="operating-split">
+  <div class="orl-split__ambient" aria-hidden="true"></div>
+
+  <div class="orl-container">
+    <header class="orl-section-head orl-section-head--center orl-section-head--dark">
+      <p class="orl-micro orl-micro--dark">
+        <span>70 / 30 OPERATING PRINCIPLE</span>
+      </p>
+      <h2 class="orl-heading orl-heading--dark">
+        Agents carry the volume. <span class="orl-heading__accent orl-heading__accent--cobalt">People own the judgment.</span>
+      </h2>
+      <p class="orl-lead orl-lead--dark">
+        Pure automation burns through domains, lists, and brand reputation. Pure manual outreach stalls before pipeline compounds. Our 70/30 split pairs relentless AI execution with senior human sign-off.
+      </p>
+    </header>
+
+    <!-- Visual Split Meter -->
+    <div class="orl-split-meter">
+      <div class="orl-split-meter__labels">
+        <div class="orl-split-meter__side">
+          <span class="orl-swatch orl-swatch--ai" aria-hidden="true"></span>
+          <span class="orl-split-meter__figure orl-split-meter__figure--ai">70%</span>
+          <div class="orl-split-meter__meta">
+            <span class="orl-split-meter__name">AI Agents</span>
+            <span class="orl-split-meter__sub">Sophia &bull; Volume, research &amp; 24/7 follow-up</span>
+          </div>
+        </div>
+
+        <div class="orl-split-meter__side orl-split-meter__side--right">
+          <span class="orl-swatch orl-swatch--human" aria-hidden="true"></span>
+          <span class="orl-split-meter__figure orl-split-meter__figure--human">30%</span>
+          <div class="orl-split-meter__meta">
+            <span class="orl-split-meter__name">Human Experts</span>
+            <span class="orl-split-meter__sub">Your Pod &bull; Strategy, creative &amp; quality sign-off</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orl-split-meter__bar" aria-hidden="true">
+        <span class="orl-split-meter__fill-ai">70% AI Agents</span>
+        <span class="orl-split-meter__fill-human">30% Human Experts</span>
+      </div>
+    </div>
+
+    <!-- Detailed Dark Glass Split Cards -->
+    <div class="orl-split-cards">
+      <article class="orl-split-card orl-split-card--ai">
+        <header class="orl-split-card__head">
+          <span class="orl-dash orl-dash--outbound" aria-hidden="true"></span>
+          <span class="orl-micro-label orl-micro-label--outbound">70% EXECUTION LAYER</span>
+          <h3 class="orl-split-card__title">What the AI agents handle (70%)</h3>
+        </header>
+
+        <ul class="orl-split-list" role="list">
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Account &amp; contact research</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Waterfall enrichment</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Live buying-signal detection</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>First drafts for sequences &amp; ads</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Multi-channel timing</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Reply routing</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Follow-ups</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--ai" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Calendar booking &amp; CRM sync</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="orl-split-card orl-split-card--human">
+        <header class="orl-split-card__head">
+          <span class="orl-dash orl-dash--inbound" aria-hidden="true"></span>
+          <span class="orl-micro-label orl-micro-label--inbound">30% JUDGMENT LAYER</span>
+          <h3 class="orl-split-card__title">What OneReach Human Experts handle (30%)</h3>
+        </header>
+
+        <ul class="orl-split-list" role="list">
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--human" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Go-to-market strategy</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--human" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Positioning &amp; offer design</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--human" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Creative direction</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--human" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Quality sign-off on outbound touches</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--human" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Sensitive &amp; executive replies</span>
+          </li>
+          <li class="orl-split-list__item">
+            <svg class="orl-check-icon orl-check-icon--human" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 9.5l3.2 3.2L14 5.5" />
+            </svg>
+            <span>Weekly strategy calls</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     ONEREACH LABS — PART B LANDING SECTIONS + ACCESSIBLE NATIVE DIALOGS
+     Sections: #sophia, #data, #engage, #pricing (#who-its-for),
+     Dialogs: #guarantee-dialog, #privacy-dialog, #terms-dialog
+     Requires: sections-b.css & sections.js
+     ========================================================================= -->
+
+<!-- SECTION: SOPHIA (AI STRATEGY & MARKETING CHIEF) -->
+<section id="sophia" class="orl-section orl-sophia" aria-labelledby="sophia-heading">
+  <div class="orl-container">
+    <div class="orl-sophia-grid">
+      <!-- Left Column: Remit Explanation + Interactive Specialist Chips -->
+      <div class="orl-sophia-copy">
+        <p class="orl-eyebrow">
+          <span class="orl-eyebrow-dot" aria-hidden="true"></span>
+          <span>AI Strategy &amp; Marketing Chief</span>
+        </p>
+
+        <h2 id="sophia-heading" class="orl-title">
+          Meet Sophia, your AI strategy and marketing chief.
+        </h2>
+
+        <p class="orl-lead">
+          Sophia operates with the combined remit of a Chief Strategy Officer and Chief Marketing Officer&mdash;analyzing your market, choosing the highest-fit targets, and coordinating 10 specialist agents across every campaign.
+        </p>
+
+        <p class="orl-body">
+          You get executive-grade market prioritization, message testing, and 24/7 pipeline orchestration at a fraction of a $500K+/yr leadership hire&mdash;paired with OneReach Human Experts who approve every strategy shift before it ships.
+        </p>
+
+        <div class="orl-agents-block">
+          <p id="sophia-agents-label" class="orl-agents-label">
+            Explore Sophia&rsquo;s specialist capabilities
+          </p>
+
+          <div class="orl-chips" role="group" aria-labelledby="sophia-agents-label">
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="company-intel"
+              aria-pressed="true"
+            >
+              Company intel
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="contact-discovery"
+              aria-pressed="false"
+            >
+              Contact discovery
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="signal-detection"
+              aria-pressed="false"
+            >
+              Signal detection
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="data-enrichment"
+              aria-pressed="false"
+            >
+              Data enrichment
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="message-drafter"
+              aria-pressed="false"
+            >
+              Message drafter
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="sequence-builder"
+              aria-pressed="false"
+            >
+              Sequence builder
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="follow-up"
+              aria-pressed="false"
+            >
+              Follow-up
+            </button>
+            <button
+              type="button"
+              class="orl-chip"
+              data-sophia-agent="pipeline-manager"
+              aria-pressed="false"
+            >
+              Pipeline manager
+            </button>
+          </div>
+
+          <div
+            id="sophia-agent-detail"
+            class="orl-agent-detail"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div class="orl-agent-detail-head">
+              <strong id="sophia-agent-title" class="orl-agent-detail-title">Company intel</strong>
+              <span id="sophia-agent-tag" class="orl-agent-detail-tag">CSO Research Layer</span>
+            </div>
+            <p id="sophia-agent-desc" class="orl-agent-detail-desc">
+              Maps total addressable accounts, tech stack footprints, hiring velocity, and positioning gaps before a single message is drafted.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Elevated Midnight Navy Product Briefing UI Card -->
+      <div class="orl-sophia-panel">
+        <article class="orl-briefing" aria-labelledby="sophia-briefing-title">
+          <header class="orl-briefing-head">
+            <div class="orl-briefing-identity">
+              <span class="orl-briefing-avatar" aria-hidden="true">S</span>
+              <div>
+                <h3 id="sophia-briefing-title" class="orl-briefing-title">Sophia&rsquo;s briefing</h3>
+                <p class="orl-briefing-time">Tuesday, 8:02 AM</p>
+              </div>
+            </div>
+            <span class="orl-briefing-live">
+              <span class="orl-status-dot" aria-hidden="true"></span>
+              <span>24/7 Active</span>
+            </span>
+          </header>
+
+          <p class="orl-briefing-summary">
+            &ldquo;Good morning. Overnight I booked 3 meetings and detected 41 accounts showing buying signals. Here is where to start:&rdquo;
+          </p>
+
+          <ul class="orl-briefing-list" role="list">
+            <li class="orl-briefing-item">
+              <div class="orl-briefing-meta">
+                <p class="orl-briefing-role">VP Sales, Series A fintech</p>
+                <p class="orl-briefing-action">Replied &lsquo;send times for Thursday&rsquo;</p>
+              </div>
+              <span class="orl-badge orl-badge--verified">
+                <svg class="orl-badge-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3.2 8.4l3 3 6.6-6.6" />
+                </svg>
+                <span>Booking</span>
+              </span>
+            </li>
+
+            <li class="orl-briefing-item">
+              <div class="orl-briefing-meta">
+                <p class="orl-briefing-role">Founder, 40-person agency</p>
+                <p class="orl-briefing-action">Visited pricing guide twice</p>
+              </div>
+              <span class="orl-badge orl-badge--inbound">
+                <svg class="orl-badge-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8.8 2L3.8 9h4.1L7.2 14l5-7H8.1L8.8 2z" />
+                </svg>
+                <span>Inbound</span>
+              </span>
+            </li>
+
+            <li class="orl-briefing-item">
+              <div class="orl-briefing-meta">
+                <p class="orl-briefing-role">Head of Ops, dental group</p>
+                <p class="orl-briefing-action">No LinkedIn reply in 3 days</p>
+              </div>
+              <span class="orl-badge orl-badge--cobalt">
+                <svg class="orl-badge-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2.5 3.5h11v7.5H6l-3.5 2.5V3.5z" />
+                </svg>
+                <span>Try SMS</span>
+              </span>
+            </li>
+          </ul>
+
+          <div class="orl-cmd">
+            <p id="sophia-cmd-label" class="orl-cmd-label">
+              Interactive command preview
+            </p>
+
+            <form id="sophia-cmd-form" class="orl-cmd-bar">
+              <label for="sophia-cmd-input" class="orl-sr-only">Enter a command for Sophia</label>
+              <input
+                id="sophia-cmd-input"
+                class="orl-cmd-input"
+                type="text"
+                value="Find 50 dental clinics in Texas with 3+ locations"
+                autocomplete="off"
+                placeholder="Ask Sophia to build a segment or sequence..."
+              >
+              <button type="submit" class="orl-cmd-submit">
+                Run preview
+              </button>
+            </form>
+
+            <div class="orl-cmd-presets" role="group" aria-label="Preset commands for Sophia">
+              <button
+                type="button"
+                class="orl-cmd-preset"
+                data-sophia-prompt="dental"
+                aria-pressed="true"
+              >
+                Find 50 dental clinics in Texas&hellip;
+              </button>
+              <button
+                type="button"
+                class="orl-cmd-preset"
+                data-sophia-prompt="saas"
+                aria-pressed="false"
+              >
+                Target Series B SaaS VP Sales&hellip;
+              </button>
+              <button
+                type="button"
+                class="orl-cmd-preset"
+                data-sophia-prompt="reengage"
+                aria-pressed="false"
+              >
+                Re-engage cold inbound leads&hellip;
+              </button>
+            </div>
+
+            <div
+              id="sophia-cmd-reply"
+              class="orl-cmd-reply"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <div class="orl-cmd-reply-head">
+                <strong id="sophia-reply-status" class="orl-cmd-reply-status">
+                  50 clinics matched &middot; 148 verified contacts
+                </strong>
+                <span id="sophia-reply-channels" class="orl-cmd-reply-channels">
+                  Email + LinkedIn + SMS
+                </span>
+              </div>
+              <p id="sophia-reply-body" class="orl-cmd-reply-body">
+                Mapped 50 multi-location dental groups across Austin, Dallas, and Houston. Waterfall-verified 148 Operations &amp; Owner records at 99% deliverability and drafted 4-channel sequences tailored to missed-patient intake.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: DATA INFRASTRUCTURE -->
+<section id="data" class="orl-section orl-data" aria-labelledby="data-heading">
+  <div class="orl-container">
+    <header class="orl-section-head orl-section-head--center">
+      <p class="orl-eyebrow orl-eyebrow--on-dark">
+        <span class="orl-eyebrow-dot orl-eyebrow-dot--cobalt" aria-hidden="true"></span>
+        <span>Verified Data Provider</span>
+      </p>
+
+      <h2 id="data-heading" class="orl-title orl-title--on-dark">
+        Great outreach starts with data most teams can&rsquo;t access.
+      </h2>
+
+      <p class="orl-lead orl-lead--on-dark">
+        OneReach Labs operates as a verified data provider underneath every campaign&mdash;and delivers custom standalone lists when your own reps need clean fuel.
+      </p>
+    </header>
+
+    <div class="orl-data-grid">
+      <article class="orl-data-card">
+        <p class="orl-data-metric orl-data-metric--cobalt">300M+</p>
+        <h3 class="orl-data-title">Contact database</h3>
+        <p class="orl-data-desc">
+          Filter by title, seniority, industry, headcount, geography &amp; tech stack.
+        </p>
+      </article>
+
+      <article class="orl-data-card">
+        <p class="orl-data-metric orl-data-metric--verified">99%</p>
+        <h3 class="orl-data-title">Verified coverage</h3>
+        <p class="orl-data-desc">
+          Waterfall-verified email, direct phone &amp; LinkedIn across multiple sources.
+        </p>
+      </article>
+
+      <article class="orl-data-card">
+        <p class="orl-data-metric orl-data-metric--inbound">Custom</p>
+        <h3 class="orl-data-title">Scraped niche lists</h3>
+        <p class="orl-data-desc">
+          Hard-to-find segments from local directories, events, associations &amp; communities.
+        </p>
+      </article>
+
+      <article class="orl-data-card">
+        <p class="orl-data-metric orl-data-metric--cobalt">Live</p>
+        <h3 class="orl-data-title">Buying signals</h3>
+        <p class="orl-data-desc">
+          Funding rounds, hiring surges, leadership moves &amp; high-intent site visits as they happen.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: HOW WE ENGAGE / LAUNCH TIMELINE -->
+<section id="engage" class="orl-section orl-engage" aria-labelledby="engage-heading">
+  <div class="orl-container">
+    <header class="orl-section-head">
+      <p class="orl-eyebrow">
+        <span class="orl-eyebrow-dot" aria-hidden="true"></span>
+        <span>Rollout Cadence</span>
+      </p>
+
+      <h2 id="engage-heading" class="orl-title">
+        From kickoff call to booked meetings in about two weeks.
+      </h2>
+
+      <p class="orl-lead">
+        A structured four-step onboarding sequence built to measure your baseline early and compound conversion rates every week after launch.
+      </p>
+    </header>
+
+    <ol class="orl-steps">
+      <li class="orl-step">
+        <div class="orl-step-marker" aria-hidden="true">01</div>
+        <h3 class="orl-step-title">Strategy session</h3>
+        <p class="orl-step-desc">
+          Audit your offer, ICP, and baseline metrics; lock in your 3&times; target.
+        </p>
+      </li>
+
+      <li class="orl-step">
+        <div class="orl-step-marker" aria-hidden="true">02</div>
+        <h3 class="orl-step-title">Data &amp; message build</h3>
+        <p class="orl-step-desc">
+          Sophia maps the market while engineers verify data and strategists craft copy.
+        </p>
+      </li>
+
+      <li class="orl-step">
+        <div class="orl-step-marker" aria-hidden="true">03</div>
+        <h3 class="orl-step-title">Launch both engines</h3>
+        <p class="orl-step-desc">
+          Four-channel outbound sequences and inbound campaigns go live together.
+        </p>
+      </li>
+
+      <li class="orl-step">
+        <div class="orl-step-marker" aria-hidden="true">04</div>
+        <h3 class="orl-step-title">Improve every week</h3>
+        <p class="orl-step-desc">
+          Weekly A/B testing, attribution reporting &amp; call with your strategist while meetings fill your calendar.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- SECTION: PRICING / ENGAGEMENT OPTIONS + WHO IT'S BUILT FOR -->
+<section id="pricing" class="orl-section orl-pricing" aria-labelledby="pricing-heading">
+  <div class="orl-container">
+    <header class="orl-section-head orl-section-head--center">
+      <p class="orl-eyebrow">
+        <span class="orl-eyebrow-dot" aria-hidden="true"></span>
+        <span>Engagement Options</span>
+      </p>
+
+      <h2 id="pricing-heading" class="orl-title">
+        Let our experts run everything, or run Sophia in-house.
+      </h2>
+
+      <p class="orl-lead">
+        Our written 90-day 3&times; guarantee lives inside the Done-For-You service, where OneReach Human Experts own execution. Teams wanting self-serve software access can run Sophia directly on the platform.
+      </p>
+    </header>
+
+    <div class="orl-pricing-grid">
+      <!-- Option 1: Platform -->
+      <article class="orl-plan">
+        <div class="orl-plan-head">
+          <p class="orl-plan-kicker">You run it with Sophia</p>
+          <h3 class="orl-plan-title">Platform</h3>
+          <p class="orl-plan-price">
+            <span class="orl-plan-amount">$100</span>
+            <span class="orl-plan-unit">/ user / month</span>
+          </p>
+          <p class="orl-plan-note">
+            Includes free starter tier for up to 2 users.
+          </p>
+        </div>
+
+        <ul class="orl-plan-list" role="list">
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Company &amp; contact research workspace</span>
+          </li>
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>4-channel outreach (email, LinkedIn, phone, SMS)</span>
+          </li>
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Multi-touch sequences &amp; smart follow-up</span>
+          </li>
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Unified pipeline tracking &amp; calendar booking</span>
+          </li>
+        </ul>
+
+        <div class="orl-plan-cta">
+          <a
+            href="#campaign-form-wrap"
+            class="orl-btn orl-btn--secondary"
+            data-jump-portal="true"
+            data-engagement-preset="platform"
+          >
+            <span>Start free</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Option 2: Done for you (Featured Midnight Navy Card) -->
+      <article class="orl-plan orl-plan--featured">
+        <div class="orl-plan-head">
+          <div class="orl-plan-badge-row">
+            <span class="orl-guarantee-pill">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 1.5l5 2.1v4.3c0 3.3-2.2 5.7-5 6.6-2.8-.9-5-3.3-5-6.6V3.6l5-2.1z" />
+                <path d="M5.8 8.1l1.5 1.5 3-3.2" />
+              </svg>
+              <span>3&times; Outcome Guaranteed</span>
+            </span>
+          </div>
+          <p class="orl-plan-kicker orl-plan-kicker--on-dark">Full-service growth pod</p>
+          <h3 class="orl-plan-title orl-plan-title--on-dark">Done for you</h3>
+          <p class="orl-plan-price">
+            <span class="orl-plan-amount orl-plan-amount--on-dark">Custom</span>
+            <span class="orl-plan-unit orl-plan-unit--on-dark">monthly plan</span>
+          </p>
+          <p class="orl-plan-note orl-plan-note--on-dark">
+            Tailored to your baseline &amp; channel volume.
+          </p>
+        </div>
+
+        <ul class="orl-plan-list orl-plan-list--on-dark" role="list">
+          <li>
+            <svg class="orl-check orl-check--verified" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Dedicated growth strategist &amp; human expert pod</span>
+          </li>
+          <li>
+            <svg class="orl-check orl-check--verified" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Sophia + 10 specialist agents operating 24/7</span>
+          </li>
+          <li>
+            <svg class="orl-check orl-check--verified" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Inbound content &amp; paid ads management</span>
+          </li>
+          <li>
+            <svg class="orl-check orl-check--verified" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Waterfall-verified data, niche scraping &amp; signals</span>
+          </li>
+          <li>
+            <svg class="orl-check orl-check--verified" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>End-to-end appointment setting on your calendar</span>
+          </li>
+        </ul>
+
+        <div class="orl-plan-cta">
+          <a
+            href="#campaign-form-wrap"
+            class="orl-btn orl-btn--primary"
+            data-jump-portal="true"
+            data-engagement-preset="done-for-you"
+          >
+            <span>Book a strategy call</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+
+          <button
+            type="button"
+            class="orl-inline-modal-trigger"
+            command="show-modal"
+            commandfor="guarantee-dialog"
+            data-open-dialog="guarantee-dialog"
+          >
+            Read 90-day 3&times; guarantee terms
+          </button>
+        </div>
+      </article>
+
+      <!-- Option 3: Data only -->
+      <article class="orl-plan">
+        <div class="orl-plan-head">
+          <p class="orl-plan-kicker">Lists built to your spec</p>
+          <h3 class="orl-plan-title">Data only</h3>
+          <p class="orl-plan-price">
+            <span class="orl-plan-amount">Custom</span>
+            <span class="orl-plan-unit">per list</span>
+          </p>
+          <p class="orl-plan-note">
+            Scoped by niche depth, fields &amp; refresh cadence.
+          </p>
+        </div>
+
+        <ul class="orl-plan-list" role="list">
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Waterfall-verified emails, phones &amp; LinkedIn URLs</span>
+          </li>
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Scraped niche directories, events &amp; associations</span>
+          </li>
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Account buying-signal &amp; tech-stack enrichment</span>
+          </li>
+          <li>
+            <svg class="orl-check" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.4l3 3 6.6-6.6" /></svg>
+            <span>Delivered straight to your CRM or export file</span>
+          </li>
+        </ul>
+
+        <div class="orl-plan-cta">
+          <a
+            href="#campaign-form-wrap"
+            class="orl-btn orl-btn--secondary"
+            data-jump-portal="true"
+            data-engagement-preset="data-only"
+          >
+            <span>Request a sample list</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Sub-section inside #pricing: Who It's Built For -->
+    <div id="who-its-for" class="orl-who" aria-labelledby="who-heading">
+      <header class="orl-who-head">
+        <p class="orl-eyebrow">
+          <span class="orl-eyebrow-dot" aria-hidden="true"></span>
+          <span>Who It&rsquo;s Built For</span>
+        </p>
+        <h2 id="who-heading" class="orl-subheading">
+          Built for teams without a full demand gen department.
+        </h2>
+      </header>
+
+      <div class="orl-who-grid">
+        <article class="orl-who-card">
+          <p class="orl-who-tag">Founders</p>
+          <h3 class="orl-who-title">Startup founders</h3>
+          <p class="orl-who-desc">
+            You have early customer proof and a strong offer, but founder-led outreach breaks down when you still have product and closing on your plate.
+          </p>
+        </article>
+
+        <article class="orl-who-card">
+          <p class="orl-who-tag">Revenue Leaders</p>
+          <h3 class="orl-who-title">SMB sales leaders</h3>
+          <p class="orl-who-desc">
+            Your closers lose hours each week verifying stale data and chasing no-shows. Fill their calendars with ICP-qualified meetings instead.
+          </p>
+        </article>
+
+        <article class="orl-who-card">
+          <p class="orl-who-tag">Executives &amp; Partners</p>
+          <h3 class="orl-who-title">CEOs &amp; agencies</h3>
+          <p class="orl-who-desc">
+            You want unified inbound and outbound pipeline with clear attribution&mdash;without recruiting, training, and managing a four-person internal growth team.
+          </p>
+        </article>
+      </div>
+
+      <div class="orl-legal-strip" role="group" aria-label="Guarantee and policy details">
+        <button
+          type="button"
+          class="orl-legal-btn"
+          command="show-modal"
+          commandfor="guarantee-dialog"
+          data-open-dialog="guarantee-dialog"
+        >
+          Guarantee terms
+        </button>
+        <button
+          type="button"
+          class="orl-legal-btn"
+          command="show-modal"
+          commandfor="privacy-dialog"
+          data-open-dialog="privacy-dialog"
+        >
+          Privacy notice
+        </button>
+        <button
+          type="button"
+          class="orl-legal-btn"
+          command="show-modal"
+          commandfor="terms-dialog"
+          data-open-dialog="terms-dialog"
+        >
+          Terms of service
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- =========================================================
+         SECTION 2-4: SPLIT CURTAIN -> 3D TUNNEL -> WHITE PORTAL
+         ========================================================= -->
+    <section class="choreo-runway" id="choreo-runway" aria-label="OneReach Labs pipeline transformation">
+      <div class="choreo-stage" id="choreo-stage">
+        <!-- LAYER A: 3D TUNNEL CORRIDOR -->
+        <div class="tunnel-backdrop" id="tunnel-backdrop" aria-hidden="true">
+          <div class="tunnel-ambient-glow"></div>
+          <svg class="tunnel-corridor-lines" viewBox="0 0 1600 900" preserveAspectRatio="none">
+            <line x1="0" y1="0" x2="720" y2="415" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+            <line x1="1600" y1="0" x2="880" y2="415" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+            <line x1="0" y1="900" x2="720" y2="485" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+            <line x1="1600" y1="900" x2="880" y2="485" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+          </svg>
+          <div class="tunnel-rings" id="tunnel-rings"></div>
+          <div class="tunnel-lasers" id="tunnel-lasers"></div>
+          <div class="tunnel-particles" id="tunnel-particles"></div>
+          <div class="tunnel-center-beam" id="tunnel-center-beam"></div>
+        </div>
+
+        <!-- LAYER B: EXPANDING WHITE PORTAL + STRATEGY CALL FORM -->
+        <div class="white-portal" id="white-portal" aria-hidden="true">
+          <canvas id="portal-rays-canvas" class="portal-rays-canvas" aria-hidden="true"></canvas>
+          <div class="white-portal__card" id="white-portal-card">
+            <div class="campaign-form-wrap" id="campaign-form-wrap">
+              <header class="campaign-form-header">
+                <h2 id="campaign-heading" class="campaign-title">Let&rsquo;s triple your calendar.</h2>
+                <p class="campaign-subtitle">
+                  A 30-minute call with a OneReach Human Expert. We&rsquo;ll set your baseline, map your ICP and channels, and show you the plan to reach 3&times;, whether you work with us or not.
+                </p>
+              </header>
+
+              <form
+                id="campaign-form"
+                class="campaign-form"
+                action="#booked"
+                method="POST"
+                aria-labelledby="campaign-heading"
+                novalidate
+              >
+                <div class="form-section-head">
+                  <span class="form-section-head__title">WHO WE REPLY TO</span>
+                  <span class="form-section-head__note">COMPANY AND PHONE ARE OPTIONAL</span>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-field">
+                    <label for="first-name" class="visually-hidden">First name (required)</label>
+                    <input
+                      type="text"
+                      id="first-name"
+                      name="firstName"
+                      placeholder="First name"
+                      autocomplete="given-name"
+                      required
+                      data-error="first-name-error"
+                    >
+                    <div id="first-name-error" class="field-error">
+                      <span role="img" aria-label="Error">&#9888;</span> Please enter your first name.
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="last-name" class="visually-hidden">Last name (required)</label>
+                    <input
+                      type="text"
+                      id="last-name"
+                      name="lastName"
+                      placeholder="Last name"
+                      autocomplete="family-name"
+                      required
+                      data-error="last-name-error"
+                    >
+                    <div id="last-name-error" class="field-error">
+                      <span role="img" aria-label="Error">&#9888;</span> Please enter your last name.
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="work-email" class="visually-hidden">Work email (required)</label>
+                    <input
+                      type="email"
+                      id="work-email"
+                      name="workEmail"
+                      placeholder="Work email"
+                      autocomplete="email"
+                      autocorrect="off"
+                      autocapitalize="none"
+                      spellcheck="false"
+                      required
+                      data-error="work-email-error"
+                    >
+                    <div id="work-email-error" class="field-error">
+                      <span role="img" aria-label="Error">&#9888;</span> Enter a valid work email like name@company.com.
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="phone" class="visually-hidden">Phone (optional)</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      placeholder="Phone"
+                      autocomplete="tel"
+                      inputmode="tel"
+                    >
+                  </div>
+                </div>
+
+                <div class="form-field form-field--full">
+                  <label for="company" class="visually-hidden">Company (optional)</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Company"
+                    autocomplete="organization"
+                  >
+                </div>
+
+                <div class="form-section-head form-section-head--spaced">
+                  <span class="form-section-head__title">WHAT YOU NEED MOST</span>
+                  <span class="form-section-head__note">OPTIONAL CONTEXT IN YOUR OWN WORDS</span>
+                </div>
+
+                <div class="form-field form-field--full">
+                  <label for="accomplish" class="visually-hidden">Current monthly qualified meetings or target ICP</label>
+                  <textarea
+                    id="accomplish"
+                    name="accomplish"
+                    rows="2"
+                    placeholder="Tell us your target ICP, current monthly meetings, or pipeline goal..."
+                  ></textarea>
+                </div>
+
+                <div class="form-grid-2 form-grid-2--selects">
+                  <div class="form-field">
+                    <label for="primary-need" class="select-label">WHAT DO YOU NEED MOST?</label>
+                    <div class="select-wrap">
+                      <select id="primary-need" name="primaryNeed" required data-error="primary-need-error">
+                        <option value="" disabled selected>Select focus</option>
+                        <option value="inbound-outbound">Inbound and outbound</option>
+                        <option value="outbound-setting">Outbound appointment setting</option>
+                        <option value="inbound-marketing">Inbound marketing</option>
+                        <option value="data-lists">Data and lists</option>
+                      </select>
+                      <span class="select-chevron" aria-hidden="true">&#8964;</span>
+                    </div>
+                    <div id="primary-need-error" class="field-error">
+                      <span role="img" aria-label="Error">&#9888;</span> Please select what you need most.
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="engagement-mode" class="select-label">ENGAGEMENT MODEL</label>
+                    <div class="select-wrap">
+                      <select id="engagement-mode" name="engagementMode" required data-error="engagement-mode-error">
+                        <option value="" disabled selected>Choose one</option>
+                        <option value="done-for-you">Done for you (3&times; guarantee)</option>
+                        <option value="platform">Platform ($100 / user / month)</option>
+                        <option value="data-only">Data only (custom lists)</option>
+                        <option value="not-sure">Help me decide on the call</option>
+                      </select>
+                      <span class="select-chevron" aria-hidden="true">&#8964;</span>
+                    </div>
+                    <div id="engagement-mode-error" class="field-error">
+                      <span role="img" aria-label="Error">&#9888;</span> Please choose an engagement model.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="review-callout">
+                  <span class="review-callout__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z" />
+                      <path d="M9.5 12l2 2 3.5-4" />
+                    </svg>
+                  </span>
+                  <p>We measure your baseline in week one. Miss 3&times; qualified meetings in 90 days, and OneReach Human Experts keep working free until we hit it.</p>
+                </div>
+
+                <div class="consent-row">
+                  <input
+                    type="checkbox"
+                    id="consent-check"
+                    name="consent"
+                    required
+                    data-error="consent-error"
+                  >
+                  <label for="consent-check">I agree to be contacted by OneReach Labs about this strategy call.</label>
+                </div>
+                <div id="consent-error" class="field-error field-error--checkbox">
+                  <span role="img" aria-label="Error">&#9888;</span> Please agree to be contacted before submitting.
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="submit-btn" id="submit-btn">
+                    <span>Book my strategy call</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+
+                  <div class="form-progress-meta" id="form-progress-meta">
+                    <span class="hex-dots" id="hex-dots" aria-hidden="true">
+                      <i></i><i></i><i></i><i></i><i></i>
+                    </span>
+                    <span class="form-progress-text" id="form-progress-text">Not started</span>
+                  </div>
+
+                  <p class="prefer-talk">
+                    3&times; Outcome guaranteed in writing &middot; <button type="button" class="portal-link-btn" command="show-modal" commandfor="guarantee-dialog" data-open-dialog="guarantee-dialog">Guarantee terms <span aria-hidden="true">&rarr;</span></button>
+                  </p>
+                </div>
+
+                <div id="form-status-banner" class="form-status-banner" role="status" aria-live="polite" hidden></div>
+              </form>
+
+              <footer class="portal-footer">
+                <span>OneReach Labs, powered by OneDataSoftware. &copy; 2026</span>
+                <nav class="portal-footer__links" aria-label="Footer navigation">
+                  <a href="#dual-engines">Services</a>
+                  <a href="#sophia">Sophia</a>
+                  <a href="#data">Data</a>
+                  <button type="button" class="portal-link-btn" command="show-modal" commandfor="privacy-dialog" data-open-dialog="privacy-dialog">Privacy</button>
+                  <button type="button" class="portal-link-btn" command="show-modal" commandfor="terms-dialog" data-open-dialog="terms-dialog">Terms</button>
+                </nav>
+              </footer>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAYER C: FLYING 3D NARRATIVE CARDS -->
+        <div class="tunnel-cards" id="tunnel-cards">
+          <article class="tunnel-card" data-align="left">
+            <p class="tunnel-card__eyebrow">THE DISCONNECT</p>
+            <div class="tunnel-card__rule" aria-hidden="true"></div>
+            <h2 class="tunnel-card__title">Why buy inbound from an agency and outbound from a tool when nothing connects?</h2>
+          </article>
+
+          <article class="tunnel-card" data-align="right">
+            <p class="tunnel-card__eyebrow">THE VOLUME TRAP</p>
+            <div class="tunnel-card__rule" aria-hidden="true"></div>
+            <h2 class="tunnel-card__title">Fully automated outreach burns lists and brands. Fully manual can&rsquo;t scale.</h2>
+          </article>
+
+          <article class="tunnel-card" data-align="left">
+            <p class="tunnel-card__eyebrow">THE 70 / 30 ENGINE</p>
+            <div class="tunnel-card__rule" aria-hidden="true"></div>
+            <h2 class="tunnel-card__title">Sophia&rsquo;s 10 agents run research and 24/7 follow-up. Human experts own strategy.</h2>
+          </article>
+
+          <article class="tunnel-card" data-align="right">
+            <p class="tunnel-card__eyebrow">THE DATA UNDERNEATH</p>
+            <div class="tunnel-card__rule" aria-hidden="true"></div>
+            <h2 class="tunnel-card__title">300M+ contacts, 99% verified coverage, scraped niche lists, and live buying signals.</h2>
+          </article>
+
+          <article class="tunnel-card" data-align="left-soft">
+            <p class="tunnel-card__eyebrow">THE 90-DAY GUARANTEE</p>
+            <div class="tunnel-card__rule" aria-hidden="true"></div>
+            <h2 class="tunnel-card__title">Miss 3&times; qualified meetings in 90 days, and OneReach Human Experts keep working free.</h2>
+          </article>
+
+          <article class="tunnel-card" data-align="center">
+            <p class="tunnel-card__eyebrow">YOUR NEXT MOVE</p>
+            <div class="tunnel-card__rule" aria-hidden="true"></div>
+            <h2 class="tunnel-card__title">What could 3&times; qualified meetings on your calendar unlock in 90 days?</h2>
+          </article>
+        </div>
+
+        <!-- LAYER D (TOP): SPLIT CURTAIN SHUTTER OVERLAY -->
+        <div class="curtain-top" id="curtain-top">
+          <div class="curtain-top__inner">
+            <h2 class="curtain-title">One team.<br>Two engines.</h2>
+            <p class="curtain-desc">
+              OneReach Human Experts run your inbound marketing, your outbound outreach and the data underneath both &mdash; off the same research, the same message, and the same pipeline.
+            </p>
+          </div>
+        </div>
+
+        <div class="curtain-bottom" id="curtain-bottom">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-dash" aria-hidden="true"></span>
+              <p class="stat-label">90-DAY WRITTEN GUARANTEE</p>
+              <p class="stat-value">3&times; <span class="stat-unit">Baseline</span></p>
+              <p class="stat-copy">We measure your qualified meetings in week one. If we miss 3&times; in 90 days, we work free until we hit it.</p>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-dash" aria-hidden="true"></span>
+              <p class="stat-label">CONTACTS WE SEARCH &amp; ENRICH</p>
+              <p class="stat-value">300M+</p>
+              <p class="stat-copy">99% verified email, phone, and LinkedIn coverage, plus custom scraped lists and live buying signals.</p>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-dash" aria-hidden="true"></span>
+              <p class="stat-label">AGENTS VOLUME / PEOPLE JUDGMENT</p>
+              <p class="stat-value">70 / 30</p>
+              <p class="stat-copy">10 AI agents execute 24/7 across 4 channels while your dedicated pod of specialists owns strategy and quality.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- =========================================================================
+     NATIVE ACCESSIBLE MODAL DIALOGS (native modal semantics via showModal)
+     ========================================================================= -->
+
+<dialog id="guarantee-dialog" class="orl-dialog" closedby="any" aria-labelledby="guarantee-dialog-title">
+  <div class="orl-dialog-frame">
+    <header class="orl-dialog-head">
+      <div>
+        <p class="orl-dialog-kicker">Done-For-You Service Addendum</p>
+        <h2 id="guarantee-dialog-title" class="orl-dialog-title">
+          90-Day 3&times; Qualified Meetings Guarantee
+        </h2>
+      </div>
+      <form method="dialog">
+        <button type="submit" class="orl-dialog-close" aria-label="Close Guarantee terms dialog" autofocus>
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+          </svg>
+        </button>
+      </form>
+    </header>
+
+    <div class="orl-dialog-body">
+      <p>
+        Our 3&times; guarantee applies to all Done-For-You engagements and is written directly into your kickoff agreement so expectations are measurable from day one.
+      </p>
+
+      <dl class="orl-dialog-list">
+        <div>
+          <dt>1. Week-one baseline</dt>
+          <dd>During strategy onboarding, we audit your trailing 90-day average of qualified sales meetings and document your agreed monthly baseline.</dd>
+        </div>
+        <div>
+          <dt>2. Mutual qualification standard</dt>
+          <dd>Together we define ICP filters (company size, geography, decision-maker role, and attendance criteria) so only genuine pipeline opportunities count.</dd>
+        </div>
+        <div>
+          <dt>3. 90-day launch window</dt>
+          <dd>The 90-day clock starts when both outbound sequences and inbound campaigns launch together (typically around week two).</dd>
+        </div>
+        <div>
+          <dt>4. Zero-cost continuation remedy</dt>
+          <dd>If qualified meetings booked over the 90-day window fall below 3&times; your baseline, OneReach Human Experts keep running your campaigns at $0 service fee until the target is met. Client-owned ad spend and third-party media budgets remain pass-through.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <footer class="orl-dialog-foot">
+      <form method="dialog" class="orl-dialog-actions">
+        <button type="submit" class="orl-btn orl-btn--secondary">Close</button>
+      </form>
+      <a href="#campaign-form-wrap" class="orl-btn orl-btn--primary" data-jump-portal="true" data-close-parent-dialog="true">
+        Book a strategy call
+      </a>
+    </footer>
+  </div>
+</dialog>
+
+<dialog id="privacy-dialog" class="orl-dialog" closedby="any" aria-labelledby="privacy-dialog-title">
+  <div class="orl-dialog-frame">
+    <header class="orl-dialog-head">
+      <div>
+        <p class="orl-dialog-kicker">OneReach Labs &middot; OneDataSoftware</p>
+        <h2 id="privacy-dialog-title" class="orl-dialog-title">
+          Privacy Notice
+        </h2>
+      </div>
+      <form method="dialog">
+        <button type="submit" class="orl-dialog-close" aria-label="Close Privacy Notice dialog" autofocus>
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+          </svg>
+        </button>
+      </form>
+    </header>
+
+    <div class="orl-dialog-body">
+      <p>
+        OneReach Labs respects your privacy and handles both visitor inquiry details and B2B campaign data under strict confidentiality controls.
+      </p>
+
+      <dl class="orl-dialog-list">
+        <div>
+          <dt>Information you submit</dt>
+          <dd>Contact details submitted via our strategy call intake (name, work email, phone, company, and pipeline objectives) are used exclusively to schedule and prepare your consultation and requested service scope.</dd>
+        </div>
+        <div>
+          <dt>No resale of form leads</dt>
+          <dd>We never sell, rent, or broker form submissions or private client CRM/suppression data to third parties.</dd>
+        </div>
+        <div>
+          <dt>B2B data &amp; opt-out governance</dt>
+          <dd>Verified B2B contact records sourced for campaigns follow CAN-SPAM, GDPR, and CCPA notice/opt-out requirements, with immediate global suppression upon opt-out.</dd>
+        </div>
+        <div>
+          <dt>Access &amp; deletion requests</dt>
+          <dd>To review, export, or delete your personal information or request suppression, contact our privacy team at <strong>privacy@onereachlabs.com</strong>.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <footer class="orl-dialog-foot">
+      <form method="dialog" class="orl-dialog-actions">
+        <button type="submit" class="orl-btn orl-btn--primary">Close</button>
+      </form>
+    </footer>
+  </div>
+</dialog>
+
+<dialog id="terms-dialog" class="orl-dialog" closedby="any" aria-labelledby="terms-dialog-title">
+  <div class="orl-dialog-frame">
+    <header class="orl-dialog-head">
+      <div>
+        <p class="orl-dialog-kicker">OneReach Labs &middot; OneDataSoftware</p>
+        <h2 id="terms-dialog-title" class="orl-dialog-title">
+          Terms of Service
+        </h2>
+      </div>
+      <form method="dialog">
+        <button type="submit" class="orl-dialog-close" aria-label="Close Terms of Service dialog" autofocus>
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+          </svg>
+        </button>
+      </form>
+    </header>
+
+    <div class="orl-dialog-body">
+      <p>
+        These summary terms govern use of the OneReach Labs platform, Done-For-You growth services, and custom B2B data deliverables.
+      </p>
+
+      <dl class="orl-dialog-list">
+        <div>
+          <dt>Platform subscriptions</dt>
+          <dd>Starter access is free for up to 2 users; additional seats are billed at $100 per user per month and may be adjusted or canceled before the next billing cycle.</dd>
+        </div>
+        <div>
+          <dt>Done-For-You engagements</dt>
+          <dd>Campaign strategy, copy, channel setup, and domain warm-up require your sign-off prior to launch. Guarantee eligibility requires timely calendar availability and prompt lead feedback.</dd>
+        </div>
+        <div>
+          <dt>Data licensing &amp; compliance</dt>
+          <dd>Custom verified and scraped lists are licensed for your internal B2B outreach and CRM enrichment and may not be resold or used in violation of anti-spam or telecom regulations.</dd>
+        </div>
+        <div>
+          <dt>Confidentiality &amp; IP</dt>
+          <dd>Your proprietary offer materials, CRM records, and campaign assets remain your property; OneReach Labs retains underlying platform software and agent infrastructure.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <footer class="orl-dialog-foot">
+      <form method="dialog" class="orl-dialog-actions">
+        <button type="submit" class="orl-btn orl-btn--primary">Close</button>
+      </form>
+    </footer>
+  </div>
+</dialog>
+
+  <script defer src="app.js"></script>
+  <script defer src="sections.js"></script>
+</body>
+</html>
