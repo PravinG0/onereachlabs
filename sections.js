@@ -2,6 +2,7 @@
  * OneReach Labs — Part B Interactive Controls & Accessible Dialog Fallbacks
  * Handles:
  *  - #sophia specialist capability chips & live command preview bar
+ *  - #data pinned 4-card deck progressive fallback for browsers without CSS scroll-driven animations
  *  - #pricing engagement preset sync with #engagement-mode
  *  - Native <dialog> Invoker Commands fallback, Safari closedby="any" light-dismiss,
  *    returnValue cleanup, and top-layer exit transition fallback
@@ -370,8 +371,102 @@
     });
   }
 
+  function initDataDeckFallback() {
+    const dataSection = document.getElementById('data');
+    if (!dataSection) return;
+
+    const supportsSDA =
+      typeof CSS !== 'undefined' &&
+      typeof CSS.supports === 'function' &&
+      CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)');
+
+    // Use native CSS Scroll-Driven Animations wherever supported
+    if (supportsSDA) return;
+
+    const cards = Array.from(dataSection.querySelectorAll('.orl-data-card'));
+    const windows = [
+      [0.02, 0.27],
+      [0.21, 0.47],
+      [0.41, 0.67],
+      [0.61, 0.87]
+    ];
+    const motionQuery =
+      typeof window.matchMedia === 'function'
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : null;
+    const desktopQuery =
+      typeof window.matchMedia === 'function'
+        ? window.matchMedia('(min-width: 901px)')
+        : null;
+
+    let rafId = 0;
+    let isNearViewport = true;
+
+    const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+    function clearFallbackProps() {
+      dataSection.classList.remove('scroll-fallback');
+      dataSection.style.removeProperty('--head-p');
+      cards.forEach((card) => card.style.removeProperty('--card-p'));
+    }
+
+    function updateFrame() {
+      rafId = 0;
+      const canAnimate =
+        (!motionQuery || !motionQuery.matches) &&
+        (!desktopQuery || desktopQuery.matches);
+
+      if (!canAnimate) {
+        clearFallbackProps();
+        return;
+      }
+
+      dataSection.classList.add('scroll-fallback');
+      const rect = dataSection.getBoundingClientRect();
+      const travel = rect.height - window.innerHeight;
+      const p = travel > 0 ? clamp01(-rect.top / travel) : 1;
+
+      const headP = clamp01((p - 0.06) / 0.52);
+      dataSection.style.setProperty('--head-p', headP.toFixed(4));
+
+      cards.forEach((card, index) => {
+        const range = windows[index] || [0, 1];
+        const cardP = clamp01((p - range[0]) / (range[1] - range[0]));
+        card.style.setProperty('--card-p', cardP.toFixed(4));
+      });
+    }
+
+    function scheduleUpdate() {
+      if (!isNearViewport || rafId) return;
+      rafId = window.requestAnimationFrame(updateFrame);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          isNearViewport = Boolean(entries[0]?.isIntersecting);
+          if (isNearViewport) scheduleUpdate();
+        },
+        { rootMargin: '400px 0px' }
+      );
+      io.observe(dataSection);
+    }
+
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate, { passive: true });
+    if (motionQuery && typeof motionQuery.addEventListener === 'function') {
+      motionQuery.addEventListener('change', scheduleUpdate);
+    }
+    if (desktopQuery && typeof desktopQuery.addEventListener === 'function') {
+      desktopQuery.addEventListener('change', scheduleUpdate);
+    }
+
+    updateFrame();
+  }
+
   function initPartB() {
     initSophiaInteractions();
+    initDataDeckFallback();
     initEngagementPresets();
     initDialogs();
   }

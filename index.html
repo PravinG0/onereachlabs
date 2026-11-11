@@ -1241,55 +1241,118 @@
 
 <!-- SECTION: DATA INFRASTRUCTURE -->
 <section id="data" class="orl-section orl-data" aria-labelledby="data-heading">
-  <div class="orl-container">
-    <header class="orl-section-head orl-section-head--center">
-      <p class="orl-eyebrow orl-eyebrow--on-dark">
+  <div class="orl-data-stage">
+    <div class="orl-data-backdrop" aria-hidden="true">
+      <div class="orl-data-gridlines"></div>
+      <span class="orl-data-cross" style="--cx: 12.5%; --cy: 22%;"></span>
+      <span class="orl-data-cross" style="--cx: 50%; --cy: 22%;"></span>
+      <span class="orl-data-cross" style="--cx: 87.5%; --cy: 22%;"></span>
+      <span class="orl-data-cross" style="--cx: 12.5%; --cy: 78%;"></span>
+      <span class="orl-data-cross" style="--cx: 50%; --cy: 78%;"></span>
+      <span class="orl-data-cross" style="--cx: 87.5%; --cy: 78%;"></span>
+    </div>
+
+    <header class="orl-data-head">
+      <p class="orl-eyebrow orl-data-eyebrow">
         <span class="orl-eyebrow-dot orl-eyebrow-dot--cobalt" aria-hidden="true"></span>
         <span>Verified Data Provider</span>
       </p>
 
-      <h2 id="data-heading" class="orl-title orl-title--on-dark">
+      <h2 id="data-heading" class="orl-data-heading">
         Great outreach starts with data most teams can&rsquo;t access.
       </h2>
 
-      <p class="orl-lead orl-lead--on-dark">
-        OneReach Labs operates as a verified data provider underneath every campaign&mdash;and delivers custom standalone lists when your own reps need clean fuel.
+      <p class="orl-data-lead">
+        OneReach Labs builds, scrapes, verifies, and enriches the lists behind every campaign&mdash;or delivers clean standalone data straight to your CRM.
       </p>
     </header>
 
-    <div class="orl-data-grid">
-      <article class="orl-data-card">
-        <p class="orl-data-metric orl-data-metric--cobalt">300M+</p>
-        <h3 class="orl-data-title">Contact database</h3>
-        <p class="orl-data-desc">
-          Filter by title, seniority, industry, headcount, geography &amp; tech stack.
-        </p>
-      </article>
+    <ol class="orl-data-deck" role="list">
+      <li class="orl-data-card orl-data-card--ice" data-card="1" style="--card-rot: -3.2deg; --card-y: 8px; --card-z: 2;">
+        <div class="orl-data-card__inner">
+          <div class="orl-data-card__top">
+            <span class="orl-data-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </span>
+            <span class="orl-data-stat">300M+</span>
+          </div>
+          <div class="orl-data-card__body">
+            <h3 class="orl-data-title">Contact database</h3>
+            <p class="orl-data-desc">
+              Filter reachable B2B buyers by title, seniority, industry, headcount, location, and live tech stack.
+            </p>
+          </div>
+        </div>
+      </li>
 
-      <article class="orl-data-card">
-        <p class="orl-data-metric orl-data-metric--verified">99%</p>
-        <h3 class="orl-data-title">Verified coverage</h3>
-        <p class="orl-data-desc">
-          Waterfall-verified email, direct phone &amp; LinkedIn across multiple sources.
-        </p>
-      </article>
+      <li class="orl-data-card orl-data-card--amber" data-card="2" style="--card-rot: 1.9deg; --card-y: -6px; --card-z: 3;">
+        <div class="orl-data-card__inner">
+          <div class="orl-data-card__top">
+            <span class="orl-data-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </span>
+            <span class="orl-data-stat">99%</span>
+          </div>
+          <div class="orl-data-card__body">
+            <h3 class="orl-data-title">Verified coverage</h3>
+            <p class="orl-data-desc">
+              Waterfall-verified work email, direct dial phone, and LinkedIn profiles with fallback sources when the first misses.
+            </p>
+          </div>
+        </div>
+      </li>
 
-      <article class="orl-data-card">
-        <p class="orl-data-metric orl-data-metric--inbound">Custom</p>
-        <h3 class="orl-data-title">Scraped niche lists</h3>
-        <p class="orl-data-desc">
-          Hard-to-find segments from local directories, events, associations &amp; communities.
-        </p>
-      </article>
+      <li class="orl-data-card orl-data-card--cobalt" data-card="3" style="--card-rot: -2.1deg; --card-y: 6px; --card-z: 4;">
+        <div class="orl-data-card__inner">
+          <div class="orl-data-card__top">
+            <span class="orl-data-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 3v4" />
+                <path d="M12 17v4" />
+                <path d="M3 12h4" />
+                <path d="M17 12h4" />
+                <circle cx="12" cy="12" r="2.5" />
+              </svg>
+            </span>
+            <span class="orl-data-stat">Custom</span>
+          </div>
+          <div class="orl-data-card__body">
+            <h3 class="orl-data-title">Scraped niche lists</h3>
+            <p class="orl-data-desc">
+              Hard-to-reach markets big databases miss&mdash;built fresh from directories, local businesses, events, and associations.
+            </p>
+          </div>
+        </div>
+      </li>
 
-      <article class="orl-data-card">
-        <p class="orl-data-metric orl-data-metric--cobalt">Live</p>
-        <h3 class="orl-data-title">Buying signals</h3>
-        <p class="orl-data-desc">
-          Funding rounds, hiring surges, leadership moves &amp; high-intent site visits as they happen.
-        </p>
-      </article>
-    </div>
+      <li class="orl-data-card orl-data-card--navy" data-card="4" style="--card-rot: 2.6deg; --card-y: -8px; --card-z: 5;">
+        <div class="orl-data-card__inner">
+          <div class="orl-data-card__top">
+            <span class="orl-data-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h4l3-7 6 14 3-7h4" />
+              </svg>
+            </span>
+            <span class="orl-data-stat">Live</span>
+          </div>
+          <div class="orl-data-card__body">
+            <h3 class="orl-data-title">Buying signals</h3>
+            <p class="orl-data-desc">
+              Funding rounds, hiring surges, leadership changes, and high-intent site visits flagged the moment they happen.
+            </p>
+          </div>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
