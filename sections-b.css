@@ -6,7 +6,7 @@
    + OneReach Labs Color Palette (strictly scoped to Part B & .orl-dialog)
    ========================================================================= */
 
-:is(#sophia, #data, #engage, #pricing, .orl-dialog) {
+:is(#data, #pricing, .orl-dialog) {
   /* Color Palette Tokens (scoped so styles.css & sections-a.css remain untouched) */
   --brand-outbound: #1e3db4;
   --brand-outbound-hover: #162d90;
@@ -48,14 +48,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
-:is(#sophia, #data, #engage, #pricing, .orl-dialog),
-:is(#sophia, #data, #engage, #pricing, .orl-dialog) *,
-:is(#sophia, #data, #engage, #pricing, .orl-dialog) *::before,
-:is(#sophia, #data, #engage, #pricing, .orl-dialog) *::after {
+:is(#data, #pricing, .orl-dialog),
+:is(#data, #pricing, .orl-dialog) *,
+:is(#data, #pricing, .orl-dialog) *::before,
+:is(#data, #pricing, .orl-dialog) *::after {
   box-sizing: border-box;
 }
 
-:is(#sophia, #data, #engage, #pricing) {
+:is(#data, #pricing) {
   position: relative;
   padding-block: clamp(4.5rem, 8vw, 6.75rem);
   padding-inline: clamp(1.25rem, 4.5vw, 4rem);
@@ -63,7 +63,11 @@
   overflow-x: clip;
 }
 
-:is(#sophia, #data, #engage, #pricing, .orl-dialog) :where(a, button, input, [tabindex]):focus-visible {
+:is(#guarantee, #engage) {
+  scroll-margin-top: 5.5rem;
+}
+
+:is(#data, #pricing, .orl-dialog) :where(a, button, input, [tabindex]):focus-visible {
   outline: 3px solid var(--outbound-accent);
   outline-offset: 2px;
 }
@@ -81,7 +85,7 @@
   white-space: nowrap !important;
 }
 
-:is(#sophia, #data, #engage, #pricing) .orl-container {
+:is(#data, #pricing) .orl-container {
   position: relative;
   z-index: 2;
   inline-size: 100%;
@@ -93,7 +97,7 @@
 /* =========================================================================
    SHARED EDITORIAL TYPOGRAPHY & MICRO EYEBROWS
    ========================================================================= */
-:is(#sophia, #data, #engage, #pricing) .orl-section-head {
+:is(#data, #pricing) .orl-section-head {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -102,7 +106,7 @@
   margin-block-end: clamp(2.5rem, 4.5vw, 3.75rem);
 }
 
-:is(#sophia, #data, #engage, #pricing) .orl-section-head--center {
+:is(#data, #pricing) .orl-section-head--center {
   align-items: center;
   margin-inline: auto;
   text-align: center;
@@ -126,7 +130,7 @@
   color: var(--brand-outbound);
 }
 
-:is(#sophia, #data, #engage, #pricing) .orl-section-head .orl-eyebrow {
+:is(#data, #pricing) .orl-section-head .orl-eyebrow {
   margin-block-end: 0;
 }
 
@@ -172,7 +176,7 @@
   color: var(--on-dark);
 }
 
-:is(#sophia, #data, #engage, #pricing) .orl-lead {
+:is(#data, #pricing) .orl-lead {
   margin: 0;
   max-inline-size: 58ch;
   font-size: clamp(0.9375rem, 0.9rem + 0.25vw, 1.0625rem);
@@ -182,15 +186,11 @@
   text-wrap: pretty;
 }
 
-#sophia .orl-lead {
-  margin-block-start: 1.15rem;
-}
-
-:is(#sophia, #data, #engage, #pricing) .orl-section-head--center .orl-lead {
+:is(#data, #pricing) .orl-section-head--center .orl-lead {
   margin-inline: auto;
 }
 
-:is(#sophia, #data, #engage, #pricing) .orl-lead--on-dark {
+:is(#data, #pricing) .orl-lead--on-dark {
   color: var(--on-dark-muted);
 }
 
@@ -263,432 +263,7 @@
 }
 
 /* =========================================================================
-   SECTION 1: #sophia — AI STRATEGY & MARKETING CHIEF
-   ========================================================================= */
-.orl-sophia {
-  background: var(--surface);
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.orl-sophia-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-  gap: clamp(2.25rem, 4.5vw, 4.25rem);
-  align-items: start;
-}
-
-.orl-agents-block {
-  margin-block-start: 28px;
-  padding-block-start: 24px;
-  border-top: 1px solid var(--border-light);
-}
-
-.orl-agents-label {
-  margin: 0 0 14px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-muted-3);
-}
-
-.orl-chips {
-  display: flex;
-  flex-wrap: wrap;
-  flex-wrap: balance;
-  gap: 8px;
-}
-
-.orl-chip {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  min-block-size: 36px;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: var(--surface-alt);
-  border: 1px solid var(--orl-control-border-light);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
-}
-
-.orl-chip:hover:not([aria-pressed="true"]) {
-  background: var(--surface-outbound);
-  border-color: var(--brand-outbound);
-  color: var(--brand-outbound);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .orl-chip:hover:not([aria-pressed="true"]) {
-    transform: translateY(-1px);
-  }
-}
-
-.orl-chip[aria-pressed="true"] {
-  background: var(--brand-outbound);
-  border-color: var(--brand-outbound);
-  color: var(--on-dark);
-  box-shadow: 0 6px 16px rgba(30, 61, 180, 0.22);
-}
-
-.orl-agent-detail {
-  margin-block-start: 16px;
-  padding: 16px 18px;
-  border-radius: 12px;
-  background: var(--surface-alt);
-  border: 1px solid var(--border-soft);
-  border-inline-start: 3px solid var(--brand-outbound);
-}
-
-.orl-agent-detail-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 12px;
-  margin-block-end: 6px;
-}
-
-.orl-agent-detail-title {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
-.orl-agent-detail-tag {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--brand-outbound);
-}
-
-.orl-agent-detail-desc {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.58;
-  color: var(--text-muted);
-}
-
-/* Right Column: Elevated Midnight Navy Glass Briefing Card */
-.orl-sophia-panel {
-  min-inline-size: 0;
-}
-
-.orl-briefing {
-  position: relative;
-  padding: clamp(22px, 3vw, 30px);
-  border-radius: 20px;
-  background:
-    radial-gradient(ellipse 85% 60% at 92% 4%, rgba(30, 61, 180, 0.42) 0%, transparent 65%),
-    linear-gradient(165deg, var(--navy-800) 0%, var(--navy) 100%);
-  border: 1px solid var(--border-dark);
-  color: var(--on-dark);
-  box-shadow:
-    0 28px 60px rgba(10, 22, 56, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-.orl-briefing-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding-block-end: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.orl-briefing-identity {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.orl-briefing-avatar {
-  display: inline-grid;
-  place-items: center;
-  inline-size: 40px;
-  block-size: 40px;
-  border-radius: 12px;
-  flex-shrink: 0;
-  background: linear-gradient(145deg, var(--brand-outbound) 0%, var(--navy-500) 100%);
-  border: 1px solid var(--outbound-accent);
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--on-dark);
-  box-shadow: 0 6px 18px rgba(30, 61, 180, 0.35);
-}
-
-.orl-briefing-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: var(--on-dark);
-}
-
-.orl-briefing-time {
-  margin: 2px 0 0;
-  font-size: 12px;
-  color: var(--on-dark-muted-2);
-}
-
-.orl-briefing-live {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 11px;
-  border-radius: 999px;
-  background: rgba(16, 185, 129, 0.14);
-  border: 1px solid rgba(16, 185, 129, 0.55);
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--accent-verified);
-  white-space: nowrap;
-}
-
-.orl-status-dot {
-  inline-size: 6px;
-  block-size: 6px;
-  border-radius: 50%;
-  background: var(--accent-verified);
-}
-
-.orl-briefing-summary {
-  margin: 16px 0 0;
-  padding: 13px 15px;
-  border-radius: 12px;
-  background: rgba(17, 31, 74, 0.72);
-  border: 1px solid rgba(143, 166, 255, 0.22);
-  border-inline-start: 2px solid var(--outbound-accent);
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--on-dark-muted);
-}
-
-.orl-briefing-list {
-  list-style: none;
-  margin: 14px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.orl-briefing-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 13px 15px;
-  border-radius: 12px;
-  background: rgba(17, 31, 74, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border-dark);
-}
-
-.orl-briefing-meta {
-  min-inline-size: 0;
-}
-
-.orl-briefing-role {
-  margin: 0;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--on-dark);
-}
-
-.orl-briefing-action {
-  margin: 2px 0 0;
-  font-size: 12.5px;
-  color: var(--on-dark-muted);
-}
-
-.orl-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.orl-badge--verified {
-  background: rgba(16, 185, 129, 0.14);
-  border: 1px solid var(--accent-verified);
-  color: var(--accent-verified);
-}
-
-.orl-badge--inbound {
-  background: rgba(240, 138, 46, 0.16);
-  border: 1px solid var(--brand-inbound);
-  color: var(--brand-inbound);
-}
-
-.orl-badge--cobalt {
-  background: rgba(143, 166, 255, 0.15);
-  border: 1px solid var(--outbound-accent);
-  color: var(--outbound-accent);
-}
-
-.orl-badge-icon {
-  flex-shrink: 0;
-}
-
-/* Interactive Command Bar Mockup */
-.orl-cmd {
-  margin-block-start: 18px;
-  padding-block-start: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.orl-cmd-label {
-  margin: 0 0 10px;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--outbound-accent);
-}
-
-.orl-cmd-bar {
-  display: flex;
-  gap: 8px;
-}
-
-.orl-cmd-input {
-  flex: 1 1 auto;
-  min-inline-size: 0;
-  min-block-size: 40px;
-  padding: 8px 13px;
-  border-radius: 10px;
-  background: var(--navy-800);
-  border: 1.5px solid var(--orl-control-border-dark);
-  color: var(--on-dark);
-  font-family: var(--font-body);
-  font-size: 13px;
-}
-
-.orl-cmd-input::placeholder {
-  color: var(--on-dark-muted-2);
-}
-
-.orl-cmd-submit {
-  appearance: none;
-  flex-shrink: 0;
-  min-block-size: 40px;
-  padding: 8px 15px;
-  border-radius: 10px;
-  background: var(--brand-outbound);
-  border: 1.5px solid var(--outbound-accent);
-  color: var(--on-dark);
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease;
-}
-
-.orl-cmd-submit:hover {
-  background: var(--brand-outbound-hover);
-  border-color: var(--on-dark);
-}
-
-.orl-cmd-presets {
-  margin-block-start: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.orl-cmd-preset {
-  appearance: none;
-  min-block-size: 32px;
-  padding: 6px 11px;
-  border-radius: 999px;
-  background: rgba(17, 31, 74, 0.85);
-  border: 1px solid var(--orl-control-border-dark);
-  color: var(--on-dark-muted);
-  font-family: var(--font-body);
-  font-size: 11.5px;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    color 150ms ease;
-}
-
-.orl-cmd-preset:hover:not([aria-pressed="true"]) {
-  border-color: var(--outbound-accent);
-  color: var(--on-dark);
-}
-
-.orl-cmd-preset[aria-pressed="true"] {
-  background: var(--navy-500);
-  border-color: var(--outbound-accent);
-  color: var(--on-dark);
-}
-
-.orl-cmd-reply {
-  margin-block-start: 12px;
-  padding: 13px 15px;
-  border-radius: 12px;
-  background: rgba(15, 29, 71, 0.9);
-  border: 1px solid rgba(143, 166, 255, 0.28);
-}
-
-.orl-cmd-reply-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px 12px;
-  margin-block-end: 6px;
-}
-
-.orl-cmd-reply-status {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent-verified);
-}
-
-.orl-cmd-reply-channels {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--outbound-accent);
-}
-
-.orl-cmd-reply-body {
-  margin: 0;
-  font-size: 12.5px;
-  line-height: 1.56;
-  color: var(--on-dark-muted);
-}
-
-/* =========================================================================
-   SECTION 2: #data — PINNED EDITORIAL DATA DECK (CROSSHAIR STAGE + 4 CARDS)
+   SECTION 1: #data — PINNED EDITORIAL DATA DECK (CROSSHAIR STAGE + 4 CARDS)
    ========================================================================= */
 #data.orl-data {
   padding: 0;
@@ -1077,102 +652,7 @@
 }
 
 /* =========================================================================
-   SECTION 3: #engage — HOW WE ENGAGE (4-STEP CADENCE)
-   ========================================================================= */
-.orl-engage {
-  background: var(--surface-alt);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.orl-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 22px);
-}
-
-@media (min-width: 1001px) {
-  .orl-steps::before {
-    content: "";
-    position: absolute;
-    inset-block-start: 44px;
-    inset-inline: 10%;
-    block-size: 1px;
-    background: linear-gradient(
-      90deg,
-      var(--brand-outbound) 0%,
-      var(--outbound-accent) 48%,
-      var(--brand-inbound) 78%,
-      var(--accent-verified) 100%
-    );
-    opacity: 0.45;
-    pointer-events: none;
-    z-index: 0;
-  }
-}
-
-.orl-step {
-  position: relative;
-  z-index: 1;
-  padding: clamp(22px, 2.5vw, 28px);
-  border-radius: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 10px 30px rgba(10, 22, 56, 0.04);
-  display: flex;
-  flex-direction: column;
-}
-
-.orl-step-marker {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: 40px;
-  block-size: 40px;
-  margin-block-end: 20px;
-  border-radius: 11px;
-  background: var(--surface-outbound);
-  border: 1px solid var(--border-soft);
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  color: var(--brand-outbound);
-}
-
-.orl-step:nth-child(3) .orl-step-marker {
-  background: var(--surface-inbound);
-  border-color: var(--border-inbound);
-  color: var(--text);
-}
-
-.orl-step:nth-child(4) .orl-step-marker {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.45);
-  color: var(--text);
-}
-
-.orl-step-title {
-  margin: 0 0 10px;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--text);
-}
-
-.orl-step-desc {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.62;
-  color: var(--text-muted);
-}
-
-/* =========================================================================
-   SECTION 4: #pricing — ENGAGEMENT OPTIONS & #who-its-for
+   SECTION 2: #pricing — ENGAGEMENT OPTIONS & #who-its-for
    ========================================================================= */
 .orl-pricing {
   background: var(--surface);
@@ -1442,6 +922,113 @@
   color: var(--text-muted);
 }
 
+/* Proof & Merged Commitment Strips inside #pricing */
+.orl-proof-strip {
+  list-style: none;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  background: var(--surface-alt);
+  overflow: hidden;
+}
+
+.orl-proof-strip__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px;
+  border-right: 1px solid var(--border-light);
+}
+
+.orl-proof-strip__item:last-child {
+  border-right: 0;
+}
+
+.orl-proof-strip__item strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--brand-outbound);
+}
+
+.orl-proof-strip__item span {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.orl-merged-grid {
+  margin-block-start: clamp(2.25rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 24px);
+}
+
+.orl-merged-card {
+  padding: clamp(22px, 2.6vw, 30px);
+  border-radius: 18px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.orl-merged-kicker {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-outbound);
+}
+
+.orl-merged-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.orl-merged-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.orl-merged-list strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.orl-merged-cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.orl-merged-pod-note {
+  margin: auto 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-muted-3);
+}
+
 .orl-legal-strip {
   margin-block-start: 28px;
   padding-block-start: 20px;
@@ -1667,9 +1254,25 @@
 }
 
 @media (max-width: 960px) {
-  .orl-sophia-grid,
+  .orl-proof-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .orl-proof-strip__item {
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .orl-proof-strip__item:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .orl-proof-strip__item:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
   .orl-pricing-grid,
-  .orl-who-grid {
+  .orl-who-grid,
+  .orl-merged-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1685,26 +1288,25 @@
 }
 
 @media (max-width: 600px) {
-  .orl-data-deck,
-  .orl-steps {
+  .orl-proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .orl-proof-strip__item {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .orl-proof-strip__item:last-child {
+    border-bottom: 0;
+  }
+
+  .orl-data-deck {
     grid-template-columns: 1fr;
   }
 
   .orl-data-card__inner {
     min-block-size: 14.5rem;
-  }
-
-  .orl-briefing-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .orl-cmd-bar {
-    flex-direction: column;
-  }
-
-  .orl-cmd-submit {
-    inline-size: 100%;
   }
 
   .orl-dialog-head,
@@ -1715,8 +1317,6 @@
 }
 
 @media (pointer: coarse) {
-  .orl-chip,
-  .orl-cmd-preset,
   .orl-legal-btn {
     min-block-size: 42px;
   }
@@ -1733,15 +1333,12 @@
 }
 
 @media (forced-colors: active) {
-  .orl-briefing,
-  .orl-briefing-item,
   .orl-data-card__inner,
   .orl-data-icon,
-  .orl-step,
+  .orl-proof-strip,
+  .orl-merged-card,
   .orl-plan,
   .orl-who-card,
-  .orl-agent-detail,
-  .orl-cmd-reply,
   .orl-dialog,
   .orl-dialog-list > div {
     border: 1px solid CanvasText;
@@ -1751,15 +1348,11 @@
     box-shadow: none;
   }
 
-  .orl-chip[aria-pressed="true"],
-  .orl-cmd-preset[aria-pressed="true"],
   .orl-btn--primary {
     border: 2px solid Highlight;
   }
 
-  .orl-badge,
-  .orl-guarantee-pill,
-  .orl-briefing-live {
+  .orl-guarantee-pill {
     border: 1px solid CanvasText;
   }
 }

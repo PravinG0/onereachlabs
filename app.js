@@ -1255,7 +1255,7 @@
       typeof CSS !== 'undefined' &&
       CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)');
 
-    let slotGeom = { t: 44, r: 28, b: 6, l: 28, dy: 7 };
+    let slotGeom = { t: 44, r: 28, b: 6, l: 28, dx: 0, dy: 14, scale: 0.48 };
 
     const measureHeroSlot = () => {
       if (window.innerWidth <= 860 || prefersReducedMotion.matches) {
@@ -1271,19 +1271,26 @@
       const slotRect = cardSlot.getBoundingClientRect();
       if (stageRect.width < 1 || stageRect.height < 1 || slotRect.width < 1) return;
 
+      const scaleW = slotRect.width / stageRect.width;
+      const scaleH = slotRect.height / stageRect.height;
+
       slotGeom = {
         t: clamp(((slotRect.top - stageRect.top) / stageRect.height) * 100, 0, 90),
         r: clamp(((stageRect.right - slotRect.right) / stageRect.width) * 100, 0, 90),
         b: clamp(((stageRect.bottom - slotRect.bottom) / stageRect.height) * 100, 0, 90),
         l: clamp(((slotRect.left - stageRect.left) / stageRect.width) * 100, 0, 90),
-        dy: (((slotRect.top + slotRect.height * 0.5) - (stageRect.top + stageRect.height * 0.5)) / stageRect.height) * 100
+        dx: (((slotRect.left + slotRect.width * 0.5) - (stageRect.left + stageRect.width * 0.5)) / stageRect.width) * 100,
+        dy: (((slotRect.top + slotRect.height * 0.5) - (stageRect.top + stageRect.height * 0.5)) / stageRect.height) * 100,
+        scale: clamp(Math.max(scaleW, scaleH), 0.36, 0.92)
       };
 
       heroRunway.style.setProperty('--slot-top', `${slotGeom.t.toFixed(2)}%`);
       heroRunway.style.setProperty('--slot-right', `${slotGeom.r.toFixed(2)}%`);
       heroRunway.style.setProperty('--slot-bottom', `${slotGeom.b.toFixed(2)}%`);
       heroRunway.style.setProperty('--slot-left', `${slotGeom.l.toFixed(2)}%`);
+      heroRunway.style.setProperty('--slot-dx', `${slotGeom.dx.toFixed(2)}%`);
       heroRunway.style.setProperty('--slot-dy', `${slotGeom.dy.toFixed(2)}%`);
+      heroRunway.style.setProperty('--slot-scale', slotGeom.scale.toFixed(3));
 
       if (!supportsSDA) {
         heroRunway.classList.add('has-hero-fallback');
@@ -1303,7 +1310,7 @@
         mediaClip.style.clipPath = `inset(${lerp(slotGeom.t, 0, t).toFixed(2)}% ${lerp(slotGeom.r, 0, t).toFixed(2)}% ${lerp(slotGeom.b, 0, t).toFixed(2)}% ${lerp(slotGeom.l, 0, t).toFixed(2)}% round ${lerp(18, 0, t).toFixed(1)}px)`;
       }
       if (mediaInner) {
-        mediaInner.style.transform = `translate3d(0, ${lerp(slotGeom.dy, 0, t).toFixed(2)}%, 0) scale(${lerp(0.92, 1, t).toFixed(3)})`;
+        mediaInner.style.transform = `translate3d(${lerp(slotGeom.dx, 0, t).toFixed(2)}%, ${lerp(slotGeom.dy, 0, t).toFixed(2)}%, 0) scale(${lerp(slotGeom.scale, 1, t).toFixed(3)})`;
       }
       if (mediaScrim) {
         mediaScrim.style.opacity = smoothstep(0.14, 0.60, raw).toFixed(3);
