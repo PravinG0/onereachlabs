@@ -1028,6 +1028,10 @@
     const reelToggle = document.getElementById('hero-reel-toggle');
     const scrollOrb = document.querySelector('.scroll-orb');
     const vortexRunway = document.getElementById('vortex-top');
+    const serveSection = document.getElementById('engines');
+    const choreoRunway = document.getElementById('choreo-runway');
+    const whitePortal = document.getElementById('white-portal');
+    const siteFooter = document.getElementById('site-footer');
 
     // Unified global smooth jump for "Get Started / Create Customers" triggers
     document.addEventListener('click', (e) => {
@@ -1225,13 +1229,30 @@
     // ---------------------------------------------------------------------
     // Sticky Section-Aware Header Tint & Scroll Orb Visibility
     // ---------------------------------------------------------------------
+    function isInsideProbe(el, probeY) {
+      if (!el) return false;
+      const r = el.getBoundingClientRect();
+      return r.top <= probeY && r.bottom > probeY;
+    }
+
     function syncGlobalChrome() {
       const headerH = header ? header.getBoundingClientRect().height : 63;
+      const probeY = headerH + 8;
       const heroRect = heroRunway ? heroRunway.getBoundingClientRect() : null;
       const vortexRect = vortexRunway ? vortexRunway.getBoundingClientRect() : null;
 
-      if (header && heroRect) {
-        const enteredDark = heroRect.bottom <= headerH + 8;
+      if (header) {
+        let enteredDark = false;
+        if (isInsideProbe(siteFooter, probeY)) {
+          enteredDark = false;
+        } else if (isInsideProbe(vortexRunway, probeY) || isInsideProbe(serveSection, probeY)) {
+          enteredDark = true;
+        } else if (isInsideProbe(choreoRunway, probeY)) {
+          const portalOpen = Boolean(whitePortal && whitePortal.classList.contains('is-interactive'));
+          const portalReduced =
+            prefersReducedMotion.matches && whitePortal && whitePortal.getBoundingClientRect().top <= probeY;
+          enteredDark = !(portalOpen || portalReduced);
+        }
         header.classList.toggle('is-dark', enteredDark);
       }
 
@@ -1240,6 +1261,11 @@
         const insideVortex = vortexRect ? vortexRect.bottom > window.innerHeight * 0.45 : false;
         scrollOrb.classList.toggle('is-hero-hidden', insideHero || insideVortex);
       }
+    }
+
+    if (whitePortal && typeof MutationObserver !== 'undefined') {
+      const portalMo = new MutationObserver(syncGlobalChrome);
+      portalMo.observe(whitePortal, { attributes: true, attributeFilter: ['class'] });
     }
 
     window.addEventListener('scroll', syncGlobalChrome, { passive: true });
@@ -2232,6 +2258,268 @@
   }
 
   /* =========================================================================
+     LUMINOUS WAVE FOOTER CANVAS (CURSOR-REACTIVE)
+     ========================================================================= */
+  function initFooterWaves() {
+    const footerEl = document.getElementById('site-footer');
+    const canvas = document.getElementById('footer-wave-canvas');
+    const motionBtn = document.getElementById('footer-motion-toggle');
+    if (!footerEl || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = 1200;
+    let height = 560;
+    let dpr = 1;
+
+    let animTime = 0;
+    let lastTs = performance.now();
+    let rafId = 0;
+    let isVisible = true;
+    let userPaused = prefersReducedMotion.matches;
+
+    let targetMouseX = 0.5;
+    let targetMouseY = 0.48;
+    let currentMouseX = 0.5;
+    let currentMouseY = 0.48;
+    let targetHover = 0;
+    let currentHover = 0;
+
+    function syncMotionButton() {
+      if (!motionBtn) return;
+      motionBtn.textContent = userPaused ? 'Resume waves' : 'Pause waves';
+    }
+
+    function resize() {
+      const rect = footerEl.getBoundingClientRect();
+      width = Math.max(320, Math.round(rect.width || window.innerWidth));
+      height = Math.max(360, Math.round(rect.height || 560));
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (userPaused) drawFrame(animTime);
+    }
+
+    const waveLayers = [
+      {
+        baseY: 0.54,
+        amp1: 0.085,
+        freq1: 1.55,
+        speed1: 0.42,
+        amp2: 0.038,
+        freq2: 2.9,
+        speed2: -0.34,
+        phase: 0.4,
+        mousePull: 0.08,
+        colors: ['rgba(143, 166, 255, 0.44)', 'rgba(96, 189, 252, 0.34)', 'rgba(224, 234, 255, 0.42)'],
+        rimColor: 'rgba(255, 255, 255, 0.9)'
+      },
+      {
+        baseY: 0.61,
+        amp1: 0.072,
+        freq1: 1.85,
+        speed1: -0.36,
+        amp2: 0.032,
+        freq2: 3.35,
+        speed2: 0.48,
+        phase: 2.1,
+        mousePull: 0.095,
+        colors: ['rgba(30, 61, 180, 0.36)', 'rgba(143, 166, 255, 0.38)', 'rgba(218, 230, 255, 0.36)'],
+        rimColor: 'rgba(143, 166, 255, 0.72)'
+      },
+      {
+        baseY: 0.67,
+        amp1: 0.062,
+        freq1: 2.1,
+        speed1: 0.52,
+        amp2: 0.028,
+        freq2: 3.8,
+        speed2: -0.45,
+        phase: 4.0,
+        mousePull: 0.07,
+        colors: ['rgba(96, 189, 252, 0.38)', 'rgba(240, 138, 46, 0.14)', 'rgba(228, 238, 255, 0.35)'],
+        rimColor: 'rgba(255, 255, 255, 0.8)'
+      }
+    ];
+
+    function buildWavePoints(layer, t) {
+      const steps = 28;
+      const pts = [];
+      const liftY = (currentMouseY - 0.5) * 0.055 * currentHover;
+
+      for (let i = 0; i <= steps; i += 1) {
+        const u = i / steps;
+        const x = u * width;
+        const primary = Math.sin(u * Math.PI * layer.freq1 + t * layer.speed1 + layer.phase);
+        const secondary = Math.sin(u * Math.PI * layer.freq2 + t * layer.speed2 - layer.phase * 0.5);
+        const centerArch = -Math.sin(u * Math.PI) * 0.06;
+        const dx = u - currentMouseX;
+        const mouseWave = -Math.exp(-dx * dx * 8.5) * layer.mousePull * currentHover;
+
+        const yNorm =
+          layer.baseY +
+          centerArch +
+          primary * layer.amp1 +
+          secondary * layer.amp2 +
+          mouseWave +
+          liftY;
+
+        pts.push({ x, y: clamp(yNorm, 0.22, 0.94) * height });
+      }
+      return pts;
+    }
+
+    function traceSmoothRibbon(pts) {
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 0; i < pts.length - 1; i += 1) {
+        const p0 = pts[i];
+        const p1 = pts[i + 1];
+        const midX = (p0.x + p1.x) * 0.5;
+        const midY = (p0.y + p1.y) * 0.5;
+        ctx.quadraticCurveTo(p0.x, p0.y, midX, midY);
+      }
+      const last = pts[pts.length - 1];
+      ctx.lineTo(last.x, last.y);
+    }
+
+    function drawFrame(t) {
+      ctx.clearRect(0, 0, width, height);
+
+      // Ambient top-to-bottom OneReach sky wash
+      const baseGrad = ctx.createLinearGradient(0, 0, 0, height);
+      baseGrad.addColorStop(0, '#ffffff');
+      baseGrad.addColorStop(0.45, '#f8faff');
+      baseGrad.addColorStop(1, '#e8efff');
+      ctx.fillStyle = baseGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Soft ambient indigo halo tracking cursor gently across wave valley
+      const orbX = width * lerp(0.5, currentMouseX, 0.65);
+      const orbY = height * lerp(0.54, clamp(currentMouseY, 0.3, 0.8), 0.45);
+      const haloR = Math.max(width, height) * 0.58;
+      const halo = ctx.createRadialGradient(orbX, orbY, 0, orbX, orbY, haloR);
+      halo.addColorStop(0, 'rgba(143, 166, 255, 0.26)');
+      halo.addColorStop(0.42, 'rgba(96, 189, 252, 0.14)');
+      halo.addColorStop(0.75, 'rgba(240, 138, 46, 0.04)');
+      halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = halo;
+      ctx.fillRect(0, 0, width, height);
+
+      for (let i = 0; i < waveLayers.length; i += 1) {
+        const layer = waveLayers[i];
+        const pts = buildWavePoints(layer, t);
+
+        traceSmoothRibbon(pts);
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+
+        const minPtY = pts.reduce((min, pt) => Math.min(min, pt.y), height);
+        const fillGrad = ctx.createLinearGradient(0, minPtY, width * 0.15, height);
+        fillGrad.addColorStop(0, layer.colors[0]);
+        fillGrad.addColorStop(0.48, layer.colors[1]);
+        fillGrad.addColorStop(1, layer.colors[2]);
+        ctx.fillStyle = fillGrad;
+        ctx.fill();
+
+        traceSmoothRibbon(pts);
+        ctx.strokeStyle = layer.rimColor;
+        ctx.lineWidth = i === 0 ? 1.8 : 1.25;
+        ctx.stroke();
+      }
+    }
+
+    function tick(now) {
+      rafId = 0;
+      if (userPaused || !isVisible || document.hidden) return;
+      const dt = Math.min(0.05, Math.max(0, (now - lastTs) / 1000));
+      lastTs = now;
+      animTime += dt;
+
+      currentMouseX = lerp(currentMouseX, targetMouseX, 0.08);
+      currentMouseY = lerp(currentMouseY, targetMouseY, 0.08);
+      currentHover = lerp(currentHover, targetHover, 0.07);
+
+      drawFrame(animTime);
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function ensureLoop() {
+      if (userPaused || !isVisible || document.hidden || rafId) return;
+      lastTs = performance.now();
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    footerEl.addEventListener('pointermove', (event) => {
+      if (userPaused) return;
+      const rect = footerEl.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      targetMouseX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      targetMouseY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+      targetHover = 1;
+    });
+
+    footerEl.addEventListener('pointerleave', () => {
+      targetHover = 0;
+    });
+
+    if (motionBtn) {
+      motionBtn.addEventListener('click', () => {
+        userPaused = !userPaused;
+        syncMotionButton();
+        if (userPaused) {
+          if (rafId) {
+            window.cancelAnimationFrame(rafId);
+            rafId = 0;
+          }
+          drawFrame(animTime);
+        } else {
+          ensureLoop();
+        }
+      });
+    }
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      const io = new IntersectionObserver(
+        (entries) => {
+          isVisible = Boolean(entries[0]?.isIntersecting);
+          if (isVisible) ensureLoop();
+          else if (rafId) {
+            window.cancelAnimationFrame(rafId);
+            rafId = 0;
+          }
+        },
+        { threshold: 0.01 }
+      );
+      io.observe(footerEl);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      } else {
+        ensureLoop();
+      }
+    });
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(resize);
+      ro.observe(footerEl);
+    } else {
+      window.addEventListener('resize', resize, { passive: true });
+    }
+
+    syncMotionButton();
+    resize();
+    drawFrame(0);
+    ensureLoop();
+  }
+
+  /* =========================================================================
      BOOTSTRAP
      ========================================================================= */
   document.addEventListener('DOMContentLoaded', () => {
@@ -2241,6 +2529,7 @@
     initPortalRays();
     initChoreography();
     initCampaignForm();
+    initFooterWaves();
     handleIncomingNavigationParams();
   });
 })();

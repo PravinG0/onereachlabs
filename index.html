@@ -128,7 +128,11 @@
 
       <a href="#campaign-form-wrap" class="header-cta" data-jump-portal="true">
         <span>Book a strategy call</span>
-        <span aria-hidden="true">&rarr;</span>
+        <span class="header-cta__arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.5 8h9M8.5 4l4 4-4 4" />
+          </svg>
+        </span>
       </a>
     </div>
   </header>
@@ -1282,16 +1286,16 @@
                 <div id="form-status-banner" class="form-status-banner" role="status" aria-live="polite" hidden></div>
               </form>
 
-              <footer class="portal-footer">
+              <div class="portal-footer" role="region" aria-label="Quick portal links">
                 <span>OneReach Labs, powered by OneDataSoftware. &copy; 2026</span>
-                <nav class="portal-footer__links" aria-label="Footer navigation">
+                <nav class="portal-footer__links" aria-label="Quick navigation">
                   <a href="#inbound-outbound">Services</a>
                   <a href="#vortex-top">Sophia</a>
                   <a href="#data">Data</a>
                   <button type="button" class="portal-link-btn" command="show-modal" commandfor="privacy-dialog" data-open-dialog="privacy-dialog">Privacy</button>
                   <button type="button" class="portal-link-btn" command="show-modal" commandfor="terms-dialog" data-open-dialog="terms-dialog">Terms</button>
                 </nav>
-              </footer>
+              </div>
             </div>
           </div>
         </div>
@@ -1372,6 +1376,108 @@
       </div>
     </section>
   </main>
+
+  <footer class="site-footer" id="site-footer">
+    <canvas id="footer-wave-canvas" class="site-footer__canvas" aria-hidden="true"></canvas>
+    <div class="site-footer__veil" aria-hidden="true"></div>
+
+    <div class="site-footer__inner">
+      <div class="site-footer__hero">
+        <span class="site-footer__cross site-footer__cross--tl" aria-hidden="true">+</span>
+        <span class="site-footer__cross site-footer__cross--tr" aria-hidden="true">+</span>
+        <h2 class="site-footer__headline">Where your next 3&times; pipeline gets built.</h2>
+        <p class="site-footer__sub">Let OneReach Human Experts and Sophia&rsquo;s 10 agents turn verified B2B signals into qualified meetings on your calendar.</p>
+        <a href="#campaign-form-wrap" class="header-cta footer-cta" data-jump-portal="true">
+          <span>Book a strategy call</span>
+          <span class="header-cta__arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 8h9M8.5 4l4 4-4 4" />
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="site-footer__grid">
+        <div class="site-footer__brand-col">
+          <a class="site-logo site-logo--footer" href="#top">
+            <span class="site-logo__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <rect x="3" y="3" width="8" height="8" rx="2" fill="#0b93f6" />
+                <rect x="13" y="3" width="8" height="8" rx="4" fill="#0f172a" />
+                <rect x="3" y="13" width="8" height="8" rx="4" fill="#0f172a" />
+                <rect x="13" y="13" width="8" height="8" rx="2" fill="#60bdfc" />
+              </svg>
+            </span>
+            <span>OneReach Labs</span>
+          </a>
+          <p class="site-footer__tagline">Dual-engine B2B pipeline architecture: 70% Sophia autonomous execution, 30% senior human strategy.</p>
+          <div class="site-footer__socials" aria-label="Social and direct channels">
+            <a class="site-footer__social-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path d="M6.94 8.5H3.56V19.5H6.94V8.5ZM5.25 3.5C4.14 3.5 3.25 4.39 3.25 5.5C3.25 6.6 4.14 7.5 5.25 7.5C6.35 7.5 7.25 6.6 7.25 5.5C7.25 4.39 6.35 3.5 5.25 3.5ZM20.44 13.02C20.44 9.88 18.76 8.22 16.16 8.22C14.35 8.22 13.38 9.21 12.92 9.93V8.5H9.56C9.61 9.48 9.56 19.5 9.56 19.5H12.92V13.36C12.92 13.02 12.95 12.69 13.05 12.45C13.32 11.78 13.92 11.09 14.96 11.09C16.31 11.09 17.06 12.11 17.06 13.61V19.5H20.44V13.02Z" />
+              </svg>
+            </a>
+            <a class="site-footer__social-link" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a class="site-footer__social-link" href="#campaign-form-wrap" data-jump-portal="true" aria-label="Book a strategy call">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+                <path d="M8 2v4M16 2v4M3 10h18" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="site-footer__cols" aria-label="Footer">
+          <div class="site-footer__col">
+            <h3 class="site-footer__col-title">Engines</h3>
+            <ul class="site-footer__list">
+              <li><a href="#inbound-outbound">Inbound &amp; Outbound</a></li>
+              <li><a href="#vortex-top">Sophia Agentic Core</a></li>
+              <li><a href="#data">300M+ Verified Data</a></li>
+              <li><a href="#engines">Dual-Engine Execution</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__col">
+            <h3 class="site-footer__col-title">Site Map</h3>
+            <ul class="site-footer__list">
+              <li><a href="#top">Overview</a></li>
+              <li><a href="#engage">How we work</a></li>
+              <li><a href="#pricing">Pricing &amp; Plans</a></li>
+              <li><a href="hero.html">3D Interactive Stage</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__col">
+            <h3 class="site-footer__col-title">Legal &amp; SLA</h3>
+            <ul class="site-footer__list">
+              <li>
+                <button type="button" class="site-footer__link-btn" command="show-modal" commandfor="guarantee-dialog" data-open-dialog="guarantee-dialog">3&times; Outcome Guarantee</button>
+              </li>
+              <li>
+                <button type="button" class="site-footer__link-btn" command="show-modal" commandfor="privacy-dialog" data-open-dialog="privacy-dialog">Privacy Notice</button>
+              </li>
+              <li>
+                <button type="button" class="site-footer__link-btn" command="show-modal" commandfor="terms-dialog" data-open-dialog="terms-dialog">Terms of Service</button>
+              </li>
+              <li>
+                <a href="#campaign-form-wrap" data-jump-portal="true">Strategy Call Intake</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">&copy; 2026 OneReach Labs, powered by OneDataSoftware. All rights reserved.</p>
+        <button type="button" class="site-footer__motion-btn" id="footer-motion-toggle">Pause waves</button>
+      </div>
+    </div>
+  </footer>
 
 <!-- =========================================================================
      NATIVE ACCESSIBLE MODAL DIALOGS (native modal semantics via showModal)
