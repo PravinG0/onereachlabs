@@ -1089,9 +1089,10 @@
 
       const updateHeaderLayout = () => {
         const headerWidth = header.getBoundingClientRect().width;
+        const barEl = inner || header;
         document.documentElement.style.setProperty(
           '--header-h',
-          `${Math.round(header.getBoundingClientRect().height)}px`
+          `${Math.round(barEl.getBoundingClientRect().bottom)}px`
         );
 
         if (!isWide && headerWidth <= lastCollapsedWidth) {
@@ -1236,8 +1237,9 @@
     }
 
     function syncGlobalChrome() {
-      const headerH = header ? header.getBoundingClientRect().height : 63;
-      const probeY = headerH + 8;
+      const barEl = inner || header;
+      const headerH = barEl ? barEl.getBoundingClientRect().bottom : 74;
+      const probeY = headerH + 6;
       const heroRect = heroRunway ? heroRunway.getBoundingClientRect() : null;
       const vortexRect = vortexRunway ? vortexRunway.getBoundingClientRect() : null;
 

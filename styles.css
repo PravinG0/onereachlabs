@@ -215,26 +215,33 @@ body {
    SITE NAVIGATION HEADER (navbar guide: single-tree + native popover)
    ===================================================================== */
 .site-header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
   z-index: 95;
-  background: rgba(255, 255, 255, 0.85);
+  padding: clamp(10px, 1.8vh, 16px) clamp(12px, 3vw, 28px) 0;
+  background: transparent;
   color: var(--navy);
-  border-bottom: 1px solid rgba(10, 22, 56, 0.08);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+  pointer-events: none;
 }
 
 .header-inner {
+  pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  max-inline-size: 1380px;
+  gap: clamp(0.85rem, 2.2vw, 1.75rem);
+  max-inline-size: 1120px;
   margin-inline: auto;
-  padding-block: 0.75rem;
-  padding-inline: clamp(16px, 3vw, 40px);
+  padding: 0.42rem 0.46rem 0.42rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--navy);
+  border: 1px solid rgba(10, 22, 56, 0.08);
+  box-shadow: 0 10px 30px rgba(10, 22, 56, 0.07), 0 1px 3px rgba(10, 22, 56, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .header-inner > * {
@@ -301,7 +308,7 @@ body {
 .site-menu {
   position: fixed;
   inset: auto;
-  inset-block-start: 4.5rem;
+  inset-block-start: calc(var(--header-h, 74px) + 0.5rem);
   inset-block-start: anchor(--menu-button bottom);
   inset-inline-end: clamp(16px, 3vw, 40px);
   inline-size: min(82dvw, 21rem);
@@ -385,24 +392,30 @@ body {
 .header-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.5rem;
   min-block-size: 40px;
-  padding: 0.32rem 0.42rem 0.32rem 1.05rem;
+  padding: 0.5rem 1.15rem;
   border-radius: 999px;
   background: var(--navy);
   color: var(--on-dark);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 500;
   letter-spacing: -0.01em;
   text-decoration: none;
-  box-shadow: 0 6px 18px rgba(10, 22, 56, 0.14);
+  box-shadow: 0 4px 12px rgba(10, 22, 56, 0.14);
   transition: background-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .header-cta:hover {
   background: var(--brand-outbound);
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(30, 61, 180, 0.22);
+  box-shadow: 0 8px 20px rgba(30, 61, 180, 0.24);
+}
+
+.header-cta__icon,
+.header-cta__arrow svg {
+  flex-shrink: 0;
+  transition: transform 180ms ease;
 }
 
 .header-cta__arrow {
@@ -422,13 +435,10 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .header-cta:hover .header-cta__icon,
   .header-cta:hover .header-cta__arrow svg {
-    transform: translateX(1.5px);
+    transform: translateX(2px);
   }
-}
-
-.header-cta__arrow svg {
-  transition: transform 180ms ease;
 }
 
 .site-header.is-measuring *,
@@ -551,9 +561,14 @@ body {
 }
 
 .site-header.is-dark {
-  background: rgba(10, 22, 56, 0.88);
   color: var(--on-dark);
-  border-bottom-color: var(--border-dark);
+}
+
+.site-header.is-dark .header-inner {
+  background: rgba(15, 29, 71, 0.86);
+  color: var(--on-dark);
+  border-color: rgba(143, 166, 255, 0.22);
+  box-shadow: 0 14px 36px rgba(3, 8, 22, 0.45), 0 0 0 1px rgba(143, 166, 255, 0.08);
 }
 
 .site-header.is-dark .site-logo,
@@ -640,6 +655,7 @@ body {
 }
 
 @media (forced-colors: active) {
+  .header-inner,
   .site-menu,
   .dropdown-list[popover],
   .header-cta,
@@ -649,6 +665,23 @@ body {
 
   .site-menu [aria-current="page"]::after {
     background: Highlight;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    gap: 0.55rem;
+    padding: 0.36rem 0.4rem 0.36rem 0.9rem;
+  }
+
+  .header-cta {
+    padding: 0.45rem 0.85rem;
+    font-size: 12.5px;
+  }
+
+  .site-footer .footer-cta {
+    padding: 0.42rem 0.5rem 0.42rem 1.25rem;
+    font-size: 13.5px;
   }
 }
 
@@ -669,7 +702,7 @@ body {
 
 .hero-stage {
   position: relative;
-  min-block-size: calc(100dvh - 64px);
+  min-block-size: 100dvh;
   inline-size: 100%;
   overflow: hidden;
   display: flex;
@@ -779,7 +812,7 @@ body {
   inline-size: 100%;
   max-inline-size: 1380px;
   margin-inline: auto;
-  padding: clamp(28px, 5vh, 52px) clamp(20px, 4vw, 56px) clamp(24px, 4vh, 44px);
+  padding: calc(var(--header-h, 74px) + clamp(16px, 2.8vh, 32px)) clamp(20px, 4vw, 56px) clamp(24px, 4vh, 44px);
   display: flex;
   flex-direction: column;
   gap: clamp(24px, 4vh, 44px);
