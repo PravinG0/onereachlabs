@@ -316,9 +316,56 @@
     });
   }
 
+  function initPricingMotionFallback() {
+    const pricingSection = document.getElementById('pricing');
+    if (!pricingSection) return;
+
+    const motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    const desktopQuery = window.matchMedia ? window.matchMedia('(min-width: 961px)') : null;
+    const supportsNativeViewTimeline =
+      typeof CSS !== 'undefined' &&
+      typeof CSS.supports === 'function' &&
+      CSS.supports('animation-timeline: view()') &&
+      CSS.supports('animation-range: 0% 100%');
+
+    if (supportsNativeViewTimeline) return;
+
+    let rafId = 0;
+
+    function syncPricingReveal() {
+      rafId = 0;
+      const reduced = Boolean(motionQuery && motionQuery.matches);
+      const desktop = !desktopQuery || desktopQuery.matches;
+      if (reduced || !desktop) {
+        pricingSection.classList.remove('scroll-fallback');
+        pricingSection.style.removeProperty('--pricing-p');
+        return;
+      }
+
+      const grid = pricingSection.querySelector('.orl-pricing-grid');
+      if (!grid) return;
+      const rect = grid.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+      const progress = clamp01((vh - rect.top) / (vh * 0.65));
+
+      pricingSection.classList.add('scroll-fallback');
+      pricingSection.style.setProperty('--pricing-p', progress.toFixed(4));
+    }
+
+    function scheduleSync() {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(syncPricingReveal);
+    }
+
+    window.addEventListener('scroll', scheduleSync, { passive: true });
+    window.addEventListener('resize', scheduleSync, { passive: true });
+    syncPricingReveal();
+  }
+
   function initPartB() {
     initDataDeckFallback();
     initEnginesMarqueeFallback();
+    initPricingMotionFallback();
     initEngagementPresets();
     initDialogs();
   }

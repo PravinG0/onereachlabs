@@ -655,43 +655,83 @@
    SECTION 2: #pricing — ENGAGEMENT OPTIONS & #who-its-for
    ========================================================================= */
 .orl-pricing {
-  background: var(--surface);
+  position: relative;
+  background: var(--surface-alt);
+  overflow-x: clip;
+}
+
+.orl-pricing-band {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: clamp(460px, 46vw, 575px);
+  background:
+    radial-gradient(ellipse 68% 72% at 50% 8%, rgba(143, 166, 255, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 42% 55% at 88% 22%, rgba(240, 138, 46, 0.16) 0%, transparent 62%),
+    linear-gradient(155deg, #071029 0%, var(--navy) 46%, var(--brand-outbound) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orl-pricing-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 420px at 18% 26%, rgba(96, 189, 252, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.orl-pricing-container {
+  position: relative;
+  z-index: 2;
 }
 
 .orl-pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 2.4vw, 26px);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.09fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: center;
+  max-inline-size: 68rem;
+  margin-inline: auto;
 }
 
 .orl-plan {
-  padding: clamp(24px, 3vw, 34px);
-  border-radius: 20px;
-  background: var(--surface-alt);
-  border: 1px solid var(--border-soft);
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 3vw, 38px) clamp(22px, 2.5vw, 32px);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 22px 48px rgba(10, 22, 56, 0.11);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 240ms ease, border-color 220ms ease;
+}
+
+.orl-plan--side:first-child {
+  margin-inline-end: -14px;
+  padding-inline-end: clamp(28px, 3.2vw, 40px);
+}
+
+.orl-plan--side:last-child {
+  margin-inline-start: -14px;
+  padding-inline-start: clamp(28px, 3.2vw, 40px);
 }
 
 .orl-plan--featured {
-  background:
-    radial-gradient(ellipse 90% 60% at 85% 0%, rgba(30, 61, 180, 0.44) 0%, transparent 65%),
-    linear-gradient(170deg, var(--navy-800) 0%, var(--navy) 100%);
-  border: 1.5px solid var(--brand-outbound);
-  color: var(--on-dark);
+  z-index: 3;
+  padding: clamp(34px, 3.8vw, 48px) clamp(26px, 3vw, 38px);
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1.5px solid rgba(30, 61, 180, 0.22);
+  color: var(--text);
   box-shadow:
-    0 26px 56px rgba(10, 22, 56, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-}
-
-.orl-plan-head {
-  padding-block-end: 20px;
-  border-bottom: 1px solid var(--border-soft);
-}
-
-.orl-plan--featured .orl-plan-head {
-  border-bottom-color: rgba(255, 255, 255, 0.12);
+    0 34px 72px rgba(10, 22, 56, 0.18),
+    0 10px 26px rgba(30, 61, 180, 0.1);
 }
 
 .orl-plan-badge-row {
@@ -706,98 +746,129 @@
   border-radius: 999px;
   background: var(--brand-inbound);
   color: var(--navy);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.orl-plan-kicker {
-  margin: 0 0 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--brand-outbound);
+.orl-plan-art {
+  display: grid;
+  place-items: center;
+  block-size: 66px;
+  margin-block-end: 14px;
+  transition: transform 240ms ease;
 }
 
-.orl-plan-kicker--on-dark {
-  color: var(--outbound-accent);
+.orl-plan-art--featured {
+  block-size: 72px;
+}
+
+.orl-plan-art__accent {
+  opacity: 0.86;
+  transition: opacity 220ms ease, transform 240ms ease;
+}
+
+.orl-plan-kicker {
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.orl-plan-kicker--featured {
+  color: var(--brand-outbound);
 }
 
 .orl-plan-title {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.45rem, 2.2vw, 1.85rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--navy);
 }
 
-.orl-plan-title--on-dark {
-  color: var(--on-dark);
+.orl-plan-title--featured {
+  font-size: clamp(1.7rem, 2.6vw, 2.15rem);
+  color: var(--brand-outbound);
+  background: linear-gradient(95deg, var(--brand-outbound) 0%, #4e6ef2 50%, var(--brand-inbound) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.orl-plan-desc {
+  margin: 12px auto 0;
+  max-inline-size: 31ch;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+
+.orl-plan-divider {
+  inline-size: 56%;
+  block-size: 1px;
+  margin: 18px auto 16px;
+  background: var(--border-soft);
+}
+
+.orl-plan-divider--featured {
+  background: linear-gradient(90deg, transparent 0%, var(--outbound-accent) 50%, transparent 100%);
 }
 
 .orl-plan-price {
-  margin: 16px 0 0;
+  margin: 0;
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .orl-plan-amount {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: clamp(2.25rem, 3.5vw, 3.1rem);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: var(--text);
+  color: var(--brand-outbound);
 }
 
-.orl-plan-amount--on-dark {
-  color: var(--on-dark);
+.orl-plan-amount--featured {
+  font-size: clamp(2.55rem, 4vw, 3.45rem);
+  color: var(--brand-inbound);
+  background: linear-gradient(95deg, var(--brand-outbound) 0%, var(--brand-inbound) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .orl-plan-unit {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-muted);
 }
 
-.orl-plan-unit--on-dark {
-  color: var(--on-dark-muted-2);
-}
-
-.orl-plan-note {
-  margin: 10px 0 0;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.orl-plan-note--on-dark {
-  color: var(--on-dark-muted);
-}
-
 .orl-plan-list {
   list-style: none;
-  margin: 22px 0 28px;
+  margin: 16px 0 0;
   padding: 0;
   display: grid;
-  gap: 12px;
-  font-size: 13.5px;
-  line-height: 1.5;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.45;
   color: var(--text-muted-3);
-}
-
-.orl-plan-list--on-dark {
-  color: var(--on-dark-muted);
+  text-align: start;
 }
 
 .orl-plan-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
 }
 
 .orl-check {
@@ -811,7 +882,8 @@
 }
 
 .orl-plan-cta {
-  margin-block-start: auto;
+  margin-block-start: 22px;
+  inline-size: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -819,6 +891,45 @@
 
 .orl-plan-cta .orl-btn {
   inline-size: 100%;
+}
+
+/* Reference-matched colored pill CTAs in OneReach palette (WCAG AAA text contrast) */
+.orl-btn--tier-side {
+  background: linear-gradient(135deg, #8fa6ff 0%, #60bdfc 100%);
+  border: 1px solid rgba(30, 61, 180, 0.25);
+  color: var(--navy);
+  box-shadow: 0 10px 24px rgba(96, 189, 252, 0.34);
+}
+
+.orl-btn--tier-side:hover {
+  background: linear-gradient(135deg, #7d98ff 0%, #4cb2fb 100%);
+  border-color: var(--brand-outbound);
+  box-shadow: 0 14px 30px rgba(96, 189, 252, 0.44);
+}
+
+.orl-btn--tier-featured {
+  background: linear-gradient(135deg, var(--brand-inbound) 0%, #df7619 100%);
+  border: 1px solid rgba(204, 102, 16, 0.35);
+  color: var(--navy);
+  box-shadow: 0 12px 28px rgba(240, 138, 46, 0.38);
+}
+
+.orl-btn--tier-featured:hover {
+  background: linear-gradient(135deg, #f39541 0%, #d46c12 100%);
+  border-color: #b45309;
+  box-shadow: 0 16px 34px rgba(240, 138, 46, 0.48);
+}
+
+.orl-btn--tier-dark {
+  background: var(--brand-outbound);
+  border: 1px solid var(--brand-outbound-hover);
+  color: var(--on-dark);
+  box-shadow: 0 10px 24px rgba(30, 61, 180, 0.3);
+}
+
+.orl-btn--tier-dark:hover {
+  background: var(--brand-outbound-hover);
+  box-shadow: 0 14px 30px rgba(30, 61, 180, 0.4);
 }
 
 .orl-inline-modal-trigger {
@@ -831,7 +942,7 @@
   font-family: var(--font-body);
   font-size: 12.5px;
   font-weight: 500;
-  color: var(--outbound-accent);
+  color: var(--brand-outbound);
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
@@ -840,7 +951,95 @@
 }
 
 .orl-inline-modal-trigger:hover {
-  color: var(--on-dark);
+  color: var(--navy);
+}
+
+#pricing .orl-plan :where(a, button):focus-visible {
+  outline: 3px solid var(--brand-outbound);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orl-plan:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 32px 68px rgba(10, 22, 56, 0.16);
+  }
+
+  .orl-plan--featured:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 42px 84px rgba(10, 22, 56, 0.24), 0 12px 28px rgba(30, 61, 180, 0.14);
+  }
+
+  .orl-plan:hover .orl-plan-art {
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  .orl-plan:hover .orl-plan-art__accent {
+    opacity: 1;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(1.06);
+  }
+
+  .orl-pricing-band::after {
+    animation: orl-pricing-shimmer 14s ease-in-out infinite alternate;
+  }
+
+  #pricing.scroll-fallback .orl-plan--side {
+    translate: 0 calc((1 - var(--pricing-p, 1)) * 22px);
+  }
+
+  #pricing.scroll-fallback .orl-plan--featured {
+    translate: 0 calc((1 - var(--pricing-p, 1)) * 32px);
+    scale: calc(0.97 + var(--pricing-p, 1) * 0.03);
+  }
+}
+
+@supports ((animation-timeline: view()) and (animation-range: 0% 100%)) {
+  @media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+    .orl-plan--side {
+      animation: orl-podium-side-enter auto cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+
+    .orl-plan--featured {
+      animation: orl-podium-center-enter auto cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 75%;
+    }
+  }
+}
+
+@keyframes orl-podium-side-enter {
+  from {
+    translate: 0 24px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes orl-podium-center-enter {
+  from {
+    translate: 0 36px;
+    scale: 0.96;
+  }
+  to {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes orl-pricing-shimmer {
+  0% {
+    transform: translate3d(-4%, 0, 0) scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(8%, 6%, 0) scale(1.08);
+    opacity: 1;
+  }
 }
 
 /* Sub-section inside #pricing: #who-its-for */
@@ -925,13 +1124,14 @@
 /* Proof & Merged Commitment Strips inside #pricing */
 .orl-proof-strip {
   list-style: none;
-  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  margin: clamp(2.5rem, 4.5vw, 3.5rem) 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--border-light);
   border-radius: 16px;
-  background: var(--surface-alt);
+  background: var(--surface);
+  box-shadow: 0 10px 28px rgba(10, 22, 56, 0.05);
   overflow: hidden;
 }
 
@@ -1270,10 +1470,28 @@
     border-bottom: 0;
   }
 
+  .orl-pricing-band {
+    block-size: 380px;
+  }
+
   .orl-pricing-grid,
   .orl-who-grid,
   .orl-merged-grid {
     grid-template-columns: 1fr;
+  }
+
+  .orl-pricing-grid {
+    gap: 20px;
+  }
+
+  .orl-plan--side:first-child,
+  .orl-plan--side:last-child {
+    margin-inline: 0;
+    padding-inline: clamp(24px, 3vw, 34px);
+  }
+
+  .orl-plan--featured {
+    order: -1;
   }
 }
 
@@ -1348,8 +1566,23 @@
     box-shadow: none;
   }
 
-  .orl-btn--primary {
+  .orl-btn--primary,
+  .orl-btn--tier-side,
+  .orl-btn--tier-featured,
+  .orl-btn--tier-dark {
     border: 2px solid Highlight;
+  }
+
+  .orl-plan-title--featured,
+  .orl-plan-amount--featured {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    color: CanvasText;
+  }
+
+  .orl-pricing-band {
+    background: Canvas;
+    border-bottom: 1px solid CanvasText;
   }
 
   .orl-guarantee-pill {
