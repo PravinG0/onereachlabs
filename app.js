@@ -115,6 +115,9 @@
     const canvas = document.getElementById('radial-canvas');
     const crosshair = document.getElementById('radial-crosshair');
     const tooltip = document.getElementById('radial-tooltip');
+    const trackPillsHost = document.getElementById('radial-track-pills');
+    const legendEl = stage ? stage.closest('.serve-section__grid')?.querySelector('.serve-legend') : null;
+    const headerEl = stage ? stage.closest('.serve-section__grid')?.querySelector('.serve-header') : null;
     const legendButtons = Array.from(document.querySelectorAll('#industry-list .industry-item'));
 
     if (!stage || !canvas) return;
@@ -127,14 +130,14 @@
 
     for (let i = 0; i < totalRays; i += 1) {
       const progress = i / (totalRays - 1);
-      // Fan from -172 deg (left horizon) to -8 deg (right horizon)
-      const baseAngle = lerp(-Math.PI * 0.955, -Math.PI * 0.045, progress);
+      // Fan from -169 deg (left horizon) to -11 deg (right horizon)
+      const baseAngle = lerp(-Math.PI * 0.94, -Math.PI * 0.06, progress);
       const jitterAngle = (rng() - 0.5) * 0.032;
       const trackIndex = Math.floor(rng() * CAPABILITY_TRACKS.length);
       const track = CAPABILITY_TRACKS[trackIndex];
-      const radiusFactor = 0.34 + Math.pow(rng(), 0.72) * 0.65;
-      const dotRadius = 1.35 + rng() * 1.85;
-      const baseAlpha = 0.35 + rng() * 0.55;
+      const radiusFactor = 0.42 + Math.pow(rng(), 0.62) * 0.57;
+      const dotRadius = 1.4 + rng() * 1.9;
+      const baseAlpha = 0.36 + rng() * 0.54;
       const pulsePhase = rng() * Math.PI * 2;
       const pulseSpeed = 0.8 + rng() * 1.3;
       const label = track.labels[Math.floor(rng() * track.labels.length)];
@@ -149,9 +152,25 @@
         trackId: track.id,
         color: track.color,
         label,
+        baseX: 0,
+        baseY: 0,
         x: 0,
-        y: 0
+        y: 0,
+        curSway: 0,
+        curExtend: 0,
+        curEnergy: 0
       });
+    }
+
+    const MAX_TRACK_PILLS = 4;
+    const trackPillPool = [];
+    if (trackPillsHost) {
+      for (let i = 0; i < MAX_TRACK_PILLS; i += 1) {
+        const pill = document.createElement('div');
+        pill.className = 'radial-track-pill';
+        trackPillsHost.appendChild(pill);
+        trackPillPool.push({ el: pill, ray: null });
+      }
     }
 
     let width = 0;
@@ -159,15 +178,121 @@
     let dpr = 1;
     let originX = 0;
     let originY = 0;
-    let maxRadius = 300;
+    let radiusX = 320;
+    let radiusY = 480;
+    let legendSafeRect = null;
+    let headerSafeRect = null;
     let pointerX = -9999;
     let pointerY = -9999;
     let pointerInside = false;
     let hoveredRay = null;
     let pinnedTrackId = null;
     let hoverTrackId = null;
+    let activePillRays = [];
     let isVisible = true;
     let rafId = 0;
+
+    function toStageRelativeBox(el, stageRect, padX, padY) {
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      if (r.width <= 0 || r.height <= 0) return null;
+      return {
+        left: r.left - stageRect.left - padX,
+        right: r.right - stageRect.left + padX,
+        top: r.top - stageRect.top - padY,
+        bottom: r.bottom - stageRect.top + padY
+      };
+    }
+
+    function hitsBox(x, y, box) {
+      return box && x >= box.left && x <= box.right && y >= box.top && y <= box.bottom;
+    }
+
+    function isSafeLabelPoint(px, py) {
+      const sidePad = width < 700 ? 78 : 112;
+      if (px < sidePad || px > Math.max(sidePad, width - sidePad)) return false;
+      if (py < 48 || py > height - 34) return false;
+      if (hitsBox(px, py, legendSafeRect)) return false;
+      if (hitsBox(px, py, headerSafeRect)) return false;
+      return true;
+    }
+
+    function selectTrackLabelRays(trackId) {
+      if (!trackId || width < 100 || height < 100) return [];
+      const minSepX = width < 700 ? 145 : 200;
+      const minSepY = width < 700 ? 40 : 48;
+
+      const candidates = rays
+        .filter((ray) => ray.trackId === trackId && isSafeLabelPoint(ray.baseX, ray.baseY))
+        .sort((a, b) => b.radiusFactor - a.radiusFactor);
+
+      const chosen = [];
+      const usedLabels = new Set();
+
+      // First pass: prefer distinct labels nicely spread across the arc
+      for (const ray of candidates) {
+        if (usedLabels.has(ray.label)) continue;
+        const overlaps = chosen.some(
+          (c) => Math.abs(c.baseX - ray.baseX) < minSepX && Math.abs(c.baseY - ray.baseY) < minSepY
+        );
+        if (overlaps) continue;
+        chosen.push(ray);
+        usedLabels.add(ray.label);
+        if (chosen.length >= MAX_TRACK_PILLS) break;
+      }
+
+      // Second pass if strict distinct-label pass had fewer than 3 spots
+      if (chosen.length < Math.min(3, MAX_TRACK_PILLS)) {
+        for (const ray of candidates) {
+          if (chosen.includes(ray)) continue;
+          const overlaps = chosen.some(
+            (c) => Math.abs(c.baseX - ray.baseX) < minSepX && Math.abs(c.baseY - ray.baseY) < minSepY
+          );
+          if (overlaps) continue;
+          chosen.push(ray);
+          if (chosen.length >= MAX_TRACK_PILLS) break;
+        }
+      }
+
+      return chosen;
+    }
+
+    function syncTrackPillContent() {
+      const activeTrack = hoverTrackId || pinnedTrackId;
+      activePillRays = activeTrack ? selectTrackLabelRays(activeTrack) : [];
+
+      for (let i = 0; i < trackPillPool.length; i += 1) {
+        const slot = trackPillPool[i];
+        const ray = activePillRays[i] || null;
+        slot.ray = ray;
+        if (ray) {
+          slot.el.textContent = ray.label;
+          slot.el.style.setProperty('--pill-color', ray.color);
+          slot.el.classList.add('is-visible');
+        } else {
+          slot.el.classList.remove('is-visible');
+          slot.el.style.transform = 'translate3d(-9999px, -9999px, 0)';
+        }
+      }
+      positionTrackPills();
+    }
+
+    function positionTrackPills() {
+      if (!trackPillPool.length || !activePillRays.length) return;
+      const sidePad = width < 700 ? 78 : 112;
+      for (const slot of trackPillPool) {
+        const ray = slot.ray;
+        if (!ray) continue;
+        if (hoveredRay && ray === hoveredRay) {
+          slot.el.classList.remove('is-visible');
+          continue;
+        }
+        slot.el.classList.add('is-visible');
+        const clampedX = clamp(ray.x, sidePad, Math.max(sidePad, width - sidePad));
+        const clampedY = Math.max(54, ray.y);
+        slot.el.style.transform = `translate3d(${clampedX.toFixed(1)}px, ${clampedY.toFixed(1)}px, 0) translate(-50%, -132%)`;
+      }
+    }
 
     function updateLayout() {
       const rect = stage.getBoundingClientRect();
@@ -180,14 +305,25 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       originX = width * 0.5;
-      originY = height - 10;
-      maxRadius = Math.min(width * 0.47, height * 0.9);
+      originY = height - 8;
+      radiusX = width * 0.48;
+      radiusY = height * 0.91;
+
+      // Track safe UI exclusion zones when legend/header overlap stage on desktop
+      const isDesktopOverlay = window.innerWidth > 960;
+      legendSafeRect = isDesktopOverlay ? toStageRelativeBox(legendEl, rect, 145, 48) : null;
+      headerSafeRect = isDesktopOverlay ? toStageRelativeBox(headerEl, rect, 145, 52) : null;
 
       for (const ray of rays) {
-        const dist = maxRadius * ray.radiusFactor;
-        ray.x = originX + Math.cos(ray.angle) * dist;
-        ray.y = originY + Math.sin(ray.angle) * dist;
+        ray.baseX = originX + Math.cos(ray.angle) * (radiusX * ray.radiusFactor);
+        ray.baseY = originY + Math.sin(ray.angle) * (radiusY * ray.radiusFactor);
+        if (ray.x === 0 && ray.y === 0) {
+          ray.x = ray.baseX;
+          ray.y = ray.baseY;
+        }
       }
+
+      syncTrackPillContent();
     }
 
     function updateHitTest() {
@@ -198,20 +334,40 @@
 
       const activeTrack = hoverTrackId || pinnedTrackId;
       let bestRay = null;
-      let bestDistSq = 28 * 28;
+      let bestScoreSq = 26 * 26;
 
       for (const ray of rays) {
         if (activeTrack && ray.trackId !== activeTrack) continue;
-        const dx = ray.x - pointerX;
-        const dy = ray.y - pointerY;
-        const distSq = dx * dx + dy * dy;
-        if (distSq < bestDistSq) {
-          bestDistSq = distSq;
+        const segDx = ray.x - originX;
+        const segDy = ray.y - originY;
+        const lenSq = segDx * segDx + segDy * segDy || 1;
+        const proj = clamp(((pointerX - originX) * segDx + (pointerY - originY) * segDy) / lenSq, 0.14, 1);
+        const cx = originX + segDx * proj;
+        const cy = originY + segDy * proj;
+        const distSq = (pointerX - cx) ** 2 + (pointerY - cy) ** 2;
+        if (distSq < bestScoreSq) {
+          bestScoreSq = distSq;
           bestRay = ray;
         }
       }
 
       hoveredRay = bestRay;
+    }
+
+    function positionTooltip() {
+      if (!tooltip) return;
+
+      if (hoveredRay) {
+        const clampedX = clamp(hoveredRay.x, 112, Math.max(112, width - 112));
+        const clampedY = Math.max(54, hoveredRay.y);
+        tooltip.textContent = hoveredRay.label;
+        tooltip.style.setProperty('--pill-color', hoveredRay.color);
+        tooltip.style.left = `${clampedX.toFixed(1)}px`;
+        tooltip.style.top = `${clampedY.toFixed(1)}px`;
+        tooltip.hidden = false;
+      } else {
+        tooltip.hidden = true;
+      }
     }
 
     function updateTooltipAndCursor() {
@@ -226,82 +382,119 @@
         }
       }
 
-      if (!tooltip) return;
-
-      if (hoveredRay) {
-        const clampedX = clamp(hoveredRay.x, 96, Math.max(96, width - 96));
-        const clampedY = Math.max(42, hoveredRay.y);
-        tooltip.textContent = hoveredRay.label;
-        tooltip.style.setProperty('--pill-color', hoveredRay.color);
-        tooltip.style.left = `${clampedX.toFixed(1)}px`;
-        tooltip.style.top = `${clampedY.toFixed(1)}px`;
-        tooltip.hidden = false;
-      } else {
-        tooltip.hidden = true;
-      }
+      positionTooltip();
+      positionTrackPills();
     }
 
     function drawFrame(nowMs) {
-      const timeSec = prefersReducedMotion.matches ? 0 : nowMs * 0.001;
+      const reduced = prefersReducedMotion.matches;
+      const timeSec = reduced ? 0 : nowMs * 0.001;
       const activeTrack = hoverTrackId || pinnedTrackId;
+      const pointerAngle = pointerInside ? Math.atan2(pointerY - originY, pointerX - originX) : 0;
+      const follow = reduced ? 1 : 0.16;
 
       ctx.clearRect(0, 0, width, height);
 
       // Soft bottom-center origin glow
-      const originGlow = ctx.createRadialGradient(originX, originY, 0, originX, originY, maxRadius * 0.55);
-      originGlow.addColorStop(0, 'rgba(143, 166, 255, 0.22)');
+      const glowRadius = Math.max(radiusX, radiusY) * 0.56;
+      const originGlow = ctx.createRadialGradient(originX, originY, 0, originX, originY, glowRadius);
+      originGlow.addColorStop(0, 'rgba(143, 166, 255, 0.24)');
       originGlow.addColorStop(0.55, 'rgba(30, 61, 180, 0.08)');
       originGlow.addColorStop(1, 'rgba(10, 22, 56, 0)');
       ctx.fillStyle = originGlow;
       ctx.beginPath();
-      ctx.arc(originX, originY, maxRadius * 0.55, Math.PI, 0);
+      ctx.arc(originX, originY, glowRadius, Math.PI, 0);
       ctx.fill();
 
       for (const ray of rays) {
         const isHovered = ray === hoveredRay;
         const matchesTrack = activeTrack ? ray.trackId === activeTrack : false;
+        const isLabeledTip = matchesTrack && activePillRays.includes(ray);
         const dimmed = activeTrack && !matchesTrack && !isHovered;
 
+        // Cursor-reactive wave & parting around hovered lines
+        let targetSway = 0;
+        let targetExtend = (isHovered ? 14 : 0) + (matchesTrack ? 12 : 0);
+        let targetEnergy = isHovered ? 1 : 0;
+
+        if (pointerInside) {
+          let dAngle = ray.angle - pointerAngle;
+          if (dAngle > Math.PI) dAngle -= Math.PI * 2;
+          if (dAngle < -Math.PI) dAngle += Math.PI * 2;
+          const angInfluence = Math.exp(-(dAngle * dAngle) / (2 * 0.125 * 0.125));
+          targetSway = dAngle * angInfluence * 0.34;
+          targetExtend += angInfluence * (18 + 20 * ray.radiusFactor);
+          targetEnergy = Math.max(targetEnergy, angInfluence * 0.9);
+        }
+
+        ray.curSway = lerp(ray.curSway, targetSway, follow);
+        ray.curExtend = lerp(ray.curExtend, targetExtend, follow);
+        ray.curEnergy = lerp(ray.curEnergy, targetEnergy, follow);
+
+        const waveAngle = reduced ? 0 : Math.sin(timeSec * 0.85 + ray.pulsePhase) * 0.0045;
+        const waveRadial = reduced ? 0 : Math.sin(timeSec * ray.pulseSpeed + ray.pulsePhase) * 4.5;
+        const liveAngle = ray.angle + ray.curSway + waveAngle;
+        const curRX = radiusX * ray.radiusFactor + ray.curExtend + waveRadial;
+        const curRY = radiusY * ray.radiusFactor + ray.curExtend + waveRadial;
+
+        ray.x = originX + Math.cos(liveAngle) * curRX;
+        ray.y = originY + Math.sin(liveAngle) * curRY;
+
         const shimmer = 0.82 + 0.18 * Math.sin(timeSec * ray.pulseSpeed + ray.pulsePhase);
-        let lineAlpha = ray.baseAlpha * 0.34 * shimmer;
-        let dotAlpha = ray.baseAlpha * shimmer;
+        let lineAlpha = ray.baseAlpha * (0.34 + ray.curEnergy * 0.42) * shimmer;
+        let dotAlpha = clamp(ray.baseAlpha * shimmer + ray.curEnergy * 0.38, 0, 1);
 
         if (dimmed) {
-          lineAlpha *= 0.24;
-          dotAlpha *= 0.25;
+          lineAlpha *= 0.22;
+          dotAlpha *= 0.24;
         } else if (matchesTrack || isHovered) {
-          lineAlpha = isHovered ? 0.85 : 0.55;
+          lineAlpha = isHovered ? 0.9 : 0.6;
           dotAlpha = 1;
         }
 
-        // Subtle ray stem
+        // Gently curved fiber stem when deflected by cursor
+        const midX = (originX + ray.x) * 0.5;
+        const midY = (originY + ray.y) * 0.5;
+        const perpBend = ray.curSway * curRY * 0.32;
+        const ctrlX = midX - Math.sin(liveAngle) * perpBend;
+        const ctrlY = midY + Math.cos(liveAngle) * perpBend;
+
         ctx.beginPath();
         ctx.moveTo(originX, originY);
-        ctx.lineTo(ray.x, ray.y);
-        ctx.lineWidth = isHovered ? 1.45 : matchesTrack ? 1.05 : 0.7;
+        ctx.quadraticCurveTo(ctrlX, ctrlY, ray.x, ray.y);
+        ctx.lineWidth = isHovered ? 1.65 : matchesTrack ? 1.15 : 0.72 + ray.curEnergy * 0.65;
         ctx.strokeStyle =
           isHovered || matchesTrack
             ? hexToRgba(ray.color, lineAlpha)
-            : `rgba(143, 166, 255, ${lineAlpha.toFixed(3)})`;
+            : ray.curEnergy > 0.12
+              ? hexToRgba(ray.color, lineAlpha * ray.curEnergy + 0.12)
+              : `rgba(143, 166, 255, ${lineAlpha.toFixed(3)})`;
         ctx.stroke();
 
-        // Outer halo on active/hovered nodes
-        if (isHovered || matchesTrack) {
+        // Outer halo on hovered / active / energized nodes
+        if (isHovered || matchesTrack || ray.curEnergy > 0.25) {
+          const haloScale = isHovered ? 3.5 : isLabeledTip ? 3.2 : matchesTrack ? 2.2 : 1.9;
           ctx.beginPath();
-          ctx.arc(ray.x, ray.y, isHovered ? ray.dotRadius * 3.4 : ray.dotRadius * 2.1, 0, Math.PI * 2);
-          ctx.fillStyle = hexToRgba(ray.color, isHovered ? 0.34 : 0.18);
+          ctx.arc(ray.x, ray.y, ray.dotRadius * haloScale, 0, Math.PI * 2);
+          ctx.fillStyle = hexToRgba(
+            ray.color,
+            isHovered ? 0.36 : isLabeledTip ? 0.32 : matchesTrack ? 0.2 : 0.22 * ray.curEnergy
+          );
           ctx.fill();
         }
 
         // Terminal node dot
         ctx.beginPath();
-        ctx.arc(ray.x, ray.y, isHovered ? ray.dotRadius * 1.55 : ray.dotRadius, 0, Math.PI * 2);
+        ctx.arc(ray.x, ray.y, isHovered || isLabeledTip ? ray.dotRadius * 1.6 : ray.dotRadius * (1 + ray.curEnergy * 0.35), 0, Math.PI * 2);
         ctx.fillStyle =
-          isHovered || matchesTrack
+          isHovered || matchesTrack || ray.curEnergy > 0.2
             ? hexToRgba(ray.color, dotAlpha)
             : `rgba(243, 245, 251, ${dotAlpha.toFixed(3)})`;
         ctx.fill();
       }
+
+      if (hoveredRay) positionTooltip();
+      if (activePillRays.length) positionTrackPills();
     }
 
     function loop(nowMs) {
@@ -340,24 +533,34 @@
 
     legendButtons.forEach((btn) => {
       const id = btn.dataset.industry;
-      btn.addEventListener('mouseenter', () => {
+      const activateHover = () => {
         hoverTrackId = id || null;
         updateHitTest();
+        syncTrackPillContent();
         updateTooltipAndCursor();
         if (prefersReducedMotion.matches) drawFrame(0);
-      });
-      btn.addEventListener('mouseleave', () => {
-        hoverTrackId = null;
+      };
+      const deactivateHover = () => {
+        if (hoverTrackId === (id || null)) {
+          hoverTrackId = null;
+        }
         updateHitTest();
+        syncTrackPillContent();
         updateTooltipAndCursor();
         if (prefersReducedMotion.matches) drawFrame(0);
-      });
+      };
+
+      btn.addEventListener('mouseenter', activateHover);
+      btn.addEventListener('mouseleave', deactivateHover);
+      btn.addEventListener('focus', activateHover);
+      btn.addEventListener('blur', deactivateHover);
       btn.addEventListener('click', () => {
         pinnedTrackId = pinnedTrackId === id ? null : id || null;
         legendButtons.forEach((b) => {
           b.setAttribute('aria-pressed', b.dataset.industry === pinnedTrackId ? 'true' : 'false');
         });
         updateHitTest();
+        syncTrackPillContent();
         updateTooltipAndCursor();
         if (prefersReducedMotion.matches) drawFrame(0);
       });
@@ -1261,7 +1464,13 @@
       if (scrollOrb) {
         const insideHero = heroRect ? heroRect.bottom > window.innerHeight * 0.45 : false;
         const insideVortex = vortexRect ? vortexRect.bottom > window.innerHeight * 0.45 : false;
-        scrollOrb.classList.toggle('is-hero-hidden', insideHero || insideVortex);
+        const hiddenInHero = insideHero || insideVortex;
+        scrollOrb.classList.toggle('is-hero-hidden', hiddenInHero);
+        if (hiddenInHero && scrollOrb.classList.contains('is-open')) {
+          scrollOrb.classList.remove('is-open');
+          const orbTrigger = document.getElementById('scroll-orb-trigger');
+          if (orbTrigger) orbTrigger.setAttribute('aria-expanded', 'false');
+        }
       }
     }
 
@@ -1330,7 +1539,7 @@
       if (supportsSDA || prefersReducedMotion.matches || window.innerWidth <= 860) return;
       const scrollable = Math.max(1, heroRunway.offsetHeight - window.innerHeight);
       const raw = clamp((window.scrollY - heroRunway.offsetTop) / scrollable, 0, 1);
-      const t = smoothstep(0.04, 0.72, raw);
+      const t = smoothstep(0.04, 0.58, raw);
 
       heroRunway.style.setProperty('--hero-p', t.toFixed(3));
       heroRunway.classList.toggle('is-expanded', t > 0.36);
@@ -1360,6 +1569,7 @@
     let userPausedReel = prefersReducedMotion.matches;
 
     const syncPlayUI = () => {
+      if (heroRunway) heroRunway.classList.toggle('is-paused', userPausedReel);
       if (!reelToggle) return;
       reelToggle.textContent = userPausedReel ? 'Play reel' : 'Pause reel';
       reelToggle.setAttribute(
@@ -2522,10 +2732,155 @@
   }
 
   /* =========================================================================
+     MODULE 7: RIGHT SCROLL-ORB RADIAL MENU & BACK-TO-TOP WIDGET
+     ========================================================================= */
+  function initScrollOrbWidget() {
+    const orb = document.getElementById('scroll-orb');
+    const trigger = document.getElementById('scroll-orb-trigger');
+    const menu = document.getElementById('scroll-orb-nav');
+    const bridge = orb ? orb.querySelector('.scroll-orb__bridge') : null;
+    if (!orb || !trigger || !menu) return;
+
+    const items = Array.from(menu.querySelectorAll('.scroll-orb__item'));
+    const spokes = Array.from(orb.querySelectorAll('.scroll-orb__spoke'));
+    const spokeDots = Array.from(orb.querySelectorAll('.scroll-orb__spoke-dots circle'));
+    const supportsHover = window.matchMedia('(hover: hover)');
+
+    const isOrbOpen = () => orb.classList.contains('is-open');
+    let closeTimer = 0;
+    let lastPointerType = 'mouse';
+
+    function setActiveSpoke(spokeId) {
+      for (const s of spokes) {
+        s.classList.toggle('is-active', spokeId !== null && s.dataset.spoke === spokeId);
+      }
+      for (const d of spokeDots) {
+        d.classList.toggle('is-active', spokeId !== null && d.dataset.spokeDot === spokeId);
+      }
+    }
+
+    function setOpen(nextOpen) {
+      window.clearTimeout(closeTimer);
+      if (isOrbOpen() === nextOpen) return;
+      orb.classList.toggle('is-open', nextOpen);
+      trigger.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+      if (!nextOpen) setActiveSpoke(null);
+    }
+
+    function scheduleClose() {
+      window.clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(() => setOpen(false), 180);
+    }
+
+    const cancelCloseAndOpen = (event) => {
+      if (event.pointerType === 'touch' || !supportsHover.matches) return;
+      if (orb.classList.contains('is-hero-hidden')) return;
+      setOpen(true);
+    };
+
+    [trigger, menu, bridge].forEach((el) => {
+      if (!el) return;
+      el.addEventListener('pointerenter', cancelCloseAndOpen);
+    });
+
+    orb.addEventListener('pointerleave', (event) => {
+      if (event.pointerType === 'touch' || !supportsHover.matches) return;
+      scheduleClose();
+    });
+
+    trigger.addEventListener('pointerdown', (event) => {
+      lastPointerType = event.pointerType || 'mouse';
+    });
+
+    trigger.addEventListener('click', (event) => {
+      const isTouchTap = lastPointerType === 'touch' && event.detail > 0;
+      if (isTouchTap && !isOrbOpen() && !supportsHover.matches) {
+        event.preventDefault();
+        setOpen(true);
+        return;
+      }
+
+      setOpen(false);
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+      });
+    });
+
+    items.forEach((item) => {
+      const spokeId = item.dataset.spoke || null;
+      item.addEventListener('pointerenter', () => setActiveSpoke(spokeId));
+      item.addEventListener('pointerleave', () => setActiveSpoke(null));
+      item.addEventListener('focus', () => {
+        setOpen(true);
+        setActiveSpoke(spokeId);
+      });
+      item.addEventListener('blur', () => setActiveSpoke(null));
+      item.addEventListener('click', (event) => {
+        setOpen(false);
+        if (item.dataset.jumpPortal === 'true') return;
+        const href = item.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      });
+    });
+
+    orb.addEventListener('focusout', (event) => {
+      if (event.relatedTarget && orb.contains(event.relatedTarget)) return;
+      scheduleClose();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isOrbOpen()) {
+        const insideMenu = orb.contains(document.activeElement);
+        setOpen(false);
+        if (insideMenu) trigger.focus();
+      }
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (isOrbOpen() && !orb.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    // Sync active section highlight in the radial menu
+    const sectionPairs = items
+      .map((item) => {
+        const href = item.getAttribute('href');
+        const el = href && href.startsWith('#') ? document.querySelector(href) : null;
+        return el ? { item, el } : null;
+      })
+      .filter(Boolean);
+
+    if (sectionPairs.length && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            for (const pair of sectionPairs) {
+              pair.item.classList.toggle('is-current', pair.el === entry.target);
+            }
+          }
+        },
+        { rootMargin: '-38% 0px -48% 0px', threshold: 0 }
+      );
+      sectionPairs.forEach((pair) => io.observe(pair.el));
+    }
+  }
+
+  /* =========================================================================
      BOOTSTRAP
      ========================================================================= */
   document.addEventListener('DOMContentLoaded', () => {
     initSiteHeaderAndHero();
+    initScrollOrbWidget();
     initAgenticVortex();
     initRadialBurst();
     initPortalRays();

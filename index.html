@@ -14,59 +14,171 @@
 <body>
   <a href="#top" class="skip-link visually-hidden">Skip to main content</a>
 
-  <!-- Fixed Right Circular Scroll Progress Indicator -->
-  <aside class="scroll-orb" aria-hidden="true">
-    <svg class="scroll-orb__svg" viewBox="0 0 88 88" width="88" height="88">
-      <circle
-        cx="44"
-        cy="44"
-        r="41"
-        fill="rgba(12, 13, 17, 0.72)"
-      />
-      <circle
-        class="scroll-orb__dots"
-        cx="44"
-        cy="44"
-        r="38"
-        fill="none"
-        stroke="rgba(255, 255, 255, 0.34)"
-        stroke-width="1.75"
-        stroke-dasharray="1.5 4.2"
-        stroke-linecap="round"
-      />
-      <circle
-        cx="44"
-        cy="44"
-        r="30"
-        fill="rgba(12, 13, 17, 0.94)"
-        stroke="rgba(255, 255, 255, 0.14)"
-        stroke-width="1"
-      />
-      <circle
-        id="orb-progress-arc"
-        class="scroll-orb__arc"
-        cx="44"
-        cy="44"
-        r="38"
-        fill="none"
-        stroke="#e11d48"
-        stroke-width="2"
-        stroke-linecap="round"
-        transform="rotate(-90 44 44)"
-      />
-      <path
-        d="M 28 28 A 22 22 0 0 1 63 36"
-        fill="none"
-        stroke="#e11d48"
-        stroke-width="2.1"
-        stroke-linecap="round"
-      />
-      <g id="orb-dot-group">
-        <circle cx="44" cy="6" r="3.2" fill="#e11d48" />
-        <circle cx="44" cy="6" r="6" fill="rgba(225, 29, 72, 0.28)" />
+  <!-- Fixed Right Circular Scroll Progress & Radial Quick Navigation -->
+  <aside class="scroll-orb" id="scroll-orb" aria-label="Quick navigation and scroll to top">
+    <div class="scroll-orb__bridge" aria-hidden="true"></div>
+
+    <svg
+      class="scroll-orb__spokes"
+      viewBox="-260 -190 296 380"
+      width="296"
+      height="380"
+      aria-hidden="true"
+    >
+      <line class="scroll-orb__spoke" data-spoke="0" x1="-14" y1="-35" x2="-51" y2="-150" />
+      <line class="scroll-orb__spoke" data-spoke="1" x1="-26" y1="-27" x2="-94" y2="-117" />
+      <line class="scroll-orb__spoke" data-spoke="2" x1="-35" y1="-15" x2="-125" y2="-63" />
+      <line class="scroll-orb__spoke" data-spoke="3" x1="-38" y1="0" x2="-136" y2="0" />
+      <line class="scroll-orb__spoke" data-spoke="4" x1="-35" y1="15" x2="-125" y2="63" />
+      <line class="scroll-orb__spoke" data-spoke="5" x1="-26" y1="27" x2="-94" y2="117" />
+      <line class="scroll-orb__spoke" data-spoke="6" x1="-14" y1="35" x2="-51" y2="150" />
+      <g class="scroll-orb__spoke-dots">
+        <circle data-spoke-dot="0" cx="-51" cy="-150" r="2.6" />
+        <circle data-spoke-dot="1" cx="-94" cy="-117" r="2.6" />
+        <circle data-spoke-dot="2" cx="-125" cy="-63" r="2.6" />
+        <circle data-spoke-dot="3" cx="-136" cy="0" r="2.6" />
+        <circle data-spoke-dot="4" cx="-125" cy="63" r="2.6" />
+        <circle data-spoke-dot="5" cx="-94" cy="117" r="2.6" />
+        <circle data-spoke-dot="6" cx="-51" cy="150" r="2.6" />
       </g>
     </svg>
-    <span class="scroll-orb__label">ORL</span>
+
+    <nav id="scroll-orb-nav" class="scroll-orb__menu" aria-label="Quick section jump">
+      <a href="#top" class="scroll-orb__item" data-spoke="0" style="--orb-x:-51px; --orb-y:-150px; --orb-i:0;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="2.5" width="4.5" height="4.5" rx="1" />
+            <rect x="9" y="2.5" width="4.5" height="4.5" rx="1" />
+            <rect x="2.5" y="9" width="4.5" height="4.5" rx="1" />
+            <rect x="9" y="9" width="4.5" height="4.5" rx="1" />
+          </svg>
+        </span>
+        <span>Overview</span>
+      </a>
+      <a href="#inbound-outbound" class="scroll-orb__item" data-spoke="1" style="--orb-x:-94px; --orb-y:-117px; --orb-i:1;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 5.5L8 2.5l5.5 3L8 8.5 2.5 5.5z" />
+            <path d="M2.5 10.5L8 13.5l5.5-3" />
+          </svg>
+        </span>
+        <span>Engines</span>
+      </a>
+      <a href="#vortex-top" class="scroll-orb__item" data-spoke="2" style="--orb-x:-125px; --orb-y:-63px; --orb-i:2;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="8" cy="8" r="2.2" />
+            <circle cx="8" cy="8" r="5.5" stroke-dasharray="2.5 2.5" />
+          </svg>
+        </span>
+        <span>Sophia</span>
+      </a>
+      <a href="#data" class="scroll-orb__item" data-spoke="3" style="--orb-x:-136px; --orb-y:0px; --orb-i:3;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="8" cy="4.2" rx="5" ry="2" />
+            <path d="M3 4.2v7.6c0 1.1 2.2 2 5 2s5-.9 5-2V4.2" />
+            <path d="M3 8c0 1.1 2.2 2 5 2s5-.9 5-2" />
+          </svg>
+        </span>
+        <span>Data</span>
+      </a>
+      <a href="#engage" class="scroll-orb__item" data-spoke="4" style="--orb-x:-125px; --orb-y:63px; --orb-i:4;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 11.5l3.5-3.5 2.5 2.5 5-5" />
+            <path d="M10.5 5.5h3v3" />
+          </svg>
+        </span>
+        <span>How we work</span>
+      </a>
+      <a href="#pricing" class="scroll-orb__item" data-spoke="5" style="--orb-x:-94px; --orb-y:117px; --orb-i:5;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.2" y="3.5" width="11.6" height="9" rx="1.8" />
+            <path d="M2.5 6.8h11" />
+          </svg>
+        </span>
+        <span>Pricing</span>
+      </a>
+      <a href="#campaign-form-wrap" class="scroll-orb__item" data-spoke="6" data-jump-portal="true" style="--orb-x:-51px; --orb-y:150px; --orb-i:6;">
+        <span class="scroll-orb__item-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="3.5" width="11" height="10" rx="1.6" />
+            <path d="M5.5 2v2.5M10.5 2v2.5M2.5 6.8h11" />
+          </svg>
+        </span>
+        <span>Book a call</span>
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      class="scroll-orb__trigger"
+      id="scroll-orb-trigger"
+      aria-label="Scroll back to top"
+      aria-expanded="false"
+      aria-controls="scroll-orb-nav"
+      title="Back to top"
+    >
+      <svg class="scroll-orb__svg" viewBox="0 0 88 88" width="88" height="88" aria-hidden="true">
+        <circle
+          cx="44"
+          cy="44"
+          r="41"
+          fill="rgba(12, 13, 17, 0.72)"
+        />
+        <circle
+          class="scroll-orb__dots"
+          cx="44"
+          cy="44"
+          r="38"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.34)"
+          stroke-width="1.75"
+          stroke-dasharray="1.5 4.2"
+          stroke-linecap="round"
+        />
+        <circle
+          cx="44"
+          cy="44"
+          r="30"
+          fill="rgba(12, 13, 17, 0.94)"
+          stroke="rgba(255, 255, 255, 0.14)"
+          stroke-width="1"
+        />
+        <circle
+          id="orb-progress-arc"
+          class="scroll-orb__arc"
+          cx="44"
+          cy="44"
+          r="38"
+          fill="none"
+          stroke="#e11d48"
+          stroke-width="2"
+          stroke-linecap="round"
+          transform="rotate(-90 44 44)"
+        />
+        <path
+          d="M 28 28 A 22 22 0 0 1 63 36"
+          fill="none"
+          stroke="#e11d48"
+          stroke-width="2.1"
+          stroke-linecap="round"
+        />
+        <g id="orb-dot-group">
+          <circle cx="44" cy="6" r="3.2" fill="#e11d48" />
+          <circle cx="44" cy="6" r="6" fill="rgba(225, 29, 72, 0.28)" />
+        </g>
+      </svg>
+      <span class="scroll-orb__label" aria-hidden="true">ORL</span>
+      <span class="scroll-orb__top-icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 15V5" />
+          <path d="M5 9.5L10 4.5l5 5" />
+        </svg>
+      </span>
+    </button>
   </aside>
 
   <header class="site-header" id="site-header">
@@ -221,6 +333,70 @@
                 <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
+          </div>
+
+          <div class="hero-partners" aria-label="Integrated channels and GTM ecosystem">
+            <span class="hero-partners__label">Integrated with:</span>
+            <ul class="hero-partners__list" role="list">
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="currentColor" aria-hidden="true">
+                  <rect x="2" y="2" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="6.2" cy="6.4" r="1" />
+                  <path d="M5.4 8.5h1.6v4.6H5.4zM8.5 8.5H10v.7c.3-.5.9-.8 1.6-.8 1.3 0 2 .9 2 2.4v2.3H12v-2.1c0-.8-.3-1.2-.9-1.2s-1 .4-1 1.2v2.1H8.5z" />
+                </svg>
+                <span>LinkedIn</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.5 9.2c0 3.2-2.2 5.4-5.4 5.4a5.5 5.5 0 1 1 3.7-9.6" />
+                  <path d="M9.5 9.2h5" />
+                </svg>
+                <span>Google Ads</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2.2 10.6c0-2.7 1.7-5 3.6-5 1.4 0 2.3 1.1 3.2 2.9.9-1.8 1.8-2.9 3.2-2.9 1.9 0 3.6 2.3 3.6 5 0 1.9-1 2.9-2.2 2.9-1.3 0-2.2-1-3.3-2.9L9 8.6l-1.3 2C6.6 12.5 5.7 13.5 4.4 13.5c-1.2 0-2.2-1-2.2-2.9z" />
+                </svg>
+                <span>Meta</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                  <circle cx="9.8" cy="9.5" r="3" />
+                  <circle cx="9.8" cy="3.6" r="1.3" />
+                  <circle cx="14.6" cy="12.2" r="1.3" />
+                  <circle cx="4.4" cy="6.4" r="1.2" />
+                  <path d="M9.8 5v1.5M12.4 11l1.1.7M7.2 8L5.4 7" />
+                </svg>
+                <span>HubSpot</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5.2 13.4h7.8a2.7 2.7 0 0 0 .3-5.4A3.7 3.7 0 0 0 6.2 7a3.1 3.1 0 0 0-1 6.4z" />
+                </svg>
+                <span>Salesforce</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3.2 14.8l1-3.1a5.8 5.8 0 1 1 2.2 2.1l-3.2 1z" />
+                  <path d="M7.2 6.8c.2 1.6 2.1 3.5 3.7 3.7" />
+                </svg>
+                <span>WhatsApp</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2.4" y="4" width="13.2" height="10" rx="1.8" />
+                  <path d="M3 5l6 4.4L15 5" />
+                </svg>
+                <span>Outlook</span>
+              </li>
+              <li class="hero-partner">
+                <svg viewBox="0 0 18 18" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 2.6l5.4 12.6h-2.1l-1.2-3H6.9l-1.2 3H3.6L9 2.6z" />
+                  <path d="M7.6 9.8h2.8" />
+                </svg>
+                <span>Apollo</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1085,6 +1261,7 @@
         <!-- Center Interactive Radial Fiber Canvas -->
         <div class="radial-stage" id="radial-stage">
           <canvas id="radial-canvas" aria-label="Interactive network of Sophia's 10 AI agents and live buying signals"></canvas>
+          <div id="radial-track-pills" class="radial-track-pills" aria-hidden="true"></div>
           <div id="radial-crosshair" class="radial-crosshair" aria-hidden="true"></div>
           <div id="radial-tooltip" class="radial-tooltip" role="status" aria-live="polite" hidden></div>
         </div>
