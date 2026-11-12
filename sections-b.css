@@ -1591,10 +1591,9 @@
 }
 
 /* =========================================================================
-   PORTAL MODAL LINK BUTTONS (Footer & Guarantee triggers in #choreo-runway)
+   PORTAL MODAL LINK BUTTONS (Guarantee trigger in #choreo-runway)
    ========================================================================= */
-.prefer-talk .portal-link-btn,
-.portal-footer__links .portal-link-btn {
+.prefer-talk .portal-link-btn {
   appearance: none;
   background: transparent;
   border: 0;
@@ -1609,9 +1608,6 @@
   gap: 0.35em;
   text-decoration: none;
   transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-.prefer-talk .portal-link-btn {
   color: #1e3db4;
   font-weight: 600;
 }
@@ -1622,15 +1618,7 @@
   text-underline-offset: 3px;
 }
 
-.portal-footer__links .portal-link-btn {
-  color: inherit;
-}
-
-.portal-footer__links .portal-link-btn:hover {
-  color: #0a1638;
-}
-
-:is(.prefer-talk, .portal-footer__links) .portal-link-btn:focus-visible {
+.prefer-talk .portal-link-btn:focus-visible {
   outline: 3px solid #1e3db4;
   outline-offset: 3px;
   border-radius: 4px;

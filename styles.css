@@ -2289,15 +2289,23 @@ body {
   height: 100%;
   background: transparent;
   color: var(--navy);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   display: grid;
   justify-items: center;
-  align-content: safe center;
+  align-content: center;
   padding:
-    calc(var(--header-h, 63px) + clamp(10px, 2vh, 22px))
+    calc(var(--header-h, 74px) + clamp(8px, 1.4vh, 18px))
     clamp(16px, 3vw, 28px)
-    max(16px, env(safe-area-inset-bottom, 0px));
+    clamp(14px, 2.2vh, 26px);
+}
+
+@media (max-width: 640px), (max-height: 639px) {
+  .white-portal__card {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    align-content: safe center;
+    padding-bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .portal-rays-canvas {
@@ -2315,19 +2323,38 @@ body {
   width: 100%;
   max-width: 660px;
   margin: 0;
-  padding: 0;
+  padding: clamp(18px, 2.4vh, 26px) clamp(20px, 3vw, 32px);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 24px 60px rgba(10, 22, 56, 0.08),
+    0 4px 16px rgba(30, 61, 180, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
   will-change: transform, opacity;
+}
+
+.campaign-form-wrap::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 3px;
+  background: linear-gradient(90deg, var(--brand-inbound) 0%, var(--brand-outbound) 55%, var(--outbound-accent) 100%);
 }
 
 .campaign-form-header {
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: clamp(10px, 1.5vh, 14px);
 }
 
 .campaign-title {
-  margin: 0 0 6px;
-  font-size: clamp(1.65rem, 2.9vw, 2.35rem);
-  font-weight: 300;
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.025em;
   color: var(--navy);
@@ -2336,15 +2363,15 @@ body {
 .campaign-subtitle {
   margin: 0 auto;
   max-width: 540px;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 12.5px;
+  line-height: 1.45;
   color: var(--text-muted);
 }
 
 .campaign-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(7px, 1vh, 10px);
 }
 
 .form-section-head {
@@ -2352,16 +2379,16 @@ body {
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  padding-bottom: 4px;
+  padding-bottom: 3px;
   border-bottom: 1px solid var(--border-light);
 }
 
 .form-section-head--spaced {
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .form-section-head__title {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--navy);
@@ -2379,7 +2406,7 @@ body {
 .form-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 22px;
+  gap: 8px 14px;
 }
 
 .form-grid-2--selects {
@@ -2389,28 +2416,37 @@ body {
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .form-field input,
 .form-field textarea,
 .form-field select {
   font: inherit;
-  font-size: max(1rem, 15px);
+  font-size: 14px;
   color: var(--navy);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--border-input);
-  border-radius: 0;
-  padding: 7px 2px;
-  min-height: 44px;
+  background: var(--surface-alt);
+  border: 1px solid #7584a8;
+  border-radius: 10px;
+  padding: 6px 12px;
+  min-height: 40px;
   width: 100%;
-  transition: border-color 160ms ease, background-color 160ms ease;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
 }
 
 .form-field textarea {
   resize: vertical;
-  min-height: 48px;
+  min-height: 40px;
+  padding-block: 8px;
+}
+
+@media (pointer: coarse) {
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    font-size: 1rem;
+    min-height: 44px;
+  }
 }
 
 .form-field input::placeholder,
@@ -2422,9 +2458,11 @@ body {
 .form-field input:focus-visible,
 .form-field textarea:focus-visible,
 .form-field select:focus-visible {
-  outline: 3px solid var(--brand-outbound);
-  outline-offset: 2px;
-  border-bottom-color: var(--brand-outbound);
+  outline: 2px solid var(--brand-outbound);
+  outline-offset: 1px;
+  background: var(--surface);
+  border-color: var(--brand-outbound);
+  box-shadow: 0 0 0 3px rgba(30, 61, 180, 0.12);
 }
 
 .select-label {
@@ -2441,17 +2479,17 @@ body {
 
 .select-wrap select {
   appearance: none;
-  padding-right: 26px;
+  padding-right: 30px;
   cursor: pointer;
 }
 
 .select-chevron {
   position: absolute;
-  right: 4px;
+  right: 11px;
   top: 50%;
   transform: translateY(-60%);
   color: var(--brand-outbound);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1;
   pointer-events: none;
 }
@@ -2459,14 +2497,14 @@ body {
 /* Post-interaction validation (:user-invalid + JS fallback) */
 .field-error {
   display: none;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #b91c1c;
   margin-top: 2px;
 }
 
 .form-field :is(input, textarea, select):is(:user-invalid, .user-invalid-fallback) {
-  border-bottom-color: #b91c1c;
-  background-color: rgba(185, 28, 28, 0.04);
+  border-color: #b91c1c;
+  background-color: rgba(185, 28, 28, 0.05);
 }
 
 .form-field :is(input, textarea, select):is(:user-invalid, .user-invalid-fallback) + .field-error,
@@ -2475,40 +2513,41 @@ body {
 }
 
 .form-field :is(input, textarea, select):is(:user-valid, .user-valid-fallback) {
-  border-bottom-color: var(--accent-verified);
+  border-color: var(--accent-verified);
+  background: var(--surface);
 }
 
 .review-callout {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  border-left: 2px solid var(--brand-outbound);
-  border-bottom: 1px solid var(--border-soft);
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--brand-outbound);
   background: var(--surface-outbound);
 }
 
 .review-callout__icon {
   color: var(--brand-outbound);
   display: inline-flex;
-  margin-top: 1px;
   flex-shrink: 0;
 }
 
 .review-callout p {
   margin: 0;
-  font-size: 12.5px;
-  line-height: 1.42;
+  font-size: 12px;
+  line-height: 1.4;
   color: var(--text-muted-3);
 }
 
 .consent-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 44px;
+  gap: 9px;
+  min-height: 36px;
   cursor: pointer;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text-muted-3);
 }
 
@@ -2533,29 +2572,34 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px 20px;
-  margin-top: 4px;
+  justify-content: space-between;
+  gap: 10px 18px;
+  margin-top: 2px;
 }
 
 .submit-btn {
   appearance: none;
   border: 0;
-  background: var(--brand-outbound);
+  border-radius: 999px;
+  background: var(--navy);
   color: var(--on-dark);
   font: inherit;
   font-size: 13.5px;
-  font-weight: 600;
-  padding: 12px 20px;
-  min-height: 46px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 10px 22px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  transition: background-color 160ms ease, transform 160ms ease;
+  box-shadow: 0 8px 20px rgba(10, 22, 56, 0.16);
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .submit-btn:hover {
-  background: var(--brand-outbound-hover);
+  background: var(--brand-outbound);
+  box-shadow: 0 12px 26px rgba(30, 61, 180, 0.28);
 }
 
 .submit-btn:active {
@@ -2597,7 +2641,7 @@ body {
 .prefer-talk {
   margin: 0;
   width: 100%;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text-muted);
 }
 
@@ -2615,48 +2659,19 @@ body {
   text-decoration: underline;
 }
 
-.prefer-talk a:focus-visible,
-.portal-footer__links a:focus-visible {
+.prefer-talk a:focus-visible {
   outline: 3px solid var(--brand-outbound);
   outline-offset: 2px;
 }
 
 .form-status-banner {
-  padding: 12px 14px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
   background: #ecfdf5;
   border: 1px solid var(--accent-verified);
   color: #065f46;
   font-size: 13px;
   font-weight: 500;
-}
-
-.portal-footer {
-  margin-top: 14px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border-light);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 18px;
-  font-size: 11.5px;
-  color: var(--text-muted);
-}
-
-.portal-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.portal-footer__links a {
-  color: var(--text-muted-3);
-  text-decoration: none;
-}
-
-.portal-footer__links a:hover {
-  color: var(--brand-outbound);
 }
 
 /* --- LAYER C: FLYING 3D CARDS --- */
@@ -2914,6 +2929,11 @@ body {
 }
 
 @media (max-width: 640px) {
+  .campaign-form-wrap {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
   .form-grid-2 {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -3308,6 +3328,8 @@ body {
   .vortex-dock,
   .vortex-motion-toggle,
   .tunnel-card,
+  .campaign-form-wrap,
+  .form-field :is(input, textarea, select),
   .hero-cta-pill,
   .submit-btn,
   .review-callout,
