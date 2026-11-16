@@ -35,7 +35,7 @@
   --accent-verified: #10b981;
 
   /* Editorial Typography Matching Existing Site */
-  --font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Accessible interactive border tokens (>= 3:1 contrast) */

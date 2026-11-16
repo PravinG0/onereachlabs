@@ -26,8 +26,8 @@
   --border-input: #c9d2ea;
   --accent-verified: #10b981;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: var(--font-sans);
-  --font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
 
   /* Legacy aliases mapped to OneReach Labs tokens */
   --bg-obsidian: var(--navy);
@@ -51,7 +51,7 @@
 html {
   background: var(--navy);
   color: var(--on-dark);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -63,11 +63,46 @@ html {
   }
 }
 
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
 body {
   margin: 0;
   background: var(--navy);
   color: var(--on-dark);
   overflow-x: clip;
+}
+
+/* All headings and display titles use Space Grotesk */
+h1, h2, h3, h4, h5, h6,
+.hero-headline,
+.vortex-display,
+.tunnel-display,
+.tunnel-card__title,
+.curtain-title,
+.serve-title,
+.campaign-title,
+.site-footer__headline,
+.site-footer__col-title,
+.orl-practices-h2,
+.orl-practice-title,
+.orl-data-heading,
+.orl-data-title,
+.orl-title,
+.orl-subheading,
+.orl-who-title,
+.orl-merged-title,
+.orl-dialog-title,
+.orl-plan-title,
+.orl-heading,
+[class*="display"] {
+  font-family: var(--font-display);
 }
 
 :focus-visible {
@@ -2612,6 +2647,7 @@ body {
 .serve-title {
   margin: 0 auto;
   max-width: 780px;
+  font-family: var(--font-display);
   font-size: clamp(2rem, 3.2vw, 3.1rem);
   font-weight: 300;
   line-height: 1.14;
@@ -3849,7 +3885,7 @@ body {
 
 .site-footer__col-title {
   margin: 0 0 12px;
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;

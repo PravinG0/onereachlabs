@@ -34,8 +34,8 @@
   --orl-accent-verified: var(--accent-verified, #10b981);
   --orl-hairline-dark: rgba(143, 166, 255, 0.18);
   --orl-hairline-light: rgba(10, 22, 56, 0.1);
-  --orl-font-display: var(--font-display, "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif);
-  --orl-font-body: var(--font-sans, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  --orl-font-display: var(--font-display, "Space Grotesk", sans-serif);
+  --orl-font-body: var(--font-body, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
 
   position: relative;
   padding-block: clamp(4.5rem, 8.5vw, 7rem);
@@ -337,7 +337,7 @@
 
 .orl-dark-tag {
   display: block;
-  font-family: monospace, sans-serif;
+  font-family: var(--orl-font-body);
   font-size: 0.8125rem;
   letter-spacing: 0.08em;
   color: var(--orl-brand-inbound, #f08a2e);
