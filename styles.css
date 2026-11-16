@@ -742,17 +742,14 @@ body {
   position: relative;
 }
 
-.site-header.is-wide .dropdown-list[popover] {
-  position: fixed;
-  position-anchor: --services-trigger;
-  position-area: block-end span-inline-end;
-  position-try-fallbacks: flip-block, flip-inline;
-  inset: auto;
+.site-header.is-wide .dropdown-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
   height: auto;
   inline-size: max-content;
   min-inline-size: 13.5rem;
   margin: 0;
-  margin-block-start: 0.5rem;
   padding: 0.45rem;
   border-radius: 14px;
   border: 1px solid var(--border-light);
@@ -761,14 +758,8 @@ body {
   color: var(--navy);
   box-shadow: 0 20px 44px rgba(10, 22, 56, 0.14);
   overflow: visible;
-  z-index: 9999;
-}
-
-@supports not (position-area: block-end) {
-  .site-header.is-wide .dropdown-list[popover] {
-    position: fixed;
-    margin: 0;
-  }
+  z-index: 1000;
+  display: none;
 }
 
 .site-header.is-wide .dropdown-list::before {
@@ -776,13 +767,12 @@ body {
   position: absolute;
   inset-inline: 0;
   inset-block-end: 100%;
-  block-size: 0.5rem;
+  block-size: 14px;
 }
 
-.site-header.is-wide .dropdown-list:not(:is(:popover-open, .\:popover-open)) {
-  display: none;
-}
-
+.site-header.is-wide .nav-dropdown:hover .dropdown-list,
+.site-header.is-wide .nav-dropdown:focus-within .dropdown-list,
+.site-header.is-wide .nav-dropdown.is-open .dropdown-list,
 .site-header.is-wide .dropdown-list:is(:popover-open, .\:popover-open) {
   display: grid;
   gap: 0.15rem;
@@ -867,7 +857,7 @@ body {
 
 .site-header.is-dark .menu-button,
 .site-header.is-dark .site-menu,
-.site-header.is-dark.is-wide .dropdown-list[popover] {
+.site-header.is-dark.is-wide .dropdown-list {
   background: var(--navy-800);
   color: var(--on-dark);
   border-color: var(--border-dark);
