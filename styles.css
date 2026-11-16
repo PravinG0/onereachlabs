@@ -813,6 +813,11 @@ h1, h2, h3, h4, h5, h6,
   gap: 0.15rem;
 }
 
+.site-header.is-wide .nav-dropdown--right .dropdown-list {
+  left: auto;
+  right: 0;
+}
+
 .site-header :where(a, button):focus-visible {
   outline: 3px solid var(--brand-outbound);
   outline-offset: 2px;

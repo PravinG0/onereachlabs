@@ -265,401 +265,318 @@
    SECTION #inbound-outbound (Sticky Horizontal Capability Showcase)
    ========================================================================= */
 /* =========================================================================
-   DARK EDITORIAL ACCORDION SHOWCASE (#inbound-outbound)
-   Design Reference: Deep black aesthetic, bracket tags, large uppercase title,
-   and clean interactive accordion rows with tactical lime-green CTA buttons.
+   STICKY SCROLLABLE PRACTICES SECTION (#inbound-outbound)
+   Design Reference: AARK Innovations Consulting Practices Deck
+   Split 2-Column: Left Side Content, Right Side Generated Telemetry Image
+   Brand-aligned OneReach Labs theme: Deep Navy (#0a1638), Navy-800 (#0f1d47),
+   Outbound Cobalt (#1e3db4, #8fa6ff) and Vibrant Amber (#f08a2e).
    ========================================================================= */
-#inbound-outbound.orl-dark-services {
+#inbound-outbound.orl-practices-section {
   position: relative;
-  background: var(--orl-navy, #0a1638) !important;
+  background: var(--navy, #0a1638) !important;
   background-image:
     radial-gradient(rgba(143, 166, 255, 0.14) 1px, transparent 1px),
     radial-gradient(rgba(240, 138, 46, 0.06) 1.5px, transparent 1.5px) !important;
   background-size: 32px 32px, 80px 80px !important;
   background-position: 0 0, 16px 16px !important;
-  color: var(--orl-on-dark, #ffffff);
-  padding-block: clamp(4.5rem, 7.5vw, 7rem);
+  border-block: 1px solid rgba(143, 166, 255, 0.16);
+  color: var(--on-dark, #ffffff);
+  padding-block: clamp(4.5rem, 7vw, 7rem);
   padding-inline: clamp(1rem, 3.5vw, 2.5rem);
-  overflow: hidden;
+  overflow-x: clip;
 }
 
-.orl-dark-category {
-  text-align: center;
-  font-family: var(--orl-font-display, monospace, sans-serif);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--orl-outbound-accent, #8fa6ff);
-  text-transform: uppercase;
-  margin-block-end: clamp(1.5rem, 3vw, 2.75rem);
-}
-
-.orl-dark-container {
+.orl-practices-container {
   max-inline-size: 78rem;
   margin-inline: auto;
-  background: var(--orl-navy-800, #0f1d47);
-  border: 1px solid rgba(143, 166, 255, 0.2);
-  border-radius: clamp(1.25rem, 2.5vw, 1.875rem);
-  padding-block: clamp(2.5rem, 4.5vw, 4.5rem);
-  padding-inline: clamp(1.25rem, 3.5vw, 3rem);
-  box-shadow: 0 30px 90px rgba(10, 22, 56, 0.65), 0 0 0 1px rgba(143, 166, 255, 0.08) inset;
-  position: relative;
 }
 
-.orl-dark-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  padding-inline: clamp(1.25rem, 2.5vw, 2.25rem);
-  margin-block-end: clamp(2.5rem, 4vw, 4rem);
+/* Centered Section Header */
+.orl-practices-head {
+  text-align: center;
+  max-inline-size: 48rem;
+  margin-inline: auto;
+  margin-block-end: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.orl-dark-head__left {
-  display: flex;
-  flex-direction: column;
-}
-
-.orl-dark-sub {
-  margin: 0;
-  font-family: var(--orl-font-body, -apple-system, sans-serif);
-  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.15rem);
-  color: var(--orl-on-dark-muted, #c9d2ea);
-  max-inline-size: 32rem;
-  line-height: 1.55;
-}
-
-.orl-dark-head__right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.orl-dark-tag {
-  display: block;
-  font-family: var(--orl-font-body);
+.orl-practices-eyebrow {
+  display: inline-block;
+  font-family: monospace, sans-serif;
   font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  color: var(--orl-brand-inbound, #f08a2e);
-  text-align: end;
-  margin-block-end: 0.5rem;
   font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--outbound-accent, #8fa6ff);
+  margin-block-end: 0.75rem;
 }
 
-.orl-dark-title {
-  margin: 0;
-  font-family: var(--orl-font-display, "Space Grotesk", -apple-system, sans-serif);
-  font-size: clamp(2.5rem, 1.6rem + 3.8vw, 4.75rem);
+.orl-practices-h2 {
+  font-family: var(--orl-font-display, "Space Grotesk", sans-serif);
+  font-size: clamp(2rem, 1.6rem + 2vw, 3.25rem);
   font-weight: 800;
+  color: #ffffff;
   letter-spacing: -0.03em;
-  line-height: 0.95;
-  text-transform: uppercase;
-  color: #ffffff;
-  text-align: end;
+  line-height: 1.15;
+  margin: 0 0 1rem;
 }
 
-/* =========================================================================
-   ACCORDION MATRIX
-   ========================================================================= */
-.orl-dark-matrix {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.orl-dark-row {
-  position: relative;
-  border-block-start: 1px solid rgba(143, 166, 255, 0.16);
-  outline: none;
-  cursor: pointer;
-  padding-inline: clamp(1.25rem, 2.5vw, 2.25rem);
-  border-radius: 14px;
-  transition: background 200ms ease, border-color 200ms ease;
-}
-
-.orl-dark-row:last-child {
-  border-block-end: 1px solid rgba(143, 166, 255, 0.16);
-}
-
-.orl-dark-row:hover {
-  background: rgba(143, 166, 255, 0.06);
-}
-
-.orl-dark-row.is-active {
-  background: rgba(143, 166, 255, 0.04);
-}
-
-.orl-dark-row:focus-visible {
-  outline: 2px solid var(--orl-brand-inbound, #f08a2e);
-  outline-offset: -2px;
-}
-
-.orl-dark-row__bar {
-  display: grid;
-  grid-template-columns: 130px minmax(220px, 300px) 1fr 48px;
-  align-items: flex-start;
-  gap: clamp(1.25rem, 2.5vw, 3rem);
-  padding-block: clamp(1.35rem, 2.2vw, 2.25rem);
-  transition: padding 260ms ease;
-}
-
-/* Col 1: Number & Active Subtext */
-.orl-dark-col-num {
-  display: flex;
-  flex-direction: column;
-}
-
-.orl-num-text {
-  font-family: var(--orl-font-display, "Space Grotesk", sans-serif);
-  font-size: clamp(1.5rem, 1.25rem + 0.6vw, 2rem);
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.1;
-  display: block;
-}
-
-.orl-num-sub {
-  display: none;
+.orl-practices-lead {
   font-family: var(--orl-font-body, -apple-system, sans-serif);
-  font-size: 0.75rem;
-  color: var(--orl-on-dark-muted-2, #b4c0e0);
-  line-height: 1.35;
-  margin-block-start: 0.85rem;
-  max-inline-size: 8rem;
-}
-
-.orl-dark-row.is-active .orl-num-sub {
-  display: block;
-}
-
-/* Col 2: Title & Corner-bracket Button */
-.orl-dark-col-title {
-  display: flex;
-  flex-direction: column;
-}
-
-.orl-title-text {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  color: var(--on-dark-muted, #c9d2ea);
+  line-height: 1.6;
   margin: 0;
-  font-family: var(--orl-font-display, "Space Grotesk", sans-serif);
-  font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.85rem);
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  line-height: 1.18;
-  text-transform: uppercase;
-  transition: color 180ms ease;
 }
 
-.orl-dark-row:hover .orl-title-text {
-  color: #ffffff;
-}
-
-/* Tactical Corner-Bracket Button */
-.orl-corner-btn-wrap {
-  display: none;
-  position: relative;
-  padding: 4px;
-  margin-block-start: 1.75rem;
-  inline-size: fit-content;
-}
-
-.orl-dark-row.is-active .orl-corner-btn-wrap {
-  display: inline-block;
-}
-
-.orl-lime-btn {
-  display: inline-block;
-  background: var(--orl-brand-inbound, #f08a2e);
-  color: var(--orl-navy, #0a1638);
-  font-family: var(--orl-font-body, -apple-system, sans-serif);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 0.65rem 1.35rem;
-  border-radius: 2px;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-}
-
-.orl-lime-btn:hover {
-  background: #ff9838;
-  transform: scale(1.02);
-  box-shadow: 0 0 25px rgba(240, 138, 46, 0.45);
-  color: var(--orl-navy, #0a1638);
-}
-
-.orl-cb-corner {
-  position: absolute;
-  inline-size: 8px;
-  block-size: 8px;
-  border-color: var(--orl-brand-inbound, #f08a2e);
-  border-style: solid;
-  border-width: 0;
-  pointer-events: none;
-}
-
-.orl-cb-tl {
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  border-block-start-width: 1.5px;
-  border-inline-start-width: 1.5px;
-}
-
-.orl-cb-tr {
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  border-block-start-width: 1.5px;
-  border-inline-end-width: 1.5px;
-}
-
-.orl-cb-bl {
-  inset-block-end: 0;
-  inset-inline-start: 0;
-  border-block-end-width: 1.5px;
-  border-inline-start-width: 1.5px;
-}
-
-.orl-cb-br {
-  inset-block-end: 0;
-  inset-inline-end: 0;
-  border-block-end-width: 1.5px;
-  border-inline-end-width: 1.5px;
-}
-
-/* Col 3: Description & Impact Callout */
-.orl-dark-col-desc {
-  display: none;
+/* Stacking Container */
+.orl-practices-stack {
+  display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  max-inline-size: 38rem;
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+  padding-block-end: 2rem;
+  position: relative;
 }
 
-.orl-dark-row.is-active .orl-dark-col-desc {
-  display: flex;
-}
-
-.orl-dark-col-desc p {
-  margin: 0;
-  font-family: var(--orl-font-body, -apple-system, sans-serif);
-  font-size: clamp(0.875rem, 0.82rem + 0.2vw, 0.965rem);
-  line-height: 1.55;
-  color: var(--orl-on-dark-muted, #c9d2ea);
-}
-
-.orl-desc-headline {
-  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem) !important;
-  font-weight: 500;
-  color: #ffffff !important;
-  line-height: 1.5 !important;
-}
-
-.orl-desc-detail {
-  font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem) !important;
-  font-weight: 400;
-  color: var(--orl-on-dark-muted, #b4c0e0) !important;
-  line-height: 1.65 !important;
-}
-
-.orl-dark-impact {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  background: rgba(143, 166, 255, 0.08);
+/* Sticky Stacking Cards in OneReach Deep Navy Container */
+.orl-practice-card {
+  position: sticky;
+  border-radius: clamp(1.15rem, 2vw, 1.5rem);
+  background: var(--navy-800, #0f1d47);
   border: 1px solid rgba(143, 166, 255, 0.22);
-  border-radius: 6px;
-  padding: 0.55rem 0.85rem;
-  margin-block-start: 0.35rem;
+  box-shadow: 0 25px 60px rgba(10, 22, 56, 0.75), 0 0 0 1px rgba(143, 166, 255, 0.08) inset;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  transition: box-shadow 240ms ease, border-color 240ms ease, transform 240ms ease;
 }
 
-.orl-impact-tag {
-  font-size: 0.6875rem;
-  font-weight: 800;
-  color: var(--orl-brand-inbound, #f08a2e);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.orl-practice-card:hover {
+  border-color: rgba(143, 166, 255, 0.45);
+  box-shadow: 0 30px 80px rgba(10, 22, 56, 0.9), 0 0 30px rgba(30, 61, 180, 0.25);
 }
 
-.orl-impact-text {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: #ffffff;
-  line-height: 1.35;
+/* Stepped Stacking Offsets */
+.sticky-stack-1 { top: 90px; z-index: 10; }
+.sticky-stack-2 { top: 110px; z-index: 20; }
+.sticky-stack-3 { top: 130px; z-index: 30; }
+.sticky-stack-4 { top: 150px; z-index: 40; }
+.sticky-stack-5 { top: 170px; z-index: 50; }
+.sticky-stack-6 { top: 190px; z-index: 60; }
+.sticky-stack-7 { top: 210px; z-index: 70; }
+
+/* 2-Column Split: Content Left, Image Right */
+.orl-practice-card__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
 }
 
-/* Col 4: Arrow */
-.orl-dark-col-arrow {
+.orl-practice-col-content {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   align-items: flex-start;
-  color: rgba(255, 255, 255, 0.7);
+  text-align: left;
 }
 
-.orl-arrow-svg {
-  transition: transform 220ms ease, color 220ms ease;
+/* Meta Pill + Kicker */
+.orl-practice-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-block-end: 0.85rem;
 }
 
-.orl-dark-row:hover .orl-arrow-svg {
-  color: var(--orl-brand-inbound, #f08a2e);
-  transform: translate(3px, -3px);
+.orl-practice-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-family: monospace, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
-.orl-dark-row.is-active .orl-arrow-svg {
-  color: var(--orl-brand-inbound, #f08a2e);
-  transform: translate(2px, -2px);
+/* Cobalt Practice Badges */
+.orl-badge--blue,
+.orl-badge--cyan,
+.orl-badge--slate {
+  background: rgba(30, 61, 180, 0.28);
+  color: var(--outbound-accent, #8fa6ff);
+  border: 1px solid rgba(143, 166, 255, 0.35);
 }
 
-/* =========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================= */
-@media (max-width: 960px) {
-  .orl-dark-row__bar {
-    grid-template-columns: 80px 1fr 40px;
-    gap: 1.5rem;
+/* Amber Practice Badges */
+.orl-badge--amber,
+.orl-badge--emerald,
+.orl-badge--purple,
+.orl-badge--rose {
+  background: rgba(240, 138, 46, 0.16);
+  color: var(--brand-inbound, #f08a2e);
+  border: 1px solid rgba(240, 138, 46, 0.4);
+}
+
+.orl-practice-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-dark-muted-2, #8fa6ff);
+  font-family: var(--orl-font-body, -apple-system, sans-serif);
+}
+
+/* Card Heading & Summary */
+.orl-practice-title {
+  font-family: var(--orl-font-display, "Space Grotesk", sans-serif);
+  font-size: clamp(1.6rem, 1.35rem + 0.8vw, 2.15rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  text-align: left;
+}
+
+.orl-practice-summary {
+  font-family: var(--orl-font-body, -apple-system, sans-serif);
+  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+  color: var(--on-dark-muted, #c9d2ea);
+  line-height: 1.55;
+  margin: 0 0 1.5rem;
+  text-align: left;
+}
+
+/* 2-Column Capability Checklist */
+.orl-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 1.5rem;
+  inline-size: 100%;
+  margin: 0 0 1.75rem;
+  text-align: left;
+}
+
+.orl-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.8125rem;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+.orl-check-icon {
+  color: var(--brand-inbound, #f08a2e);
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-block-start: 1px;
+}
+
+/* CTA Row */
+.orl-practice-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.orl-practice-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--brand-inbound, #f08a2e);
+  color: var(--navy, #0a1638) !important;
+  padding: 0.65rem 1.45rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.orl-practice-cta:hover {
+  background: #ff9838;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(240, 138, 46, 0.45);
+  color: var(--navy, #0a1638) !important;
+}
+
+.orl-practice-pill {
+  font-family: monospace, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--outbound-accent, #8fa6ff);
+  background: rgba(143, 166, 255, 0.1);
+  border: 1px solid rgba(143, 166, 255, 0.25);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+}
+
+/* Right-side visual image frame */
+.orl-practice-col-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  inline-size: 100%;
+}
+
+.orl-visual-frame {
+  position: relative;
+  inline-size: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(10, 22, 56, 0.8);
+  border: 1px solid rgba(143, 166, 255, 0.24);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(143, 166, 255, 0.1) inset;
+  aspect-ratio: 4 / 3;
+}
+
+.orl-practice-img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 320ms ease;
+}
+
+.orl-practice-card:hover .orl-practice-img {
+  transform: scale(1.03);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .orl-practice-card__grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 
-  .orl-dark-col-desc {
-    grid-column: 2;
-    margin-block-start: 1rem;
+  .orl-practice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .orl-practice-col-visual {
+    order: -1;
+    max-inline-size: 28rem;
+    margin-inline: auto;
   }
 }
 
 @media (max-width: 640px) {
-  .orl-dark-container {
-    padding: 1.5rem 0.85rem;
-    border-radius: 20px;
+  .orl-practice-card {
+    position: relative;
+    top: auto !important;
+    padding: 1.5rem 1rem;
   }
 
-  .orl-dark-head {
-    padding-inline: 0.5rem;
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: 1.5rem;
-    margin-block-end: 2rem;
+  .orl-practice-cta-wrap {
+    flex-direction: column;
+    inline-size: 100%;
   }
 
-  .orl-dark-head__right {
-    align-items: flex-start;
-  }
-
-  .orl-dark-tag,
-  .orl-dark-title {
-    text-align: start;
-  }
-
-  .orl-dark-row {
-    padding-inline: 0.65rem;
-    border-radius: 10px;
-  }
-
-  .orl-dark-row__bar {
-    grid-template-columns: 45px 1fr 32px;
-    gap: 0.75rem;
-    padding-block: 1.25rem;
-  }
-
-  .orl-num-sub {
-    display: none !important;
+  .orl-practice-cta {
+    inline-size: 100%;
+    justify-content: center;
   }
 }

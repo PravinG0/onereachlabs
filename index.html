@@ -229,15 +229,15 @@
               class="dropdown-trigger"
               type="button"
               aria-expanded="false"
-              aria-controls="platform-menu"
-              popovertarget="platform-menu"
+              aria-controls="services-menu"
+              popovertarget="services-menu"
             >
               <span>Services</span>
               <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M1.5 1.5L6 6l4.5-4.5" />
               </svg>
             </button>
-            <ul id="platform-menu" class="dropdown-list">
+            <ul id="services-menu" class="dropdown-list">
               <li><a href="#services">Inbound Marketing</a></li>
               <li><a href="#services">Outbound Lead Generation</a></li>
               <li><a href="#services">Demand Generation</a></li>
@@ -247,10 +247,88 @@
               <li><a href="#services">CRM &amp; Revenue Operations</a></li>
             </ul>
           </li>
-          <li><a href="#pricing">Products</a></li>
-          <li><a href="#who-its-for">Industries</a></li>
-          <li><a href="#data">Why Us</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+
+          <li class="nav-dropdown">
+            <button
+              class="dropdown-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="products-menu"
+              popovertarget="products-menu"
+            >
+              <span>Products</span>
+              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 1.5L6 6l4.5-4.5" />
+              </svg>
+            </button>
+            <ul id="products-menu" class="dropdown-list">
+              <li><a href="https://onereach.app/" target="_blank" rel="noopener noreferrer">OneReach</a></li>
+              <li><a href="#pricing">Market IQ</a></li>
+              <li><a href="#pricing">OneConnect CRM</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-dropdown">
+            <button
+              class="dropdown-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="industries-menu"
+              popovertarget="industries-menu"
+            >
+              <span>Industries</span>
+              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 1.5L6 6l4.5-4.5" />
+              </svg>
+            </button>
+            <ul id="industries-menu" class="dropdown-list">
+              <li><a href="#who-its-for">B2B SaaS</a></li>
+              <li><a href="#who-its-for">Professional Services</a></li>
+              <li><a href="#who-its-for">Agencies</a></li>
+              <li><a href="#who-its-for">Manufacturing</a></li>
+              <li><a href="#who-its-for">Financial Services</a></li>
+              <li><a href="#who-its-for">Enterprise Teams</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-dropdown">
+            <button
+              class="dropdown-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="resources-menu"
+              popovertarget="resources-menu"
+            >
+              <span>Resources</span>
+              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 1.5L6 6l4.5-4.5" />
+              </svg>
+            </button>
+            <ul id="resources-menu" class="dropdown-list">
+              <li><a href="#how-it-works">Case Studies</a></li>
+              <li><a href="#data">Insights &amp; Blog</a></li>
+              <li><a href="#data">Guides</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-dropdown nav-dropdown--right">
+            <button
+              class="dropdown-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="company-menu"
+              popovertarget="company-menu"
+            >
+              <span>Company</span>
+              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 1.5L6 6l4.5-4.5" />
+              </svg>
+            </button>
+            <ul id="company-menu" class="dropdown-list">
+              <li><a href="#data">About Us</a></li>
+              <li><a href="#campaign-form-wrap">Contact</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
 
@@ -585,295 +663,437 @@
          (Unified dual-engine pipeline + 70% AI / 30% Human summary)
          ========================================================= -->
 <!-- =========================================================
-     05. SERVICES OVERVIEW (WHAT WE CAN DO)
-     Brand-aligned OneReach Labs theme: Deep Navy, Cobalt & Vibrant Amber
+     SERVICES OVERVIEW (STACKING PRACTICES CARDS - SPLIT 2-COL)
+     Design Reference: AARK Innovations Consulting Practices Deck
+     Left: Content, Checklist, CTA | Right: Practice Intelligence Image
+     Brand Theme: Deep Navy (#0a1638), Cobalt (#1e3db4) & Amber (#f08a2e)
      ========================================================= -->
-<section class="orl-section orl-dark-services" id="inbound-outbound" aria-labelledby="dark-services-heading">
-  <!-- Outer Centered Category Tag -->
-  <div class="orl-dark-category" aria-hidden="true">[ SERVICES OVERVIEW ]</div>
-
-  <!-- Deep Branded Navy Outer Frame / Container -->
-  <div class="orl-dark-container">
-    <div class="orl-dark-head">
-      <div class="orl-dark-head__left">
-        <h2 id="dark-services-heading" class="orl-dark-h2">
-          The strategy and execution to move every opportunity forward.
-        </h2>
-        <p class="orl-dark-sub">
-          From attracting high-intent buyers to improving sales follow-up and pipeline visibility, our services help connect the work that drives B2B growth.
-        </p>
-      </div>
-      <div class="orl-dark-head__right">
-        <span class="orl-dark-tag" aria-hidden="true">(srvs)</span>
-        <span class="orl-dark-title">
-          WHAT WE<br>CAN DO
-        </span>
-      </div>
+<section class="orl-section orl-practices-section" id="inbound-outbound" aria-labelledby="services-overview-heading">
+  <div class="orl-practices-container">
+    
+    <!-- Section Header (Centered) -->
+    <div class="orl-practices-head">
+      <div class="orl-practices-eyebrow">[ SERVICES OVERVIEW ]</div>
+      <h2 id="services-overview-heading" class="orl-practices-h2">
+        The strategy and execution to move every opportunity forward.
+      </h2>
+      <p class="orl-practices-lead">
+        From attracting high-intent buyers to improving sales follow-up and pipeline visibility, our services help connect the work that drives B2B growth.
+      </p>
     </div>
 
-    <!-- Accordion Matrix List -->
-    <div class="orl-dark-matrix" role="region" aria-label="OneReach Labs Services Overview">
-      <!-- Row 01: Inbound Marketing (Active by default) -->
-      <article class="orl-dark-row is-active" data-row="1" tabindex="0" role="button" aria-expanded="true">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">01</span>
-            <span class="orl-num-sub">Attract &amp; convert high-intent buyers</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">INBOUND<br>MARKETING</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+    <!-- Sticky Stacking Cards Container -->
+    <div class="orl-practices-stack">
+      
+      <!-- Practice Card 1: Inbound Marketing -->
+      <article class="orl-practice-card sticky-stack-1" data-service="1">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--amber">PRACTICE 01</span>
+              <span class="orl-practice-kicker">INBOUND MARKETING</span>
+            </div>
+            <h3 class="orl-practice-title">Inbound Marketing</h3>
+            <p class="orl-practice-summary">
+              Attract, educate and convert high-intent buyers who are already searching for solutions.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>SEO strategy and content marketing</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Website and landing-page optimization</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Lead magnets and conversion assets</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Paid search and paid social campaigns</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Email nurture and marketing automation</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Lead capture &amp; conversion tracking</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Campaign reporting and optimization</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">High-intent buyer capture</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Attract, educate and convert high-intent buyers who are already searching for solutions.</p>
-            <p class="orl-desc-detail">SEO strategy and content marketing &bull; Website and landing-page optimization &bull; Lead magnets and conversion assets &bull; Paid search and paid social campaign management &bull; Email nurture and marketing automation &bull; Lead capture and conversion tracking &bull; Campaign reporting and optimization.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-01-inbound.jpg" alt="Inbound Marketing &amp; SEO intelligence visualization" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- Row 02: Outbound Lead Generation -->
-      <article class="orl-dark-row" data-row="2" tabindex="0" role="button" aria-expanded="false">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">02</span>
-            <span class="orl-num-sub">Personalized multichannel outreach</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">OUTBOUND LEAD<br>GENERATION</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+      <!-- Practice Card 2: Outbound Lead Generation -->
+      <article class="orl-practice-card sticky-stack-2" data-service="2">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--blue">PRACTICE 02</span>
+              <span class="orl-practice-kicker">OUTBOUND LEAD GENERATION</span>
+            </div>
+            <h3 class="orl-practice-title">Outbound Lead Generation</h3>
+            <p class="orl-practice-summary">
+              Identify, research and engage high-value buyers through personalized, multichannel outreach.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Ideal customer profile &amp; persona development</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Target-account identification &amp; research</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Contact discovery and enrichment</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Personalized outreach sequence design</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Multichannel sequence execution</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Follow-up and reply management</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Meeting scheduling and sales handoff</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">Precision account targeting</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Identify, research and engage high-value buyers through personalized, multichannel outreach.</p>
-            <p class="orl-desc-detail">Ideal customer profile and buyer-persona development &bull; Target-account identification and research &bull; Contact discovery and enrichment &bull; Personalized outreach &bull; Multichannel sequence design &bull; Follow-up and reply management &bull; Meeting scheduling and sales handoff.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-02-outbound.jpg" alt="Outbound Lead Generation &amp; Account Radar" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- Row 03: Demand Generation -->
-      <article class="orl-dark-row" data-row="3" tabindex="0" role="button" aria-expanded="false">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">03</span>
-            <span class="orl-num-sub">Create sales-ready opportunities</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">DEMAND<br>GENERATION</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+      <!-- Practice Card 3: Demand Generation -->
+      <article class="orl-practice-card sticky-stack-3" data-service="3">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--blue">PRACTICE 03</span>
+              <span class="orl-practice-kicker">DEMAND GENERATION</span>
+            </div>
+            <h3 class="orl-practice-title">Demand Generation</h3>
+            <p class="orl-practice-summary">
+              Build awareness, nurture interest and create sales-ready opportunities across the buyer journey.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Demand-generation strategy</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Audience and account-based marketing</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Campaign planning and execution</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Lead capture, scoring and qualification</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Nurture journeys and re-engagement</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Pipeline attribution and reporting</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Marketing-to-sales alignment</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">Sales-ready pipeline</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Build awareness, nurture interest and create sales-ready opportunities across the buyer journey.</p>
-            <p class="orl-desc-detail">Demand-generation strategy &bull; Audience and account-based marketing &bull; Campaign planning and execution &bull; Lead capture, scoring and qualification &bull; Nurture journeys and re-engagement &bull; Pipeline attribution and reporting &bull; Marketing-to-sales alignment.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-03-demand-gen.jpg" alt="Demand Generation &amp; Buyer Journey Platforms" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- Row 04: Appointment Setting -->
-      <article class="orl-dark-row" data-row="4" tabindex="0" role="button" aria-expanded="false">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">04</span>
-            <span class="orl-num-sub">Turn qualified interest into meetings</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">APPOINTMENT<br>SETTING</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+      <!-- Practice Card 4: Appointment Setting -->
+      <article class="orl-practice-card sticky-stack-4" data-service="4">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--amber">PRACTICE 04</span>
+              <span class="orl-practice-kicker">APPOINTMENT SETTING</span>
+            </div>
+            <h3 class="orl-practice-title">Appointment Setting</h3>
+            <p class="orl-practice-summary">
+              Turn qualified prospect interest into relevant sales conversations.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Target-account identification</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Decision-maker outreach</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Multichannel engagement</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Lead qualification and intent review</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Meeting scheduling &amp; calendar coordination</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Sales handoff and CRM documentation</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Follow-up cadence management</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">Qualified sales meetings</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Turn qualified prospect interest into relevant sales conversations.</p>
-            <p class="orl-desc-detail">Target-account identification &bull; Decision-maker outreach &bull; Multichannel engagement &bull; Lead qualification and intent review &bull; Meeting scheduling and calendar coordination &bull; Sales handoff and CRM documentation &bull; Follow-up cadence management.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-04-appointment-setting.jpg" alt="Executive Calendar Coordination Telemetry" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- Row 05: Sales Automation -->
-      <article class="orl-dark-row" data-row="5" tabindex="0" role="button" aria-expanded="false">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">05</span>
-            <span class="orl-num-sub">Give sales teams more time to sell</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">SALES<br>AUTOMATION</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+      <!-- Practice Card 5: Sales Automation -->
+      <article class="orl-practice-card sticky-stack-5" data-service="5">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--blue">PRACTICE 05</span>
+              <span class="orl-practice-kicker">SALES AUTOMATION</span>
+            </div>
+            <h3 class="orl-practice-title">Sales Automation</h3>
+            <p class="orl-practice-summary">
+              Give sales teams more time to sell by supporting repetitive prospecting, follow-up and CRM work.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>AI-assisted account research</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Contact discovery and enrichment</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Personalized outreach preparation</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Automated follow-up workflows</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Reply classification &amp; prioritization</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>CRM activity capture &amp; pipeline updates</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Sales-performance reporting</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">Repetitive work automated</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Give sales teams more time to sell by supporting repetitive prospecting, follow-up and CRM work.</p>
-            <p class="orl-desc-detail">AI-assisted account research &bull; Contact discovery and enrichment &bull; Personalized outreach preparation &bull; Automated follow-up workflows &bull; Reply classification and prioritization &bull; CRM activity capture and pipeline updates &bull; Sales-performance reporting.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-05-sales-automation.jpg" alt="AI Sales Automation &amp; Prospecting Pipeline" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- Row 06: Marketing Automation -->
-      <article class="orl-dark-row" data-row="6" tabindex="0" role="button" aria-expanded="false">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">06</span>
-            <span class="orl-num-sub">Smarter campaigns with less effort</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">MARKETING<br>AUTOMATION</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+      <!-- Practice Card 6: Marketing Automation -->
+      <article class="orl-practice-card sticky-stack-6" data-service="6">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--amber">PRACTICE 06</span>
+              <span class="orl-practice-kicker">MARKETING AUTOMATION</span>
+            </div>
+            <h3 class="orl-practice-title">Marketing Automation</h3>
+            <p class="orl-practice-summary">
+              Run smarter campaigns, nurture leads and improve marketing performance with less manual effort.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Marketing automation strategy</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Campaign workflow automation</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Lead scoring and segmentation</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Email and lifecycle nurturing</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>SEO and content workflows</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Marketing analytics and reporting</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Campaign optimization</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">Lifecycle lead nurturing</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Run smarter campaigns, nurture leads and improve marketing performance with less manual effort.</p>
-            <p class="orl-desc-detail">Marketing automation strategy &bull; Campaign workflow automation &bull; Lead scoring and segmentation &bull; Email and lifecycle nurturing &bull; SEO and content workflows &bull; Marketing analytics and reporting &bull; Campaign optimization.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-06-marketing-automation.jpg" alt="Event-Triggered Lifecycle Campaign Automation" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- Row 07: CRM & Revenue Operations -->
-      <article class="orl-dark-row" data-row="7" tabindex="0" role="button" aria-expanded="false">
-        <div class="orl-dark-row__bar">
-          <div class="orl-dark-col-num">
-            <span class="orl-num-text">07</span>
-            <span class="orl-num-sub">Visibility across all revenue teams</span>
-          </div>
-
-          <div class="orl-dark-col-title">
-            <h3 class="orl-title-text">CRM &amp; REVENUE<br>OPERATIONS</h3>
-            <div class="orl-corner-btn-wrap">
-              <span class="orl-cb-corner orl-cb-tl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-tr" aria-hidden="true"></span>
-              <a href="#campaign-form-wrap" class="orl-lime-btn" data-jump-portal="true">EXPLORE OUR SERVICES</a>
-              <span class="orl-cb-corner orl-cb-bl" aria-hidden="true"></span>
-              <span class="orl-cb-corner orl-cb-br" aria-hidden="true"></span>
+      <!-- Practice Card 7: CRM & Revenue Operations -->
+      <article class="orl-practice-card sticky-stack-7" data-service="7">
+        <div class="orl-practice-card__grid">
+          <div class="orl-practice-col-content">
+            <div class="orl-practice-meta">
+              <span class="orl-practice-badge orl-badge--blue">PRACTICE 07</span>
+              <span class="orl-practice-kicker">CRM & REVENUE OPERATIONS</span>
+            </div>
+            <h3 class="orl-practice-title">CRM &amp; Revenue Operations</h3>
+            <p class="orl-practice-summary">
+              Create visibility, accountability and revenue intelligence across marketing, sales and customer teams.
+            </p>
+            <div class="orl-practice-grid">
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>CRM implementation and optimization</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Pipeline and deal-stage management</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Lead routing and assignment</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Activity and follow-up tracking</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Revenue dashboards and reporting</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Sales and marketing alignment</span>
+              </div>
+              <div class="orl-check-item">
+                <span class="orl-check-icon" aria-hidden="true">✓</span>
+                <span>Data hygiene and CRM governance</span>
+              </div>
+            </div>
+            <div class="orl-practice-cta-wrap">
+              <a href="#campaign-form-wrap" class="orl-practice-cta" data-jump-portal="true">
+                <span>Explore Our Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <span class="orl-practice-pill">Full revenue intelligence</span>
             </div>
           </div>
-
-          <div class="orl-dark-col-desc">
-            <p class="orl-desc-headline">Create visibility, accountability and revenue intelligence across marketing, sales and customer teams.</p>
-            <p class="orl-desc-detail">CRM implementation and optimization &bull; Pipeline and deal-stage management &bull; Lead routing and assignment &bull; Activity and follow-up tracking &bull; Revenue dashboards and reporting &bull; Sales and marketing alignment &bull; Data hygiene and CRM governance.</p>
-          </div>
-
-          <div class="orl-dark-col-arrow" aria-hidden="true">
-            <svg class="orl-arrow-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
+          <div class="orl-practice-col-visual">
+            <div class="orl-visual-frame">
+              <img src="assets/images/services/practice-07-crm-revops.jpg" alt="Unified Revenue Intelligence Cockpit &amp; Pipeline Stages" class="orl-practice-img" loading="lazy" width="600" height="450" />
+            </div>
           </div>
         </div>
       </article>
+
     </div>
   </div>
 </section>
-
-<script>
-  (function initDarkServicesAccordion() {
-    const rows = document.querySelectorAll('.orl-dark-services .orl-dark-row');
-    if (!rows.length) return;
-
-    rows.forEach(row => {
-      row.addEventListener('click', (e) => {
-        // If clicking on the button itself, let it navigate
-        if (e.target.closest('.orl-lime-btn')) return;
-
-        rows.forEach(r => {
-          r.classList.remove('is-active');
-          r.setAttribute('aria-expanded', 'false');
-        });
-        row.classList.add('is-active');
-        row.setAttribute('aria-expanded', 'true');
-      });
-
-      row.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          row.click();
-        }
-      });
-    });
-  })();
-</script>
 
 <!-- SECTION: WHY ONEREACH LABS -->
 <section id="data" class="orl-section orl-data" aria-labelledby="data-heading">
@@ -1062,9 +1282,10 @@
 
         <div class="orl-plan-cta">
           <a
-            href="#campaign-form-wrap"
+            href="https://onereach.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             class="orl-btn orl-btn--tier-side"
-            data-jump-portal="true"
             data-engagement-preset="onereach"
           >
             <span>Explore OneReach</span>
@@ -1763,7 +1984,7 @@
           <div class="site-footer__col">
             <h3 class="site-footer__col-title">Products &amp; Industries</h3>
             <ul class="site-footer__list">
-              <li><a href="#pricing">OneReach AI Sales</a></li>
+              <li><a href="https://onereach.app/" target="_blank" rel="noopener noreferrer">OneReach AI Sales</a></li>
               <li><a href="#pricing">Market IQ Intelligence</a></li>
               <li><a href="#pricing">OneConnect CRM</a></li>
               <li><a href="#who-its-for">B2B SaaS Companies</a></li>
