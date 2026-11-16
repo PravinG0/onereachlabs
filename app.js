@@ -740,11 +740,10 @@
       });
     }
 
-    const cardPeaks = [0.19, 0.305, 0.42, 0.535, 0.65, 0.765];
-    const cardEnterSpan = 0.17;
-    const cardExitSpan = 0.11;
+    const cardPeaks = [0.25, 0.45, 0.65];
+    const cardEnterSpan = 0.16;
+    const cardExitSpan = 0.14;
     const cardTotalSpan = cardEnterSpan + cardExitSpan;
-    const peakT = cardEnterSpan / cardTotalSpan;
 
     let targetP = 0;
     let currentP = 0;
@@ -781,7 +780,7 @@
       }
 
       // 3. Concentric Rounded-Pill Tunnel Rings
-      const travel = Math.max(0, (p - 0.02) / 0.86) * 5.2;
+      const travel = Math.max(0, (p - 0.02) / 0.86) * 3.4;
       const curtainReveal = smoothstep(0.015, 0.09, p);
 
       for (let i = 0; i < ringCount; i += 1) {
@@ -818,7 +817,7 @@
         pt.el.style.opacity = pa.toFixed(3);
       }
 
-      // 6. Six Z-Depth Question Cards
+      // 6. Three Z-Depth Narrative Cards (Enter -> Hold -> Exit)
       cards.forEach((card, idx) => {
         const peakP = cardPeaks[idx];
         const startP = peakP - cardEnterSpan;
@@ -832,16 +831,25 @@
 
         let scale;
         let opacity;
-        if (t <= peakT) {
-          const a = t / peakT;
-          const z = 1.85 * (1 - a);
+        // Phase 1: Enter (0 -> 0.36) - Approaches smoothly from depth
+        if (t < 0.36) {
+          const a = t / 0.36;
+          const z = 1.6 * (1 - a);
           scale = 1 / (1 + z);
-          opacity = smoothstep(0.0, 0.36, a);
-        } else {
-          const b = (t - peakT) / (1 - peakT);
-          const z = -0.58 * b;
-          scale = 1 / (1 + z);
-          opacity = 1 - smoothstep(0.18, 0.92, b);
+          opacity = smoothstep(0.05, 0.9, a);
+        }
+        // Phase 2: Hold (0.36 -> 0.68) - Stable, fully legible plateau
+        else if (t <= 0.68) {
+          const h = (t - 0.36) / 0.32;
+          scale = 1.0 + 0.04 * h;
+          opacity = 1.0;
+        }
+        // Phase 3: Exit (0.68 -> 1.0) - Gently expands past and fades out
+        else {
+          const b = (t - 0.68) / 0.32;
+          const z = -0.42 * b;
+          scale = 1.04 / (1 + z);
+          opacity = 1 - smoothstep(0.15, 0.95, b);
         }
 
         const align = card.dataset.align;
@@ -910,7 +918,7 @@
         render(currentP);
         return;
       }
-      currentP += diff * 0.16;
+      currentP += diff * 0.12;
       render(currentP);
       rafId = window.requestAnimationFrame(tick);
     }
@@ -1280,13 +1288,13 @@
 
       const syncSubmenuLayout = (wide) => {
         if (!submenu || !dropdownTrigger) return;
+        submenu.removeAttribute('popover');
         if (wide) {
-          submenu.setAttribute('popover', 'auto');
           submenu.hidden = false;
         } else {
-          submenu.removeAttribute('popover');
           submenu.hidden = true;
         }
+        dropdownItem?.classList.remove('is-open');
         dropdownTrigger.setAttribute('aria-expanded', 'false');
       };
 
@@ -1338,37 +1346,13 @@
       headerRo.observe(menu);
       updateHeaderLayout();
 
-      // Anchor positioning JS fallback + aria-expanded sync on native toggle
+      // Desktop dropdown hover & click management
       if (submenu && dropdownTrigger) {
-        const positionSubmenuFallback = () => {
-          if (CSS.supports('position-area', 'block-end')) return;
-          const trigRect = dropdownTrigger.getBoundingClientRect();
-          const subRect = submenu.getBoundingClientRect();
-          let top = trigRect.bottom + 8;
-          if (top + subRect.height > window.innerHeight - 12) {
-            top = Math.max(12, trigRect.top - subRect.height - 8);
-          }
-          const left = clamp(trigRect.left, 12, Math.max(12, window.innerWidth - subRect.width - 12));
-          submenu.style.top = `${Math.round(top)}px`;
-          submenu.style.left = `${Math.round(left)}px`;
-        };
-
-        submenu.addEventListener('toggle', (event) => {
-          const opened = event.newState === 'open';
-          dropdownTrigger.setAttribute('aria-expanded', opened ? 'true' : 'false');
-          if (opened) {
-            positionSubmenuFallback();
-          } else {
-            hoverPreviewing = false;
-          }
-        });
-
         dropdownTrigger.addEventListener('click', (event) => {
           if (isWide) {
-            if (hoverPreviewing) {
-              hoverPreviewing = false;
-              event.preventDefault();
-            }
+            event.preventDefault();
+            const isOpen = dropdownItem?.classList.toggle('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             return;
           }
           event.preventDefault();
@@ -1381,41 +1365,39 @@
           dropdownItem.addEventListener('pointerenter', (event) => {
             if (!isWide || event.pointerType === 'touch') return;
             if (!window.matchMedia('(hover: hover)').matches) return;
-            if (submenu.hasAttribute('popover') && !submenu.matches(':popover-open')) {
-              hoverPreviewing = true;
-              try {
-                submenu.showPopover({ source: dropdownTrigger });
-              } catch {
-                // Ignore if already open or unsupported source option
-              }
-            }
+            dropdownItem.classList.add('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'true');
           });
 
           dropdownItem.addEventListener('pointerleave', () => {
-            if (!isWide || !hoverPreviewing) return;
-            if (submenu.hasAttribute('popover') && submenu.matches(':popover-open')) {
-              hoverPreviewing = false;
-              try {
-                submenu.hidePopover();
-              } catch {
-                // Ignore
-              }
-            }
+            if (!isWide) return;
+            dropdownItem.classList.remove('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
           });
 
           dropdownItem.addEventListener('focusout', (event) => {
-            if (!isWide || !submenu.hasAttribute('popover')) return;
+            if (!isWide) return;
             const next = event.relatedTarget;
-            if (next && !dropdownItem.contains(next) && submenu.matches(':popover-open')) {
-              hoverPreviewing = false;
-              try {
-                submenu.hidePopover();
-              } catch {
-                // Ignore
-              }
+            if (next && !dropdownItem.contains(next)) {
+              dropdownItem.classList.remove('is-open');
+              dropdownTrigger.setAttribute('aria-expanded', 'false');
             }
           });
         }
+
+        submenu.addEventListener('click', (e) => {
+          if (isWide && e.target.closest('a')) {
+            dropdownItem?.classList.remove('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        document.addEventListener('click', (event) => {
+          if (isWide && dropdownItem && !dropdownItem.contains(event.target)) {
+            dropdownItem.classList.remove('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
       }
 
       menu.addEventListener('click', (e) => {
@@ -1543,6 +1525,7 @@
 
       heroRunway.style.setProperty('--hero-p', t.toFixed(3));
       heroRunway.classList.toggle('is-expanded', t > 0.36);
+      heroRunway.classList.toggle('is-exiting', raw > 0.68);
       if (mediaClip) {
         mediaClip.style.clipPath = `inset(${lerp(slotGeom.t, 0, t).toFixed(2)}% ${lerp(slotGeom.r, 0, t).toFixed(2)}% ${lerp(slotGeom.b, 0, t).toFixed(2)}% ${lerp(slotGeom.l, 0, t).toFixed(2)}% round ${lerp(18, 0, t).toFixed(1)}px)`;
       }
@@ -1557,10 +1540,40 @@
     const heroRo = new ResizeObserver(measureHeroSlot);
     heroRo.observe(heroStage);
     heroRo.observe(cardSlot);
+
+    const syncHeroExpandedState = () => {
+      if (prefersReducedMotion.matches || window.innerWidth <= 860) return;
+      const scrollable = Math.max(1, heroRunway.offsetHeight - window.innerHeight);
+      const raw = clamp((window.scrollY - heroRunway.offsetTop) / scrollable, 0, 1);
+      const t = smoothstep(0.04, 0.58, raw);
+      heroRunway.classList.toggle('is-expanded', t > 0.36);
+      heroRunway.classList.toggle('is-exiting', raw > 0.68);
+    };
+
     if (!supportsSDA && !prefersReducedMotion.matches) {
       window.addEventListener('scroll', applyFallbackHeroScroll, { passive: true });
+    } else if (supportsSDA && !prefersReducedMotion.matches) {
+      window.addEventListener('scroll', syncHeroExpandedState, { passive: true });
     }
     measureHeroSlot();
+
+    // Smooth scroll for hero "Explore Our Solutions" trigger
+    document.addEventListener('click', (e) => {
+      const exploreBtn = e.target.closest('[data-hero-explore="true"]');
+      if (exploreBtn) {
+        const href = exploreBtn.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+              behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      }
+    });
 
     // Activate uploaded <video> automatically if a src is present; otherwise run animated placeholder
     const hasVideoSrc = Boolean(
@@ -2138,16 +2151,16 @@
       } else if (p < 0.70) {
         // Beat 3 -> 4 transition: centered under horizontal pipeline -> right-shifted large core
         const shift = smoothstep(0.62, 0.70, p);
-        coreX = lerp(width * 0.5, isNarrow ? width * 0.5 : width * 0.72, shift);
-        coreY = lerp(height * 0.64, isNarrow ? height * 0.44 : height * 0.52, shift);
-        coreR = lerp(minDim * 0.088, isNarrow ? minDim * 0.105 : minDim * 0.155, shift);
+        coreX = lerp(width * 0.5, isNarrow ? width * 0.5 : width * 0.76, shift);
+        coreY = lerp(height * 0.64, isNarrow ? height * 0.44 : height * 0.57, shift);
+        coreR = lerp(minDim * 0.088, isNarrow ? minDim * 0.095 : minDim * 0.138, shift);
         progressRingAlpha = shift;
       } else {
         // Beat 4 -> Finale fade out
         const fadeOut = smoothstep(0.89, 0.96, p);
-        coreX = isNarrow ? width * 0.5 : width * 0.72;
-        coreY = isNarrow ? height * 0.44 : height * 0.52;
-        coreR = (isNarrow ? minDim * 0.105 : minDim * 0.155) * (1 - fadeOut * 0.35);
+        coreX = isNarrow ? width * 0.5 : width * 0.76;
+        coreY = isNarrow ? height * 0.44 : height * 0.57;
+        coreR = (isNarrow ? minDim * 0.095 : minDim * 0.138) * (1 - fadeOut * 0.35);
         progressRingAlpha = 1 - fadeOut;
       }
 
