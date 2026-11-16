@@ -362,28 +362,24 @@
 .sticky-stack-6 { top: 190px; z-index: 60; }
 .sticky-stack-7 { top: 210px; z-index: 70; }
 
-/* 2-Column Split: Content Left, Image Right */
-.orl-practice-card__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
-  align-items: center;
-}
-
-.orl-practice-col-content {
+/* Centered Card Content */
+.orl-practice-card__inner {
+  max-inline-size: 52rem;
+  margin-inline: auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
 }
 
 /* Meta Pill + Kicker */
 .orl-practice-meta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-block-end: 0.85rem;
+  margin-block-end: 1rem;
 }
 
 .orl-practice-badge {
@@ -424,61 +420,65 @@
   font-family: var(--orl-font-body, -apple-system, sans-serif);
 }
 
-/* Card Heading & Summary */
+/* Card Heading & Summary - Centered */
 .orl-practice-title {
   font-family: var(--orl-font-display, "Space Grotesk", sans-serif);
-  font-size: clamp(1.6rem, 1.35rem + 0.8vw, 2.15rem);
+  font-size: clamp(1.75rem, 1.45rem + 1vw, 2.35rem);
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.025em;
   line-height: 1.2;
-  margin: 0 0 0.75rem;
-  text-align: left;
+  margin: 0 0 0.85rem;
+  text-align: center;
 }
 
 .orl-practice-summary {
   font-family: var(--orl-font-body, -apple-system, sans-serif);
-  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
   color: var(--on-dark-muted, #c9d2ea);
-  line-height: 1.55;
-  margin: 0 0 1.5rem;
-  text-align: left;
+  line-height: 1.6;
+  max-inline-size: 42rem;
+  margin: 0 auto 1.75rem;
+  text-align: center;
 }
 
-/* 2-Column Capability Checklist */
+/* 2-Column Capability Checklist - Centered Container */
 .orl-practice-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem 1.5rem;
+  gap: 0.75rem 2.5rem;
   inline-size: 100%;
-  margin: 0 0 1.75rem;
+  max-inline-size: 44rem;
+  margin: 0 auto 2.25rem;
   text-align: left;
 }
 
 .orl-check-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.55rem;
-  font-size: 0.8125rem;
+  gap: 0.65rem;
+  font-size: 0.875rem;
   color: #e2e8f0;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .orl-check-icon {
   color: var(--brand-inbound, #f08a2e);
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1;
   flex-shrink: 0;
-  margin-block-start: 1px;
+  margin-block-start: 2px;
 }
 
-/* CTA Row */
+/* CTA Row - Centered */
 .orl-practice-cta-wrap {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-inline: auto;
 }
 
 .orl-practice-cta {
@@ -487,10 +487,10 @@
   gap: 0.5rem;
   background: var(--brand-inbound, #f08a2e);
   color: var(--navy, #0a1638) !important;
-  padding: 0.65rem 1.45rem;
+  padding: 0.7rem 1.6rem;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   text-decoration: none;
   transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
@@ -509,65 +509,21 @@
   color: var(--outbound-accent, #8fa6ff);
   background: rgba(143, 166, 255, 0.1);
   border: 1px solid rgba(143, 166, 255, 0.25);
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 6px;
 }
 
-/* Right-side visual image frame */
-.orl-practice-col-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  inline-size: 100%;
-}
-
-.orl-visual-frame {
-  position: relative;
-  inline-size: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  background: rgba(10, 22, 56, 0.8);
-  border: 1px solid rgba(143, 166, 255, 0.24);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(143, 166, 255, 0.1) inset;
-  aspect-ratio: 4 / 3;
-}
-
-.orl-practice-img {
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 320ms ease;
-}
-
-.orl-practice-card:hover .orl-practice-img {
-  transform: scale(1.03);
-}
-
 /* Responsive Breakpoints */
-@media (max-width: 992px) {
-  .orl-practice-card__grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+@media (max-width: 768px) {
+  .orl-practice-card {
+    position: relative;
+    top: auto !important;
+    padding: 1.75rem 1.25rem;
   }
 
   .orl-practice-grid {
     grid-template-columns: 1fr;
-  }
-
-  .orl-practice-col-visual {
-    order: -1;
-    max-inline-size: 28rem;
-    margin-inline: auto;
-  }
-}
-
-@media (max-width: 640px) {
-  .orl-practice-card {
-    position: relative;
-    top: auto !important;
-    padding: 1.5rem 1rem;
+    gap: 0.65rem;
   }
 
   .orl-practice-cta-wrap {
