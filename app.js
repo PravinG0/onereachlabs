@@ -1288,13 +1288,13 @@
 
       const syncSubmenuLayout = (wide) => {
         if (!submenu || !dropdownTrigger) return;
+        submenu.removeAttribute('popover');
         if (wide) {
-          submenu.setAttribute('popover', 'auto');
           submenu.hidden = false;
         } else {
-          submenu.removeAttribute('popover');
           submenu.hidden = true;
         }
+        dropdownItem?.classList.remove('is-open');
         dropdownTrigger.setAttribute('aria-expanded', 'false');
       };
 
@@ -1346,42 +1346,13 @@
       headerRo.observe(menu);
       updateHeaderLayout();
 
-      // Anchor positioning JS fallback + aria-expanded sync on native toggle
+      // Desktop dropdown hover & click management
       if (submenu && dropdownTrigger) {
-        const positionSubmenuFallback = () => {
-          const trigRect = dropdownTrigger.getBoundingClientRect();
-          const subRect = submenu.getBoundingClientRect();
-          let top = trigRect.bottom + 8;
-          if (top + (subRect.height || 260) > window.innerHeight - 12) {
-            top = Math.max(12, trigRect.top - (subRect.height || 260) - 8);
-          }
-          const left = clamp(trigRect.left, 12, Math.max(12, window.innerWidth - (subRect.width || 240) - 12));
-          submenu.style.top = `${Math.round(top)}px`;
-          submenu.style.left = `${Math.round(left)}px`;
-        };
-
-        window.addEventListener('scroll', () => {
-          if (submenu.matches(':popover-open')) {
-            positionSubmenuFallback();
-          }
-        }, { passive: true });
-
-        submenu.addEventListener('toggle', (event) => {
-          const opened = event.newState === 'open';
-          dropdownTrigger.setAttribute('aria-expanded', opened ? 'true' : 'false');
-          if (opened) {
-            positionSubmenuFallback();
-          } else {
-            hoverPreviewing = false;
-          }
-        });
-
         dropdownTrigger.addEventListener('click', (event) => {
           if (isWide) {
-            if (hoverPreviewing) {
-              hoverPreviewing = false;
-              event.preventDefault();
-            }
+            event.preventDefault();
+            const isOpen = dropdownItem?.classList.toggle('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             return;
           }
           event.preventDefault();
@@ -1394,42 +1365,39 @@
           dropdownItem.addEventListener('pointerenter', (event) => {
             if (!isWide || event.pointerType === 'touch') return;
             if (!window.matchMedia('(hover: hover)').matches) return;
-            if (submenu.hasAttribute('popover') && !submenu.matches(':popover-open')) {
-              hoverPreviewing = true;
-              try {
-                submenu.showPopover({ source: dropdownTrigger });
-                positionSubmenuFallback();
-              } catch {
-                // Ignore if already open or unsupported source option
-              }
-            }
+            dropdownItem.classList.add('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'true');
           });
 
           dropdownItem.addEventListener('pointerleave', () => {
-            if (!isWide || !hoverPreviewing) return;
-            if (submenu.hasAttribute('popover') && submenu.matches(':popover-open')) {
-              hoverPreviewing = false;
-              try {
-                submenu.hidePopover();
-              } catch {
-                // Ignore
-              }
-            }
+            if (!isWide) return;
+            dropdownItem.classList.remove('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
           });
 
           dropdownItem.addEventListener('focusout', (event) => {
-            if (!isWide || !submenu.hasAttribute('popover')) return;
+            if (!isWide) return;
             const next = event.relatedTarget;
-            if (next && !dropdownItem.contains(next) && submenu.matches(':popover-open')) {
-              hoverPreviewing = false;
-              try {
-                submenu.hidePopover();
-              } catch {
-                // Ignore
-              }
+            if (next && !dropdownItem.contains(next)) {
+              dropdownItem.classList.remove('is-open');
+              dropdownTrigger.setAttribute('aria-expanded', 'false');
             }
           });
         }
+
+        submenu.addEventListener('click', (e) => {
+          if (isWide && e.target.closest('a')) {
+            dropdownItem?.classList.remove('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        document.addEventListener('click', (event) => {
+          if (isWide && dropdownItem && !dropdownItem.contains(event.target)) {
+            dropdownItem.classList.remove('is-open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
       }
 
       menu.addEventListener('click', (e) => {
