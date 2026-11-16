@@ -534,5 +534,43 @@
   .orl-practice-cta {
     inline-size: 100%;
     justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  #inbound-outbound.orl-practices-section {
+    padding-block: 3.5rem 4rem;
+    padding-inline: 1rem;
+  }
+
+  .orl-practices-head {
+    margin-block-end: 2rem;
+  }
+
+  .orl-practices-h2 {
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  }
+
+  .orl-practices-lead {
+    font-size: 0.9375rem;
+  }
+
+  .orl-practice-card {
+    padding: 1.4rem 1rem;
+    border-radius: 1rem;
+  }
+
+  .orl-practice-title {
+    font-size: clamp(1.35rem, 5vw, 1.85rem);
+  }
+
+  .orl-practice-summary {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .orl-check-item {
+    font-size: 0.8125rem;
   }
 }

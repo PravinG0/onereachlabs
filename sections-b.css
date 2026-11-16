@@ -1506,6 +1506,20 @@
 }
 
 @media (max-width: 600px) {
+  :is(#data, #pricing) {
+    padding-block: 3.5rem 4.5rem;
+    padding-inline: 1rem;
+  }
+
+  .orl-title,
+  .orl-subheading {
+    font-size: clamp(1.65rem, 5.5vw, 2.2rem) !important;
+  }
+
+  .orl-data-heading {
+    font-size: clamp(1.65rem, 5.5vw, 2.2rem) !important;
+  }
+
   .orl-proof-strip {
     grid-template-columns: 1fr;
   }
@@ -1525,6 +1539,16 @@
 
   .orl-data-card__inner {
     min-block-size: 14.5rem;
+  }
+
+  .orl-plan {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .orl-plan-cta a {
+    inline-size: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
   .orl-dialog-head,
