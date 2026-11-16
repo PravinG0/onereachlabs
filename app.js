@@ -1466,15 +1466,7 @@
       }
 
       if (scrollOrb) {
-        const insideHero = heroRect ? heroRect.bottom > window.innerHeight * 0.45 : false;
-        const insideVortex = vortexRect ? vortexRect.bottom > window.innerHeight * 0.45 : false;
-        const hiddenInHero = insideHero || insideVortex;
-        scrollOrb.classList.toggle('is-hero-hidden', hiddenInHero);
-        if (hiddenInHero && scrollOrb.classList.contains('is-open')) {
-          scrollOrb.classList.remove('is-open');
-          const orbTrigger = document.getElementById('scroll-orb-trigger');
-          if (orbTrigger) orbTrigger.setAttribute('aria-expanded', 'false');
-        }
+        scrollOrb.classList.remove('is-hero-hidden');
       }
     }
 

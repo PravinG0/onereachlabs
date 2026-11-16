@@ -164,8 +164,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .scroll-orb.is-hero-hidden {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .scroll-orb__bridge {
