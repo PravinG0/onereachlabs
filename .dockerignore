@@ -1,0 +1,10 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+.env*
+node_modules
+.kiro
+.agents
+*.log
