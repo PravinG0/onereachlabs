@@ -2487,75 +2487,9 @@ h1, h2, h3, h4, h5, h6,
   transform: translateY(-1px);
 }
 
-/* Bottom Floating Liquid-Glass Pill Dock */
+/* Bottom Floating Liquid-Glass Pill Dock (Removed per design update) */
 .vortex-dock {
-  position: fixed;
-  bottom: clamp(18px, 3vh, 28px);
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
-  z-index: 80;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 999px;
-  background: rgba(10, 22, 56, 0.82);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(143, 166, 255, 0.24);
-  box-shadow: 0 18px 44px rgba(10, 22, 56, 0.52);
-  transition: opacity 220ms ease, transform 220ms ease;
-}
-
-.vortex-dock.is-hidden {
-  opacity: 0;
-  transform: translate3d(-50%, 16px, 0);
-  pointer-events: none;
-}
-
-.vortex-dock__icon,
-.vortex-dock__menu {
-  display: inline-grid;
-  place-items: center;
-  inline-size: 36px;
-  block-size: 36px;
-  border-radius: 50%;
-  background: rgba(34, 51, 106, 0.48);
-  border: 1px solid rgba(143, 166, 255, 0.24);
-  color: var(--on-dark);
-  text-decoration: none;
-  transition: background-color 160ms ease, border-color 160ms ease;
-}
-
-.vortex-dock__icon:hover,
-.vortex-dock__menu:hover {
-  background: rgba(30, 61, 180, 0.56);
-  border-color: var(--outbound-accent);
-}
-
-.vortex-dock__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-block-size: 36px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--brand-outbound) 0%, #2e4fd1 100%);
-  border: 1px solid rgba(143, 166, 255, 0.42);
-  color: var(--on-dark);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 6px 20px rgba(30, 61, 180, 0.42);
-  transition: filter 160ms ease, transform 160ms ease;
-}
-
-.vortex-dock__cta:hover {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
+  display: none !important;
 }
 
 .vortex-motion-toggle {

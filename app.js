@@ -1808,7 +1808,6 @@
     const approvalEl = document.getElementById('vortex-approval');
     const nodesWrap = document.getElementById('vortex-nodes');
     const pillEls = nodesWrap ? Array.from(nodesWrap.querySelectorAll('.vortex-pill')) : [];
-    const dockEl = document.getElementById('vortex-dock');
     const motionToggle = document.getElementById('vortex-motion-toggle');
 
     if (!runway || !stage || !bgCanvas || !coreCanvas) return;
@@ -2464,14 +2463,6 @@
           finaleEl.style.pointerEvents = finaleActive ? 'auto' : 'none';
           finaleEl.classList.toggle('is-visible', finaleActive);
         }
-      }
-
-      // Dock visibility inside Section 1 Vortex runway only
-      const runwayRect = runway.getBoundingClientRect();
-      const insideVortexDock =
-        runwayRect.top < window.innerHeight * 0.55 && runwayRect.bottom > window.innerHeight * 0.45;
-      if (dockEl) {
-        dockEl.classList.toggle('is-hidden', !insideVortexDock);
       }
     }
 
