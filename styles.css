@@ -3194,12 +3194,22 @@ h1, h2, h3, h4, h5, h6,
     clamp(14px, 2.2vh, 26px);
 }
 
-@media (max-width: 640px), (max-height: 639px) {
+@media (max-width: 640px), (max-height: 700px) {
   .white-portal__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     overflow-y: auto;
-    overscroll-behavior: contain;
-    align-content: safe center;
-    padding-bottom: max(18px, env(safe-area-inset-bottom, 0px));
+    -webkit-overflow-scrolling: touch;
+    padding: calc(var(--header-h, 74px) + 8px) 12px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .campaign-form-wrap {
+    overflow: visible;
+    height: auto;
+    max-height: none;
+    margin-block: auto;
   }
 }
 
@@ -3857,18 +3867,104 @@ h1, h2, h3, h4, h5, h6,
 
 @media (max-width: 640px) {
   .campaign-form-wrap {
-    padding: 18px 16px;
+    overflow: visible;
+    height: auto;
+    max-height: none;
+    padding: 14px 14px 12px;
     border-radius: 16px;
+    margin-block: auto;
+  }
+
+  .campaign-form-header {
+    margin-bottom: 6px;
+  }
+
+  .campaign-title {
+    font-size: clamp(1.1rem, 3.4vw, 1.35rem);
+    line-height: 1.22;
+    margin-bottom: 4px;
+  }
+
+  .campaign-subtitle {
+    font-size: 11.5px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .campaign-form {
+    gap: 6px;
   }
 
   .form-grid-2 {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 8px;
   }
 
   .form-section-head {
     flex-direction: column;
     gap: 2px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+  }
+
+  .form-section-kicker {
+    font-size: 9.5px;
+  }
+
+  .form-section-note {
+    font-size: 9px;
+  }
+
+  .form-field {
+    gap: 2px;
+  }
+
+  .form-field label {
+    font-size: 10px;
+  }
+
+  .form-field input,
+  .form-field select {
+    font-size: 13px;
+    min-height: 38px;
+    padding: 6px 9px;
+    border-radius: 8px;
+  }
+
+  .form-field textarea {
+    font-size: 12.5px;
+    min-height: 36px;
+    height: 36px;
+    padding: 5px 9px;
+    border-radius: 8px;
+  }
+
+  .review-callout {
+    padding: 6px 9px;
+    font-size: 11px;
+    line-height: 1.3;
+    gap: 6px;
+  }
+
+  .consent-checkbox {
+    font-size: 10.5px;
+    line-height: 1.3;
+    gap: 6px;
+  }
+
+  .form-footer {
+    margin-top: 4px;
+    gap: 8px;
+  }
+
+  .submit-btn {
+    min-height: 38px;
+    padding: 6px 14px;
+    font-size: 12.5px;
+  }
+
+  .guarantee-note {
+    font-size: 10px;
   }
 }
 
