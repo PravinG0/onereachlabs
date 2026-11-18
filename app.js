@@ -2336,8 +2336,24 @@
       const cx = width * 0.5;
       const cy = height * 0.5;
       const orbitR = minDim * 0.34;
-      const rowY = isNarrow ? height * 0.38 : height * 0.43;
       const rowSpread = Math.min(width - (isNarrow ? 64 : 96), 840);
+
+      // Measure Beat 3 headline + lead to dynamically guarantee zero content overlap
+      let headBottom = 0;
+      if (beat3El) {
+        const head = beat3El.querySelector('.vortex-beat3-head');
+        if (head && stage) {
+          const headRect = head.getBoundingClientRect();
+          const stageRect = stage.getBoundingClientRect();
+          headBottom = headRect.bottom - stageRect.top;
+        }
+      }
+
+      // Safe rowY ensures pills always start below the header text with comfortable clearance
+      const minRowY = headBottom > 0 ? headBottom + (isNarrow ? 26 : 34) : (isNarrow ? height * 0.40 : height * 0.43);
+      const defaultRowY = isNarrow ? height * 0.40 : height * 0.43;
+      const rowY = Math.max(defaultRowY, minRowY);
+      const rowSpacingY = isNarrow ? 38 : 44;
 
       // Orbit angles for all 7 circular headings (360° / 7 = 51.43° equal spacing):
       // Inbound(9:20), Outbound(11:00), Demand Gen(1:00), Alignment(2:40), Sales(4:20), [Caption at 6:00], RevOps(7:40)
@@ -2364,7 +2380,7 @@
             cx + rowSpread * 0.45
           ];
       const rowYs = isNarrow
-        ? [rowY, rowY, rowY, rowY + 44, rowY + 44, rowY + 44]
+        ? [rowY, rowY, rowY, rowY + rowSpacingY, rowY + rowSpacingY, rowY + rowSpacingY]
         : [rowY, rowY, rowY, rowY, rowY, rowY];
 
       const pillPositions = [];
@@ -2397,7 +2413,7 @@
           pillPositions.forEach((src, i) => {
             const path = connectorPaths[i];
             if (!path) return;
-            const sy = src.y + 18;
+            const sy = src.y + (isNarrow ? 15 : 18);
             const cy1 = lerp(sy, targetY, 0.52);
             const cy2 = lerp(sy, targetY, 0.85);
             path.setAttribute(
