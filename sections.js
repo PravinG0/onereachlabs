@@ -257,7 +257,7 @@
   }
 
   function initDataDeckFallback() {
-    const dataSection = document.getElementById('data');
+    const dataSection = document.getElementById('why-us') || document.getElementById('data');
     if (!dataSection) return;
 
     const cards = Array.from(dataSection.querySelectorAll('.orl-data-card'));
@@ -285,7 +285,7 @@
   }
 
   function initEnginesMarqueeFallback() {
-    const enginesSection = document.getElementById('inbound-outbound');
+    const enginesSection = document.getElementById('services') || document.getElementById('inbound-outbound');
     if (!enginesSection) return;
 
     const cards = Array.from(enginesSection.querySelectorAll('.orl-cap-card'));
@@ -317,7 +317,7 @@
   }
 
   function initPricingMotionFallback() {
-    const pricingSection = document.getElementById('pricing');
+    const pricingSection = document.getElementById('products') || document.getElementById('pricing');
     if (!pricingSection) return;
 
     const motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
