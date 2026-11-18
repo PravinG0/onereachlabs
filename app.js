@@ -1589,6 +1589,33 @@
       }
     });
 
+    // Smooth scroll for site navigation and footer section links (#services, #industries, etc.)
+    document.addEventListener('click', (e) => {
+      const navLink = e.target.closest('.site-nav a[href^="#"], .site-footer a[href^="#"], .vortex-pill-link[href^="#"]');
+      if (!navLink || navLink.dataset.jumpPortal === 'true' || navLink.dataset.heroExplore === 'true') return;
+      const href = navLink.getAttribute('href');
+      if (!href || href === '#' || href === '#top') return;
+
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        if (menu && menu.hasAttribute('popover') && menu.matches(':popover-open')) {
+          try {
+            menu.hidePopover();
+          } catch {
+            // Ignore popover state errors
+          }
+        }
+        target.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+          block: 'start'
+        });
+        if (window.history.pushState) {
+          window.history.pushState(null, '', href);
+        }
+      }
+    });
+
     // Activate uploaded <video> automatically if a src is present; otherwise run animated placeholder
     const hasVideoSrc = Boolean(
       videoEl && (videoEl.getAttribute('src') || videoEl.querySelector('source[src]'))
