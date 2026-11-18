@@ -2664,8 +2664,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .vortex-motion-toggle {
-    top: calc(var(--header-h, 63px) + 12px);
-    bottom: auto;
+    display: none !important;
   }
 }
 
