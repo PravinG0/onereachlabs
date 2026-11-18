@@ -2290,6 +2290,7 @@ h1, h2, h3, h4, h5, h6,
   align-items: center;
   justify-content: center;
   min-block-size: 36px;
+  min-inline-size: 120px;
   padding: 8px 18px;
   border-radius: 999px;
   background: rgba(15, 29, 71, 0.82);
@@ -2304,6 +2305,7 @@ h1, h2, h3, h4, h5, h6,
   text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
+  text-align: center;
   box-shadow:
     0 8px 24px rgba(10, 22, 56, 0.46),
     0 0 16px rgba(30, 61, 180, 0.24);
@@ -2336,20 +2338,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .vortex-approval {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: rgba(10, 22, 56, 0.88);
-  border: 1px solid rgba(201, 210, 234, 0.34);
-  color: var(--on-dark-muted);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
+  min-inline-size: 120px;
+  pointer-events: auto;
 }
 
 .vortex-runway.has-vortex-js .vortex-beat--4 {
@@ -2628,16 +2618,12 @@ h1, h2, h3, h4, h5, h6,
     font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
   }
 
-  .vortex-runway.has-vortex-js .vortex-pill {
+  .vortex-runway.has-vortex-js .vortex-pill,
+  .vortex-runway.has-vortex-js .vortex-approval {
     min-block-size: 30px;
+    min-inline-size: 92px;
     padding: 6px 10px;
     font-size: 9px;
-    letter-spacing: 0.08em;
-  }
-
-  .vortex-runway.has-vortex-js .vortex-approval {
-    padding: 4px 8px;
-    font-size: 8.5px;
     letter-spacing: 0.08em;
   }
 

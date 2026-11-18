@@ -211,28 +211,8 @@
         </button>
 
         <ul id="site-menu" class="site-menu" popover="auto">
-          <li class="nav-dropdown">
-            <button
-              class="dropdown-trigger"
-              type="button"
-              aria-expanded="false"
-              aria-controls="services-menu"
-              popovertarget="services-menu"
-            >
-              <span>Services</span>
-              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1.5 1.5L6 6l4.5-4.5" />
-              </svg>
-            </button>
-            <ul id="services-menu" class="dropdown-list">
-              <li><a href="#practice-inbound">Inbound Marketing</a></li>
-              <li><a href="#practice-outbound">Outbound Lead Generation</a></li>
-              <li><a href="#practice-demand">Demand Generation</a></li>
-              <li><a href="#practice-appointments">Appointment Setting</a></li>
-              <li><a href="#practice-sales-auto">Sales Automation</a></li>
-              <li><a href="#practice-mktg-auto">Marketing Automation</a></li>
-              <li><a href="#practice-revops">CRM &amp; Revenue Operations</a></li>
-            </ul>
+          <li>
+            <a href="#services">Services</a>
           </li>
 
           <li class="nav-dropdown">
@@ -250,52 +230,17 @@
             </button>
             <ul id="products-menu" class="dropdown-list">
               <li><a href="https://onereach.app/" target="_blank" rel="noopener noreferrer">OneReach</a></li>
-              <li><a href="#market-iq">Market IQ</a></li>
-              <li><a href="#oneconnect-crm">OneConnect CRM</a></li>
+              <li><a href="https://web.onetrac.ai/" target="_blank" rel="noopener noreferrer">Market IQ</a></li>
+              <li><a href="https://oneconnect.app/" target="_blank" rel="noopener noreferrer">OneConnect</a></li>
             </ul>
           </li>
 
-          <li class="nav-dropdown">
-            <button
-              class="dropdown-trigger"
-              type="button"
-              aria-expanded="false"
-              aria-controls="industries-menu"
-              popovertarget="industries-menu"
-            >
-              <span>Industries</span>
-              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1.5 1.5L6 6l4.5-4.5" />
-              </svg>
-            </button>
-            <ul id="industries-menu" class="dropdown-list">
-              <li><a href="#industry-saas">B2B SaaS</a></li>
-              <li><a href="#industry-consulting">Professional Services</a></li>
-              <li><a href="#industry-agencies">Agencies</a></li>
-              <li><a href="#industry-manufacturing">Manufacturing</a></li>
-              <li><a href="#industry-finance">Financial Services</a></li>
-              <li><a href="#industry-enterprise">Enterprise Teams</a></li>
-            </ul>
+          <li>
+            <a href="#industries">Industries</a>
           </li>
 
-          <li class="nav-dropdown">
-            <button
-              class="dropdown-trigger"
-              type="button"
-              aria-expanded="false"
-              aria-controls="resources-menu"
-              popovertarget="resources-menu"
-            >
-              <span>Resources</span>
-              <svg aria-hidden="true" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1.5 1.5L6 6l4.5-4.5" />
-              </svg>
-            </button>
-            <ul id="resources-menu" class="dropdown-list">
-              <li><a href="#customer-success">Case Studies</a></li>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="strategy-call.html">Strategy Call Overview</a></li>
-            </ul>
+          <li>
+            <a href="#how-it-works">How It Works</a>
           </li>
 
           <li class="nav-dropdown nav-dropdown--right">
@@ -553,7 +498,7 @@
             <button type="button" class="vortex-pill" data-node="sense" data-focus-track="signals">INBOUND</button>
             <button type="button" class="vortex-pill" data-node="perceive" data-focus-track="intel">OUTBOUND</button>
             <button type="button" class="vortex-pill is-highlighted" data-node="decide" data-focus-track="discovery">DEMAND GEN</button>
-            <span class="vortex-approval" id="vortex-approval">ALIGNMENT</span>
+            <button type="button" class="vortex-pill vortex-approval" id="vortex-approval" data-node="approval" data-focus-track="alignment">ALIGNMENT</button>
             <button type="button" class="vortex-pill" data-node="deliver" data-focus-track="sequences">SALES</button>
             <button type="button" class="vortex-pill" data-node="learn" data-focus-track="followup">REVOPS</button>
           </div>
@@ -1293,9 +1238,10 @@
 
         <div class="orl-plan-cta">
           <a
-            href="#campaign-form-wrap"
+            href="https://web.onetrac.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
             class="orl-btn orl-btn--tier-featured"
-            data-jump-portal="true"
             data-engagement-preset="market-iq"
           >
             <span>Explore Market IQ</span>
@@ -1350,9 +1296,10 @@
 
         <div class="orl-plan-cta">
           <a
-            href="#campaign-form-wrap"
+            href="https://oneconnect.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             class="orl-btn orl-btn--tier-dark"
-            data-jump-portal="true"
             data-engagement-preset="oneconnect-crm"
           >
             <span>Explore OneConnect CRM</span>
@@ -1929,11 +1876,10 @@
             <h3 class="site-footer__col-title">Products &amp; Industries</h3>
             <ul class="site-footer__list">
               <li><a href="https://onereach.app/" target="_blank" rel="noopener noreferrer">OneReach AI Sales</a></li>
-              <li><a href="#market-iq">Market IQ Intelligence</a></li>
-              <li><a href="#oneconnect-crm">OneConnect CRM</a></li>
-              <li><a href="#industry-saas">B2B SaaS Companies</a></li>
-              <li><a href="#industry-consulting">Professional Services</a></li>
-              <li><a href="#industry-enterprise">Enterprise Teams</a></li>
+              <li><a href="https://web.onetrac.ai/" target="_blank" rel="noopener noreferrer">Market IQ Intelligence</a></li>
+              <li><a href="https://oneconnect.app/" target="_blank" rel="noopener noreferrer">OneConnect CRM</a></li>
+              <li><a href="#industries">Industries We Serve</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
             </ul>
           </div>
 
