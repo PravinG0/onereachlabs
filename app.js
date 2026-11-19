@@ -2625,24 +2625,30 @@
       const pts = [];
       const liftY = (currentMouseY - 0.5) * 0.055 * currentHover;
 
+      const isMobile = width <= 768;
+      const ampScale = isMobile ? 0.32 : 1.0;
+      const freqScale = isMobile ? 0.42 : 1.0;
+      const baseShift = isMobile ? 0.22 : 0;
+
       for (let i = 0; i <= steps; i += 1) {
         const u = i / steps;
         const x = u * width;
-        const primary = Math.sin(u * Math.PI * layer.freq1 + t * layer.speed1 + layer.phase);
-        const secondary = Math.sin(u * Math.PI * layer.freq2 + t * layer.speed2 - layer.phase * 0.5);
-        const centerArch = -Math.sin(u * Math.PI) * 0.06;
+        const primary = Math.sin(u * Math.PI * (layer.freq1 * freqScale) + t * layer.speed1 + layer.phase);
+        const secondary = Math.sin(u * Math.PI * (layer.freq2 * freqScale) + t * layer.speed2 - layer.phase * 0.5);
+        const centerArch = (-Math.sin(u * Math.PI) * 0.06) * (isMobile ? 0.25 : 1.0);
         const dx = u - currentMouseX;
-        const mouseWave = -Math.exp(-dx * dx * 8.5) * layer.mousePull * currentHover;
+        const mouseWave = isMobile ? 0 : -Math.exp(-dx * dx * 8.5) * layer.mousePull * currentHover;
 
         const yNorm =
           layer.baseY +
+          baseShift +
           centerArch +
-          primary * layer.amp1 +
-          secondary * layer.amp2 +
+          primary * (layer.amp1 * ampScale) +
+          secondary * (layer.amp2 * ampScale) +
           mouseWave +
           liftY;
 
-        pts.push({ x, y: clamp(yNorm, 0.22, 0.94) * height });
+        pts.push({ x, y: clamp(yNorm, 0.15, 0.96) * height });
       }
       return pts;
     }
@@ -2663,6 +2669,7 @@
 
     function drawFrame(t) {
       ctx.clearRect(0, 0, width, height);
+      const isMobile = width <= 768;
 
       // Ambient top-to-bottom OneReach sky wash
       const baseGrad = ctx.createLinearGradient(0, 0, 0, height);
@@ -2675,11 +2682,11 @@
       // Soft ambient indigo halo tracking cursor gently across wave valley
       const orbX = width * lerp(0.5, currentMouseX, 0.65);
       const orbY = height * lerp(0.54, clamp(currentMouseY, 0.3, 0.8), 0.45);
-      const haloR = Math.max(width, height) * 0.58;
+      const haloR = Math.max(width, height) * (isMobile ? 0.42 : 0.58);
       const halo = ctx.createRadialGradient(orbX, orbY, 0, orbX, orbY, haloR);
-      halo.addColorStop(0, 'rgba(143, 166, 255, 0.26)');
-      halo.addColorStop(0.42, 'rgba(96, 189, 252, 0.14)');
-      halo.addColorStop(0.75, 'rgba(240, 138, 46, 0.04)');
+      halo.addColorStop(0, isMobile ? 'rgba(143, 166, 255, 0.14)' : 'rgba(143, 166, 255, 0.26)');
+      halo.addColorStop(0.42, isMobile ? 'rgba(96, 189, 252, 0.08)' : 'rgba(96, 189, 252, 0.14)');
+      halo.addColorStop(0.75, 'rgba(240, 138, 46, 0.02)');
       halo.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = halo;
       ctx.fillRect(0, 0, width, height);
@@ -2703,7 +2710,7 @@
 
         traceSmoothRibbon(pts);
         ctx.strokeStyle = layer.rimColor;
-        ctx.lineWidth = i === 0 ? 1.8 : 1.25;
+        ctx.lineWidth = i === 0 ? (isMobile ? 1.2 : 1.8) : (isMobile ? 0.8 : 1.25);
         ctx.stroke();
       }
     }
